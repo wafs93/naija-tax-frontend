@@ -3,7 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NaijaTax AI — Nigeria Tax Calculator 2025</title>
+<title>NaijaTax AI — Free Nigeria Tax Calculator 2025 | NTA 2025</title>
+<meta name="description" content="Calculate your Nigerian income tax instantly under the new Nigeria Tax Act 2025. Free PAYE calculator, VAT calculator, CIT calculator for salary workers, freelancers, SMEs and businesses. NTA 2025 compliant.">
+<meta name="keywords" content="Nigeria tax calculator 2025, NTA 2025, PAYE calculator Nigeria, Nigerian income tax, tax calculator Nigeria, Nigeria tax reform, NTA calculator, FIRS tax Nigeria, salary tax Nigeria, freelancer tax Nigeria">
+<meta name="author" content="NaijaTax AI">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://naija-tax-frontend.vercel.app">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://naija-tax-frontend.vercel.app">
+<meta property="og:title" content="NaijaTax AI — Free Nigeria Tax Calculator 2025">
+<meta property="og:description" content="Calculate your Nigerian tax instantly under NTA 2025. Free for everyone — salary, freelance, crypto, POS, YouTube income.">
+<meta property="og:locale" content="en_NG">
+<meta property="og:site_name" content="NaijaTax AI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NaijaTax AI — Free Nigeria Tax Calculator 2025">
+<meta name="twitter:description" content="Calculate your Nigerian tax under NTA 2025. Free PAYE, VAT and CIT calculator.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "NaijaTax AI",
+  "url": "https://naija-tax-frontend.vercel.app",
+  "description": "AI-powered Nigerian tax calculator built on the Nigeria Tax Act 2025.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "NGN"},
+  "provider": {"@type": "Organization", "name": "NaijaTax AI"},
+  "isAccessibleForFree": true
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <style>
@@ -19,7 +47,7 @@
 }
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
 .header{background:var(--green);padding:0 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(29,158,117,.3)}
-.header-inner{max-width:680px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
+.header-inner{max-width:720px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
 .logo{display:flex;align-items:center;gap:10px}
 .logo-icon{width:36px;height:36px;background:rgba(255,255,255,.2);border-radius:10px;display:flex;align-items:center;justify-content:center}
 .logo-text h1{font-size:17px;font-weight:700;color:#fff;letter-spacing:-.3px}
@@ -27,22 +55,21 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .header-right{display:flex;align-items:center;gap:8px}
 .header-badge{background:rgba(255,255,255,.2);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,.3)}
 .upgrade-btn{background:#fff;color:var(--green-dd);font-size:12px;font-weight:700;padding:6px 12px;border-radius:20px;border:none;cursor:pointer;font-family:inherit}
-.nav{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:60px;z-index:99;box-shadow:var(--shadow)}
-.nav-inner{max-width:680px;margin:0 auto;display:flex}
-.nav-tab{flex:1;padding:14px 8px;font-size:13px;font-weight:500;text-align:center;border:none;background:transparent;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px}
+.nav{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:60px;z-index:99;box-shadow:var(--shadow);overflow-x:auto}
+.nav-inner{max-width:720px;margin:0 auto;display:flex;min-width:500px}
+.nav-tab{flex:1;padding:12px 6px;font-size:12px;font-weight:500;text-align:center;border:none;background:transparent;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
 .nav-tab.active{color:var(--green);border-bottom-color:var(--green)}
 .nav-tab:hover:not(.active){color:var(--text);background:#fafafa}
-.nav-icon{font-size:15px}
-.page{display:none;max-width:680px;margin:0 auto;padding:20px 16px 100px}
+.page{display:none;max-width:720px;margin:0 auto;padding:20px 16px 100px}
 .page.active{display:block}
 .hero{background:var(--green);border-radius:var(--radius-xl);padding:24px 20px;margin-bottom:20px;color:#fff;position:relative;overflow:hidden}
 .hero::after{content:'';position:absolute;right:-20px;top:-20px;width:120px;height:120px;background:rgba(255,255,255,.08);border-radius:50%}
 .hero::before{content:'';position:absolute;right:40px;bottom:-30px;width:80px;height:80px;background:rgba(255,255,255,.05);border-radius:50%}
 .hero h2{font-size:20px;font-weight:700;margin-bottom:6px;position:relative}
-.hero p{font-size:13px;opacity:.9;line-height:1.6;position:relative;max-width:300px}
-.hero-stats{display:flex;gap:16px;margin-top:16px;position:relative}
-.hero-stat{background:rgba(255,255,255,.15);border-radius:10px;padding:10px 14px;flex:1;text-align:center}
-.hero-stat-val{font-size:16px;font-weight:700}
+.hero p{font-size:13px;opacity:.9;line-height:1.6;position:relative;max-width:320px}
+.hero-stats{display:flex;gap:12px;margin-top:16px;position:relative;flex-wrap:wrap}
+.hero-stat{background:rgba(255,255,255,.15);border-radius:10px;padding:10px 14px;flex:1;text-align:center;min-width:80px}
+.hero-stat-val{font-size:15px;font-weight:700}
 .hero-stat-lbl{font-size:10px;opacity:.8;margin-top:2px}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
 .chip{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:500;color:var(--text);cursor:pointer;transition:all .15s;white-space:nowrap}
@@ -91,6 +118,11 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .calc-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:16px;box-shadow:var(--shadow)}
 .calc-card h2{font-size:16px;font-weight:700;margin-bottom:4px}
 .calc-card .subtitle{font-size:13px;color:var(--muted);margin-bottom:20px}
+.calc-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.calc-tab{padding:8px 16px;border-radius:20px;font-size:13px;font-weight:500;border:1.5px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-family:inherit;transition:all .15s}
+.calc-tab.active{background:var(--green);color:#fff;border-color:var(--green)}
+.calc-section{display:none}
+.calc-section.active{display:block}
 .field{margin-bottom:16px}
 .field label{display:block;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
 .field select,.field input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;background:var(--white);color:var(--text);font-family:inherit;outline:none;transition:border-color .2s;-webkit-appearance:none}
@@ -133,6 +165,29 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
 .download-btn{width:100%;background:var(--green-dd);color:#fff;border:none;padding:16px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;border-top:1px solid #9FE1CB;transition:background .2s;display:none;letter-spacing:.3px}
 .download-btn:hover{background:#04342C}
 .download-btn:disabled{background:var(--hint);cursor:not-allowed}
+.simple-result{background:var(--green-ll);border:1px solid #9FE1CB;border-radius:var(--radius-lg);padding:20px;margin-top:16px;display:none}
+.simple-result.show{display:block}
+.simple-result-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #C6F0E0;font-size:14px}
+.simple-result-row:last-child{border-bottom:none;font-weight:700;font-size:16px;color:var(--green-dd);padding-top:14px;margin-top:4px}
+.simple-result-label{color:var(--muted)}
+.simple-result-val{font-weight:600;color:var(--text)}
+.info-box{background:var(--green-l);border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px;color:var(--green-dd);line-height:1.6}
+.info-box strong{font-weight:700}
+.deadline-list{display:flex;flex-direction:column;gap:10px}
+.deadline-item{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;gap:14px;align-items:flex-start;box-shadow:var(--shadow)}
+.deadline-month{width:44px;height:44px;border-radius:10px;background:var(--green);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
+.deadline-month-name{font-size:10px;font-weight:600;opacity:.85}
+.deadline-month-day{font-size:16px;font-weight:800;line-height:1}
+.deadline-info{flex:1}
+.deadline-title{font-size:14px;font-weight:600;margin-bottom:3px}
+.deadline-desc{font-size:12px;color:var(--muted);line-height:1.5}
+.deadline-badge{display:inline-block;margin-top:6px;font-size:10px;font-weight:600;padding:2px 8px;border-radius:8px}
+.badge-urgent{background:#FCEBEB;color:#A32D2D}
+.badge-soon{background:#FAEEDA;color:#633806}
+.badge-ok{background:var(--green-l);color:var(--green-dd)}
+.reminder-form{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-top:16px;box-shadow:var(--shadow)}
+.reminder-form h3{font-size:15px;font-weight:700;margin-bottom:4px}
+.reminder-form p{font-size:13px;color:var(--muted);margin-bottom:16px}
 .pricing-section{margin-bottom:20px}
 .pricing-title{font-size:20px;font-weight:700;text-align:center;margin-bottom:6px}
 .pricing-sub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:20px}
@@ -173,11 +228,11 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
 .feature h3{font-size:14px;font-weight:700;margin-bottom:4px}
 .feature p{font-size:13px;color:var(--muted);line-height:1.6}
 .disclaimer{background:#FFFBEB;border:1px solid #FCD34D;border-radius:var(--radius);padding:16px;font-size:12px;color:#92400E;line-height:1.7}
-.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--border);z-index:200;padding:8px 0}
-.bottom-nav-inner{display:flex;max-width:680px;margin:0 auto}
-.bnav-tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 4px;border:none;background:transparent;cursor:pointer;color:var(--hint);font-size:10px;font-weight:500;font-family:inherit}
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--border);z-index:200;padding:6px 0}
+.bottom-nav-inner{display:flex;max-width:720px;margin:0 auto}
+.bnav-tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 4px;border:none;background:transparent;cursor:pointer;color:var(--hint);font-size:9px;font-weight:500;font-family:inherit}
 .bnav-tab.active{color:var(--green)}
-.bnav-icon{font-size:20px}
+.bnav-icon{font-size:18px}
 @media(max-width:600px){
   .bottom-nav{display:block}
   .nav{display:none}
@@ -185,6 +240,7 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
   .hero h2{font-size:17px}
   .pricing-grid{grid-template-columns:1fr}
   .stats-grid{grid-template-columns:1fr 1fr 1fr}
+  .result-grid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -203,17 +259,18 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
     </div>
     <div class="header-right">
       <span class="header-badge" id="planBadge">Free</span>
-      <button class="upgrade-btn" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[2])">Upgrade</button>
+      <button class="upgrade-btn" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[3])">Upgrade</button>
     </div>
   </div>
 </div>
 
 <div class="nav">
   <div class="nav-inner">
-    <button class="nav-tab active" onclick="showPage('chat',this)"><span class="nav-icon">💬</span> Chat</button>
-    <button class="nav-tab" onclick="showPage('calculator',this)"><span class="nav-icon">🧮</span> Calculator</button>
-    <button class="nav-tab" onclick="showPage('pricing',this)"><span class="nav-icon">💳</span> Pricing</button>
-    <button class="nav-tab" onclick="showPage('about',this)"><span class="nav-icon">ℹ️</span> About</button>
+    <button class="nav-tab active" onclick="showPage('chat',this)">💬 Chat</button>
+    <button class="nav-tab" onclick="showPage('calculator',this)">🧮 Calculator</button>
+    <button class="nav-tab" onclick="showPage('deadlines',this)">📅 Deadlines</button>
+    <button class="nav-tab" onclick="showPage('pricing',this)">💳 Pricing</button>
+    <button class="nav-tab" onclick="showPage('about',this)">ℹ️ About</button>
   </div>
 </div>
 
@@ -226,15 +283,17 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
       <div class="hero-stat"><div class="hero-stat-val">NGN800k</div><div class="hero-stat-lbl">Tax-free threshold</div></div>
       <div class="hero-stat"><div class="hero-stat-val">7.5%</div><div class="hero-stat-lbl">VAT rate</div></div>
       <div class="hero-stat"><div class="hero-stat-val">0%</div><div class="hero-stat-lbl">SME tax</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">30%</div><div class="hero-stat-lbl">CIT (large co.)</div></div>
     </div>
   </div>
   <div class="chips">
-    <button class="chip" onclick="askQ('I earn NGN3M per year as a salary worker. How much PAYE tax do I pay monthly?')">Salary worker</button>
+    <button class="chip" onclick="askQ('I earn NGN3M per year as a salary worker. How much PAYE tax do I pay monthly?')">Salary PAYE</button>
     <button class="chip" onclick="askQ('I make money from crypto and forex trading in Nigeria. Is it taxable under NTA 2025?')">Crypto tax</button>
     <button class="chip" onclick="askQ('I run a POS business making NGN5M per year. Do I pay tax?')">POS business</button>
-    <button class="chip" onclick="askQ('I earn from YouTube and TikTok. How much tax do I owe under the new law?')">Content creator</button>
+    <button class="chip" onclick="askQ('I earn from YouTube and TikTok. How much tax do I owe?')">Content creator</button>
     <button class="chip" onclick="askQ('What items are VAT exempt in Nigeria under NTA 2025?')">VAT exemptions</button>
-    <button class="chip" onclick="askQ('My company has NGN80M turnover. Do we pay Companies Income Tax?')">Business owner</button>
+    <button class="chip" onclick="askQ('My company has NGN80M turnover. Do we pay Companies Income Tax?')">Business CIT</button>
+    <button class="chip" onclick="askQ('What are the PAYE filing deadlines for employers in Nigeria 2026?')">Tax deadlines</button>
   </div>
   <div class="chat-wrap">
     <div class="messages" id="messages">
@@ -247,7 +306,7 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
         <div class="bubble">
           <strong>Hello! Welcome to NaijaTax AI.</strong><br><br>
           I am your free Nigerian tax assistant, fully updated for the <strong>Nigeria Tax Act 2025</strong> (effective January 2026).<br><br>
-          Ask me about your salary, freelance income, crypto, POS business, YouTube earnings, VAT, or company tax. I will give you clear, accurate answers in plain English.<br><br>
+          Ask me about salary, freelance income, crypto, POS business, YouTube earnings, VAT, company tax, or tax deadlines. I will give you clear, accurate answers in plain English.<br><br>
           <strong>Free users get 5 questions. Upgrade for unlimited access.</strong>
         </div>
       </div>
@@ -274,65 +333,204 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
   <div class="paywall" id="paywall">
     <h3>You have used all 5 free questions</h3>
     <p>Upgrade to the Individual plan for NGN 2,000/month and get unlimited AI tax questions, priority answers, and unlimited PDF tax reports.</p>
-    <button class="paywall-btn" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[2])">See pricing plans</button>
+    <button class="paywall-btn" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[3])">See pricing plans</button>
   </div>
 </div>
 
 <!-- CALCULATOR PAGE -->
 <div class="page" id="calculator">
   <div class="calc-card">
-    <h2>Personal Income Tax Calculator</h2>
-    <p class="subtitle">Nigeria Tax Act 2025 — Instant accurate results</p>
-    <div class="field">
-      <label>Income type</label>
-      <select id="incomeType">
-        <option>Salary / Employment (PAYE)</option>
-        <option>Freelancer / Self-employed</option>
-        <option>Content creator (YouTube, TikTok, Instagram)</option>
-        <option>POS / Business owner</option>
-        <option>Crypto / Forex trader</option>
-        <option>Rental income</option>
-        <option>Multiple income sources</option>
-      </select>
+    <h2>Nigeria Tax Calculators</h2>
+    <p class="subtitle">NTA 2025 — Accurate results for all tax types</p>
+    <div class="calc-tabs">
+      <button class="calc-tab active" onclick="switchCalc('pit',this)">Personal Income Tax</button>
+      <button class="calc-tab" onclick="switchCalc('cit',this)">Company Tax (CIT)</button>
+      <button class="calc-tab" onclick="switchCalc('vat',this)">VAT Calculator</button>
     </div>
-    <div class="field">
-      <label>Annual income</label>
-      <div class="slider-val">
-        <span class="slider-amount" id="sliderDisplay">NGN 3,600,000</span>
-        <span class="slider-label">per year</span>
+
+    <!-- PIT SECTION -->
+    <div class="calc-section active" id="pit-section">
+      <div class="field">
+        <label>Income type</label>
+        <select id="incomeType">
+          <option>Salary / Employment (PAYE)</option>
+          <option>Freelancer / Self-employed</option>
+          <option>Content creator (YouTube, TikTok, Instagram)</option>
+          <option>POS / Business owner</option>
+          <option>Crypto / Forex trader</option>
+          <option>Rental income</option>
+          <option>Multiple income sources</option>
+        </select>
       </div>
-      <input type="range" id="incomeSlider" min="0" max="50000000" step="100000" value="3600000" oninput="updateSlider(this.value)">
-      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--hint);margin-top:4px">
-        <span>NGN 0</span><span>NGN 25M</span><span>NGN 50M</span>
+      <div class="field">
+        <label>Annual income</label>
+        <div class="slider-val">
+          <span class="slider-amount" id="sliderDisplay">NGN 3,600,000</span>
+          <span class="slider-label">per year</span>
+        </div>
+        <input type="range" id="incomeSlider" min="0" max="50000000" step="100000" value="3600000" oninput="updateSlider(this.value)">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--hint);margin-top:4px">
+          <span>NGN 0</span><span>NGN 25M</span><span>NGN 50M</span>
+        </div>
+        <div class="field-hint" style="margin-top:10px">Or type exact amount:</div>
+        <input type="number" id="annualIncome" placeholder="e.g. 3600000" min="0" oninput="updateFromInput(this.value)" style="margin-top:8px"/>
       </div>
-      <div class="field-hint" style="margin-top:10px">Or type exact amount:</div>
-      <input type="number" id="annualIncome" placeholder="e.g. 3600000" min="0" oninput="updateFromInput(this.value)" style="margin-top:8px"/>
+      <div class="field">
+        <label>Annual rent paid (optional)</label>
+        <input type="number" id="annualRent" placeholder="e.g. 600000" min="0"/>
+        <div class="field-hint">20% of rent deducted, max NGN 500,000</div>
+      </div>
+      <button class="calc-btn" id="calcBtn" onclick="calculatePIT()">Calculate income tax</button>
+      <div class="result-box" id="pitResultBox">
+        <div class="result-header">
+          <h3>Your 2025/2026 Tax Summary</h3>
+          <p id="resultIncomeType">Employment</p>
+        </div>
+        <div class="result-grid">
+          <div class="result-item"><div class="result-lbl">Annual tax</div><div class="result-val" id="r-tax">—</div><div class="result-sub">per year</div></div>
+          <div class="result-item"><div class="result-lbl">Monthly tax</div><div class="result-val" id="r-monthly">—</div><div class="result-sub">deducted monthly</div></div>
+          <div class="result-item"><div class="result-lbl">Effective rate</div><div class="result-val" id="r-rate">—</div><div class="result-sub">of gross income</div></div>
+          <div class="result-item"><div class="result-lbl">Taxable income</div><div class="result-val" id="r-taxable">—</div><div class="result-sub">after deductions</div></div>
+        </div>
+        <div class="result-footer">
+          <span class="result-footer-label">Monthly take-home</span>
+          <span class="result-footer-val" id="r-takehome">—</span>
+        </div>
+        <button class="breakdown-toggle" onclick="toggleBreakdown()">Show full tax band breakdown</button>
+        <div class="breakdown-list" id="breakdown"></div>
+        <button class="download-btn" id="downloadBtn" onclick="downloadPDF()">Download Tax Report PDF — Free</button>
+      </div>
     </div>
-    <div class="field">
-      <label>Annual rent paid (optional)</label>
-      <input type="number" id="annualRent" placeholder="e.g. 600000 — for rent relief deduction" min="0"/>
-      <div class="field-hint">20% of rent deducted from taxable income, max NGN 500,000</div>
+
+    <!-- CIT SECTION -->
+    <div class="calc-section" id="cit-section">
+      <div class="info-box">
+        <strong>Companies Income Tax (CIT) under NTA 2025:</strong><br>
+        Small companies (turnover ≤ NGN 100M): <strong>0% — fully exempt</strong><br>
+        All other companies: <strong>30% on taxable profit</strong>
+      </div>
+      <div class="field">
+        <label>Annual turnover (gross revenue)</label>
+        <input type="number" id="citTurnover" placeholder="e.g. 50000000" min="0"/>
+        <div class="field-hint">Enter your company's total annual revenue</div>
+      </div>
+      <div class="field">
+        <label>Taxable profit (after allowable deductions)</label>
+        <input type="number" id="citProfit" placeholder="e.g. 15000000" min="0"/>
+        <div class="field-hint">Revenue minus allowable business expenses</div>
+      </div>
+      <button class="calc-btn" onclick="calculateCIT()">Calculate company tax</button>
+      <div class="simple-result" id="citResult">
+        <div class="simple-result-row"><span class="simple-result-label">Annual turnover</span><span class="simple-result-val" id="cit-turnover">—</span></div>
+        <div class="simple-result-row"><span class="simple-result-label">Company category</span><span class="simple-result-val" id="cit-category">—</span></div>
+        <div class="simple-result-row"><span class="simple-result-label">Tax rate</span><span class="simple-result-val" id="cit-rate">—</span></div>
+        <div class="simple-result-row"><span class="simple-result-label">Taxable profit</span><span class="simple-result-val" id="cit-profit">—</span></div>
+        <div class="simple-result-row"><span class="simple-result-label">CIT payable</span><span class="simple-result-val" id="cit-tax">—</span></div>
+      </div>
     </div>
-    <button class="calc-btn" id="calcBtn" onclick="calculateTax()">Calculate my tax</button>
-    <div class="result-box" id="resultBox">
-      <div class="result-header">
-        <h3>Your 2025/2026 Tax Summary</h3>
-        <p id="resultIncomeType">Employment</p>
+
+    <!-- VAT SECTION -->
+    <div class="calc-section" id="vat-section">
+      <div class="info-box">
+        <strong>VAT under NTA 2025:</strong> Standard rate is <strong>7.5%</strong>.<br>
+        Zero-rated: basic food, medicine, education, electricity, exports.<br>
+        Businesses can now claim input VAT on services and fixed assets.
       </div>
-      <div class="result-grid">
-        <div class="result-item"><div class="result-lbl">Annual tax</div><div class="result-val" id="r-tax">—</div><div class="result-sub">per year</div></div>
-        <div class="result-item"><div class="result-lbl">Monthly tax</div><div class="result-val" id="r-monthly">—</div><div class="result-sub">deducted monthly</div></div>
-        <div class="result-item"><div class="result-lbl">Effective rate</div><div class="result-val" id="r-rate">—</div><div class="result-sub">of gross income</div></div>
-        <div class="result-item"><div class="result-lbl">Taxable income</div><div class="result-val" id="r-taxable">—</div><div class="result-sub">after deductions</div></div>
+      <div class="field">
+        <label>Transaction amount (NGN)</label>
+        <input type="number" id="vatAmount" placeholder="e.g. 100000" min="0"/>
       </div>
-      <div class="result-footer">
-        <span class="result-footer-label">Monthly take-home</span>
-        <span class="result-footer-val" id="r-takehome">—</span>
+      <div class="field">
+        <label>VAT type</label>
+        <select id="vatType">
+          <option value="add">Add VAT to amount (exclusive)</option>
+          <option value="extract">Extract VAT from amount (inclusive)</option>
+        </select>
       </div>
-      <button class="breakdown-toggle" onclick="toggleBreakdown()">Show full tax band breakdown</button>
-      <div class="breakdown-list" id="breakdown"></div>
-      <button class="download-btn" id="downloadBtn" onclick="downloadPDF()">Download Tax Report PDF — Free</button>
+      <div class="field">
+        <label>Item category</label>
+        <select id="vatCategory">
+          <option value="standard">Standard rated (7.5%)</option>
+          <option value="zero">Zero-rated (food, medicine, education, exports)</option>
+        </select>
+      </div>
+      <button class="calc-btn" onclick="calculateVAT()">Calculate VAT</button>
+      <div class="simple-result" id="vatResult">
+        <div class="simple-result-row"><span class="simple-result-label">Original amount</span><span class="simple-result-val" id="vat-original">—</span></div>
+        <div class="simple-result-row"><span class="simple-result-label">VAT rate</span><span class="simple-result-val" id="vat-rate">—</span></div>
+        <div class="simple-result-row"><span class="simple-result-label">VAT amount</span><span class="simple-result-val" id="vat-amount">—</span></div>
+        <div class="simple-result-row"><span class="simple-result-label">Total amount</span><span class="simple-result-val" id="vat-total">—</span></div>
+      </div>
     </div>
+  </div>
+</div>
+
+<!-- DEADLINES PAGE -->
+<div class="page" id="deadlines">
+  <div class="hero" style="margin-bottom:20px">
+    <h2>Nigerian Tax Deadlines 2026</h2>
+    <p>Never miss a deadline. Key dates under NTA 2025 for individuals and businesses.</p>
+  </div>
+
+  <div class="deadline-list">
+    <div class="deadline-item">
+      <div class="deadline-month" style="background:#E24B4A"><div class="deadline-month-name">JAN</div><div class="deadline-month-day">31</div></div>
+      <div class="deadline-info">
+        <div class="deadline-title">PAYE Monthly Remittance</div>
+        <div class="deadline-desc">Employers must remit December PAYE deductions to the State Internal Revenue Service. Penalty: 40% of unremitted amount.</div>
+        <span class="deadline-badge badge-ok">Monthly recurring</span>
+      </div>
+    </div>
+    <div class="deadline-item">
+      <div class="deadline-month"><div class="deadline-month-name">MAR</div><div class="deadline-month-day">31</div></div>
+      <div class="deadline-info">
+        <div class="deadline-title">Annual Returns (Companies)</div>
+        <div class="deadline-desc">Companies must file their annual CIT returns with the Nigeria Revenue Service for the preceding year.</div>
+        <span class="deadline-badge badge-soon">Important</span>
+      </div>
+    </div>
+    <div class="deadline-item">
+      <div class="deadline-month"><div class="deadline-month-name">APR</div><div class="deadline-month-day">30</div></div>
+      <div class="deadline-info">
+        <div class="deadline-title">Personal Income Tax Returns</div>
+        <div class="deadline-desc">Self-employed individuals, freelancers, and business owners must file their annual PIT returns. Salary workers are covered by employer PAYE.</div>
+        <span class="deadline-badge badge-soon">Self-employed only</span>
+      </div>
+    </div>
+    <div class="deadline-item">
+      <div class="deadline-month"><div class="deadline-month-name">MAY</div><div class="deadline-month-day">21</div></div>
+      <div class="deadline-info">
+        <div class="deadline-title">VAT Returns (Monthly)</div>
+        <div class="deadline-desc">Businesses registered for VAT must file monthly VAT returns and remit collected VAT by the 21st of the following month.</div>
+        <span class="deadline-badge badge-ok">Monthly recurring</span>
+      </div>
+    </div>
+    <div class="deadline-item">
+      <div class="deadline-month"><div class="deadline-month-name">JUN</div><div class="deadline-month-day">30</div></div>
+      <div class="deadline-info">
+        <div class="deadline-title">Mid-year Tax Review</div>
+        <div class="deadline-desc">Good time for individuals and businesses to review their tax position for the year and make any necessary adjustments to avoid year-end surprises.</div>
+        <span class="deadline-badge badge-ok">Advisory</span>
+      </div>
+    </div>
+    <div class="deadline-item">
+      <div class="deadline-month"><div class="deadline-month-name">DEC</div><div class="deadline-month-day">31</div></div>
+      <div class="deadline-info">
+        <div class="deadline-title">Tax Year End</div>
+        <div class="deadline-desc">End of the 2026 tax year. Ensure all records are complete. Employers must prepare annual P60/tax deduction cards for all employees.</div>
+        <span class="deadline-badge badge-ok">Year end</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="reminder-form">
+    <h3>Get deadline reminders by email</h3>
+    <p>Enter your email and we will send you reminders 7 days before each major tax deadline — completely free.</p>
+    <div class="field" style="margin-bottom:12px">
+      <input type="email" id="reminderEmail" placeholder="your@email.com"/>
+    </div>
+    <button class="calc-btn" onclick="subscribeReminders()">Send me deadline reminders — Free</button>
+    <p id="reminderMsg" style="margin-top:10px;font-size:13px;color:var(--green);display:none;text-align:center;font-weight:600">Done! You will receive reminders before each deadline.</p>
   </div>
 </div>
 
@@ -348,8 +546,9 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
         <div class="plan-period">forever</div>
         <ul class="plan-features">
           <li>5 AI questions per month</li>
-          <li>Tax calculator</li>
+          <li>PIT, CIT, VAT calculators</li>
           <li>PDF download</li>
+          <li>Tax deadline calendar</li>
           <li>NTA 2025 accurate</li>
         </ul>
         <button class="plan-btn outline" onclick="showPage('chat',document.querySelectorAll('.nav-tab')[0])">Use for free</button>
@@ -403,18 +602,9 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
         </div>
       </div>
     </div>
-    <div class="faq-card">
-      <h4>Is my payment secure?</h4>
-      <p>Yes. All payments are processed by Paystack — Nigeria's most trusted payment gateway. We never store your card details.</p>
-    </div>
-    <div class="faq-card">
-      <h4>Can I cancel anytime?</h4>
-      <p>Yes. Cancel your subscription anytime from your Paystack subscription portal. No questions asked.</p>
-    </div>
-    <div class="faq-card">
-      <h4>Do you offer refunds?</h4>
-      <p>Yes. If you are not satisfied within the first 7 days, contact us for a full refund.</p>
-    </div>
+    <div class="faq-card"><h4>Is my payment secure?</h4><p>Yes. All payments are processed by Paystack — Nigeria's most trusted payment gateway. We never store your card details.</p></div>
+    <div class="faq-card"><h4>Can I cancel anytime?</h4><p>Yes. Cancel your subscription anytime from your Paystack subscription portal. No questions asked.</p></div>
+    <div class="faq-card"><h4>Do you offer refunds?</h4><p>Yes. If you are not satisfied within the first 7 days, contact us for a full refund.</p></div>
   </div>
 </div>
 
@@ -427,14 +617,14 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
   </div>
   <div class="stats-grid">
     <div class="stat-card"><div class="stat-val">NTA</div><div class="stat-lbl">2025 compliant</div></div>
-    <div class="stat-card"><div class="stat-val">2</div><div class="stat-lbl">AI providers</div></div>
+    <div class="stat-card"><div class="stat-val">3</div><div class="stat-lbl">Tax calculators</div></div>
     <div class="stat-card"><div class="stat-val">Free</div><div class="stat-lbl">to start</div></div>
   </div>
   <div class="feature-list">
     <div class="feature"><div class="feature-icon fi-green">🧠</div><div><h3>Multi-brain AI</h3><p>Powered by OpenRouter and OpenAI with automatic fallback — always available.</p></div></div>
     <div class="feature"><div class="feature-icon fi-amber">📋</div><div><h3>NTA 2025 accurate</h3><p>Built on the exact tax bands from the Nigeria Tax Act signed June 26, 2025.</p></div></div>
     <div class="feature"><div class="feature-icon fi-blue">🔒</div><div><h3>Private and secure</h3><p>Your income data is never stored. Calculations happen in real time.</p></div></div>
-    <div class="feature"><div class="feature-icon fi-purple">📱</div><div><h3>Works on any device</h3><p>Designed mobile-first. Works on any Android phone, iPhone, or desktop.</p></div></div>
+    <div class="feature"><div class="feature-icon fi-purple">📅</div><div><h3>Deadline reminders</h3><p>Never miss a PAYE, VAT, or CIT deadline. Free email reminders sent automatically.</p></div></div>
   </div>
   <div class="disclaimer"><strong>Disclaimer:</strong> NaijaTax AI provides general tax information based on the Nigeria Tax Act 2025. Always consult a CITN-certified accountant for complex tax situations.</div>
 </div>
@@ -443,8 +633,9 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
 <div class="bottom-nav">
   <div class="bottom-nav-inner">
     <button class="bnav-tab active" onclick="showPage('chat',this,true)"><span class="bnav-icon">💬</span>Chat</button>
-    <button class="bnav-tab" onclick="showPage('calculator',this,true)"><span class="bnav-icon">🧮</span>Calculator</button>
-    <button class="bnav-tab" onclick="showPage('pricing',this,true)"><span class="bnav-icon">💳</span>Pricing</button>
+    <button class="bnav-tab" onclick="showPage('calculator',this,true)"><span class="bnav-icon">🧮</span>Calc</button>
+    <button class="bnav-tab" onclick="showPage('deadlines',this,true)"><span class="bnav-icon">📅</span>Dates</button>
+    <button class="bnav-tab" onclick="showPage('pricing',this,true)"><span class="bnav-icon">💳</span>Plans</button>
     <button class="bnav-tab" onclick="showPage('about',this,true)"><span class="bnav-icon">ℹ️</span>About</button>
   </div>
 </div>
@@ -464,36 +655,31 @@ function setUsage(n){localStorage.setItem('naijaUsage',n)}
 function isPaid(){return localStorage.getItem('naijaPaid')==='true'}
 
 function updateUsageBar(){
-  const used=getUsage();
-  const paid=isPaid();
+  const used=getUsage(),paid=isPaid();
   const bar=document.getElementById('usageBar');
   const fill=document.getElementById('usageFill');
   const count=document.getElementById('usageCount');
   const badge=document.getElementById('planBadge');
-  if(paid){
-    bar.style.display='none';
-    badge.textContent='Pro';
-    badge.style.background='rgba(255,255,255,.35)';
-    return;
-  }
+  if(paid){bar.style.display='none';badge.textContent='Pro';badge.style.background='rgba(255,255,255,.35)';return}
   fill.style.width=(used/FREE_LIMIT*100)+'%';
   count.textContent=used+' / '+FREE_LIMIT;
-  if(used>=FREE_LIMIT){
-    fill.style.background='#E24B4A';
-    count.style.color='#E24B4A';
-  }
+  if(used>=FREE_LIMIT){fill.style.background='#E24B4A';count.style.color='#E24B4A'}
 }
 
 function showPage(id,btn,isMobile=false){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  if(isMobile){
-    document.querySelectorAll('.bnav-tab').forEach(t=>t.classList.remove('active'));
-  }else{
-    document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-  }
+  if(isMobile){document.querySelectorAll('.bnav-tab').forEach(t=>t.classList.remove('active'))}
+  else{document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'))}
   if(btn)btn.classList.add('active');
   window.scrollTo(0,0);
+}
+
+function switchCalc(tab,btn){
+  document.querySelectorAll('.calc-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.calc-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(tab+'-section').classList.add('active');
+  btn.classList.add('active');
 }
 
 function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,120)+'px'}
@@ -514,10 +700,7 @@ function addMsg(text,type){
 function askQ(q){document.getElementById('chatInput').value=q;sendMessage()}
 
 async function sendMessage(){
-  if(!isPaid()&&getUsage()>=FREE_LIMIT){
-    document.getElementById('paywall').classList.add('show');
-    return;
-  }
+  if(!isPaid()&&getUsage()>=FREE_LIMIT){document.getElementById('paywall').classList.add('show');return}
   const input=document.getElementById('chatInput');
   const q=input.value.trim();
   if(!q)return;
@@ -531,13 +714,7 @@ async function sendMessage(){
     const data=await res.json();
     document.getElementById('typing').classList.remove('show');
     addMsg(data.answer||data.detail||'Sorry, could not get an answer right now.','ai');
-    if(!isPaid()){
-      setUsage(getUsage()+1);
-      updateUsageBar();
-      if(getUsage()>=FREE_LIMIT){
-        setTimeout(()=>document.getElementById('paywall').classList.add('show'),1500);
-      }
-    }
+    if(!isPaid()){setUsage(getUsage()+1);updateUsageBar();if(getUsage()>=FREE_LIMIT){setTimeout(()=>document.getElementById('paywall').classList.add('show'),1500)}}
   }catch(e){
     document.getElementById('typing').classList.remove('show');
     addMsg('Sorry, could not connect. Please check your connection and try again.','ai');
@@ -549,7 +726,7 @@ function fmt(n){return'NGN '+Math.round(n).toLocaleString('en-NG')}
 function updateSlider(v){document.getElementById('sliderDisplay').textContent='NGN '+Math.round(v).toLocaleString('en-NG');document.getElementById('annualIncome').value=v}
 function updateFromInput(v){const n=Math.min(parseFloat(v)||0,50000000);document.getElementById('incomeSlider').value=n;document.getElementById('sliderDisplay').textContent='NGN '+Math.round(n).toLocaleString('en-NG')}
 
-async function calculateTax(){
+async function calculatePIT(){
   const income=parseFloat(document.getElementById('annualIncome').value)||parseFloat(document.getElementById('incomeSlider').value)||0;
   if(!income||income<=0){alert('Please enter your annual income');return}
   const btn=document.getElementById('calcBtn');
@@ -566,11 +743,46 @@ async function calculateTax(){
     document.getElementById('r-takehome').textContent=fmt(d.take_home_monthly)+' /mo';
     const maxTax=Math.max(...d.breakdown.map(b=>b.tax));
     document.getElementById('breakdown').innerHTML=d.breakdown.map(b=>'<div class="band-row"><div style="flex:1"><div style="display:flex;justify-content:space-between"><span class="band-label">'+b.band+'</span><span class="band-val">'+fmt(b.tax)+'</span></div><div class="band-bar"><div class="band-fill" style="width:'+Math.round(b.tax/maxTax*100)+'%"></div></div></div></div>').join('');
-    document.getElementById('resultBox').classList.add('show');
+    document.getElementById('pitResultBox').classList.add('show');
     document.getElementById('downloadBtn').style.display='block';
-    document.getElementById('resultBox').scrollIntoView({behavior:'smooth',block:'nearest'});
+    document.getElementById('pitResultBox').scrollIntoView({behavior:'smooth',block:'nearest'});
   }catch(e){alert('Could not calculate. Please try again.')}
-  btn.textContent='Calculate my tax';btn.disabled=false;
+  btn.textContent='Calculate income tax';btn.disabled=false;
+}
+
+function calculateCIT(){
+  const turnover=parseFloat(document.getElementById('citTurnover').value)||0;
+  const profit=parseFloat(document.getElementById('citProfit').value)||0;
+  if(!turnover||turnover<=0){alert('Please enter annual turnover');return}
+  const isSmall=turnover<=100000000;
+  const rate=isSmall?0:0.30;
+  const tax=isSmall?0:profit*rate;
+  document.getElementById('cit-turnover').textContent=fmt(turnover);
+  document.getElementById('cit-category').textContent=isSmall?'Small company (exempt)':'Standard company';
+  document.getElementById('cit-rate').textContent=isSmall?'0% — fully exempt':'30% on taxable profit';
+  document.getElementById('cit-profit').textContent=fmt(profit);
+  document.getElementById('cit-tax').textContent=isSmall?'NGN 0 — Exempt':fmt(tax);
+  document.getElementById('citResult').classList.add('show');
+  document.getElementById('citResult').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function calculateVAT(){
+  const amount=parseFloat(document.getElementById('vatAmount').value)||0;
+  if(!amount||amount<=0){alert('Please enter an amount');return}
+  const type=document.getElementById('vatType').value;
+  const category=document.getElementById('vatCategory').value;
+  const isZero=category==='zero';
+  const rate=isZero?0:0.075;
+  let vatAmt=0,total=0,original=amount;
+  if(isZero){vatAmt=0;total=amount}
+  else if(type==='add'){vatAmt=amount*rate;total=amount+vatAmt}
+  else{vatAmt=amount-(amount/1.075);total=amount;original=amount/1.075}
+  document.getElementById('vat-original').textContent=fmt(original);
+  document.getElementById('vat-rate').textContent=isZero?'0% (zero-rated)':'7.5%';
+  document.getElementById('vat-amount').textContent=fmt(vatAmt);
+  document.getElementById('vat-total').textContent=fmt(total);
+  document.getElementById('vatResult').classList.add('show');
+  document.getElementById('vatResult').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
 function toggleBreakdown(){
@@ -602,6 +814,14 @@ async function downloadPDF(){
   btn.disabled=false;
 }
 
+function subscribeReminders(){
+  const email=document.getElementById('reminderEmail').value.trim();
+  if(!email||!email.includes('@')){alert('Please enter a valid email address');return}
+  localStorage.setItem('naijaReminderEmail',email);
+  document.getElementById('reminderMsg').style.display='block';
+  document.getElementById('reminderEmail').value='';
+}
+
 function subscribe(planKey){
   const plan=PLANS[planKey];
   const email=prompt('Enter your email address to subscribe:');
@@ -624,7 +844,6 @@ function subscribe(planKey){
       document.getElementById('usageBar').style.display='none';
       addMsg('Payment successful! Welcome to NaijaTax AI '+plan.name+'. You now have unlimited access. How can I help you with your taxes today?','ai');
       showPage('chat',document.querySelectorAll('.nav-tab')[0]);
-      alert('Payment successful! You now have unlimited access to NaijaTax AI.');
     },
     onClose:function(){console.log('Payment window closed')}
   });
