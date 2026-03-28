@@ -137,7 +137,7 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
 .pricing-title{font-size:20px;font-weight:700;text-align:center;margin-bottom:6px}
 .pricing-sub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:20px}
 .pricing-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px}
-.plan-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px;text-align:center;position:relative;cursor:pointer;transition:all .2s}
+.plan-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px;text-align:center;position:relative;transition:all .2s}
 .plan-card:hover{border-color:var(--green);transform:translateY(-2px)}
 .plan-card.popular{border:2px solid var(--green);transform:translateY(-2px)}
 .popular-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;white-space:nowrap}
@@ -203,7 +203,7 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
     </div>
     <div class="header-right">
       <span class="header-badge" id="planBadge">Free</span>
-      <button class="upgrade-btn" onclick="showPage('pricing',document.querySelector('.nav-tab:nth-child(4)'))">Upgrade</button>
+      <button class="upgrade-btn" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[2])">Upgrade</button>
     </div>
   </div>
 </div>
@@ -245,8 +245,9 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
           <span class="msg-time">Now</span>
         </div>
         <div class="bubble">
-          <strong>Sannu!</strong> I am NaijaTax AI — your free Nigerian tax assistant, fully updated for the <strong>Nigeria Tax Act 2025</strong> (effective January 2026).<br><br>
-          Ask me about your salary, freelance income, crypto, POS business, YouTube earnings, VAT, or company tax.<br><br>
+          <strong>Hello! Welcome to NaijaTax AI.</strong><br><br>
+          I am your free Nigerian tax assistant, fully updated for the <strong>Nigeria Tax Act 2025</strong> (effective January 2026).<br><br>
+          Ask me about your salary, freelance income, crypto, POS business, YouTube earnings, VAT, or company tax. I will give you clear, accurate answers in plain English.<br><br>
           <strong>Free users get 5 questions. Upgrade for unlimited access.</strong>
         </div>
       </div>
@@ -272,7 +273,7 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
   </div>
   <div class="paywall" id="paywall">
     <h3>You have used all 5 free questions</h3>
-    <p>Upgrade to Individual plan for NGN 2,000/month and get unlimited AI tax questions, priority answers, and PDF tax reports.</p>
+    <p>Upgrade to the Individual plan for NGN 2,000/month and get unlimited AI tax questions, priority answers, and unlimited PDF tax reports.</p>
     <button class="paywall-btn" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[2])">See pricing plans</button>
   </div>
 </div>
@@ -301,14 +302,16 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
         <span class="slider-label">per year</span>
       </div>
       <input type="range" id="incomeSlider" min="0" max="50000000" step="100000" value="3600000" oninput="updateSlider(this.value)">
-      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--hint);margin-top:4px"><span>NGN 0</span><span>NGN 25M</span><span>NGN 50M</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--hint);margin-top:4px">
+        <span>NGN 0</span><span>NGN 25M</span><span>NGN 50M</span>
+      </div>
       <div class="field-hint" style="margin-top:10px">Or type exact amount:</div>
       <input type="number" id="annualIncome" placeholder="e.g. 3600000" min="0" oninput="updateFromInput(this.value)" style="margin-top:8px"/>
     </div>
     <div class="field">
       <label>Annual rent paid (optional)</label>
-      <input type="number" id="annualRent" placeholder="e.g. 600000" min="0"/>
-      <div class="field-hint">20% of rent deducted, max NGN 500,000</div>
+      <input type="number" id="annualRent" placeholder="e.g. 600000 — for rent relief deduction" min="0"/>
+      <div class="field-hint">20% of rent deducted from taxable income, max NGN 500,000</div>
     </div>
     <button class="calc-btn" id="calcBtn" onclick="calculateTax()">Calculate my tax</button>
     <div class="result-box" id="resultBox">
@@ -344,7 +347,7 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
         <div class="plan-price">NGN 0</div>
         <div class="plan-period">forever</div>
         <ul class="plan-features">
-          <li>5 AI questions/month</li>
+          <li>5 AI questions per month</li>
           <li>Tax calculator</li>
           <li>PDF download</li>
           <li>NTA 2025 accurate</li>
@@ -385,14 +388,21 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
         <div>
           <div class="plan-name" style="font-size:15px">Accountant Pro</div>
           <div style="font-size:13px;color:var(--muted);margin-top:4px">For tax professionals, accountants, and CITN members</div>
+          <ul class="plan-features" style="margin-top:10px">
+            <li>Everything in SME</li>
+            <li>Unlimited client accounts</li>
+            <li>White-label reports</li>
+            <li>CITN compliance tools</li>
+            <li>Priority phone support</li>
+          </ul>
         </div>
-        <div style="text-align:right">
-          <div class="plan-price" style="font-size:20px">NGN 25,000/mo</div>
+        <div style="text-align:right;flex-shrink:0">
+          <div class="plan-price" style="font-size:20px">NGN 25,000</div>
+          <div class="plan-period">per month</div>
           <button class="plan-btn" style="margin-top:8px;width:auto;padding:10px 20px" onclick="subscribe('accountant')">Subscribe now</button>
         </div>
       </div>
     </div>
-
     <div class="faq-card">
       <h4>Is my payment secure?</h4>
       <p>Yes. All payments are processed by Paystack — Nigeria's most trusted payment gateway. We never store your card details.</p>
@@ -412,7 +422,7 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
 <div class="page" id="about">
   <div class="about-hero">
     <h2>NaijaTax AI</h2>
-    <p>Nigeria's smartest free tax assistant — built for the Nigeria Tax Act 2025, helping every Nigerian understand and pay the right tax.</p>
+    <p>Nigeria's smartest free tax assistant — built specifically for the Nigeria Tax Act 2025, helping every Nigerian understand and pay the right tax.</p>
     <a class="about-url" href="https://naija-tax-frontend.vercel.app">naija-tax-frontend.vercel.app</a>
   </div>
   <div class="stats-grid">
@@ -426,7 +436,7 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
     <div class="feature"><div class="feature-icon fi-blue">🔒</div><div><h3>Private and secure</h3><p>Your income data is never stored. Calculations happen in real time.</p></div></div>
     <div class="feature"><div class="feature-icon fi-purple">📱</div><div><h3>Works on any device</h3><p>Designed mobile-first. Works on any Android phone, iPhone, or desktop.</p></div></div>
   </div>
-  <div class="disclaimer"><strong>Disclaimer:</strong> NaijaTax AI provides general tax information based on NTA 2025. Always consult a CITN-certified accountant for complex situations.</div>
+  <div class="disclaimer"><strong>Disclaimer:</strong> NaijaTax AI provides general tax information based on the Nigeria Tax Act 2025. Always consult a CITN-certified accountant for complex tax situations.</div>
 </div>
 
 <!-- BOTTOM NAV -->
@@ -525,12 +535,12 @@ async function sendMessage(){
       setUsage(getUsage()+1);
       updateUsageBar();
       if(getUsage()>=FREE_LIMIT){
-        setTimeout(()=>document.getElementById('paywall').classList.add('show'),1000);
+        setTimeout(()=>document.getElementById('paywall').classList.add('show'),1500);
       }
     }
   }catch(e){
     document.getElementById('typing').classList.remove('show');
-    addMsg('Sorry, could not connect. Please try again.','ai');
+    addMsg('Sorry, could not connect. Please check your connection and try again.','ai');
   }
   document.getElementById('sendBtn').disabled=false;
 }
@@ -616,9 +626,7 @@ function subscribe(planKey){
       showPage('chat',document.querySelectorAll('.nav-tab')[0]);
       alert('Payment successful! You now have unlimited access to NaijaTax AI.');
     },
-    onClose:function(){
-      console.log('Payment window closed');
-    }
+    onClose:function(){console.log('Payment window closed')}
   });
   handler.openIframe();
 }
