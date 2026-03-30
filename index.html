@@ -549,4 +549,532 @@ input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--borde
       <div class="state-card" data-state="Edo"><div class="state-name">Edo State</div><div class="state-body">Edo State Internal Revenue Service (ESIRS). Covers Benin City and all Edo State residents.</div><a class="state-link" href="https://esirs.gov.ng" target="_blank">Visit ESIRS →</a></div>
       <div class="state-card" data-state="Cross River"><div class="state-name">Cross River State</div><div class="state-body">Cross River State Board of Internal Revenue (CRSBIR). Covers Calabar and all Cross River residents.</div><a class="state-link" href="https://crsbir.gov.ng" target="_blank">Visit CRSBIR →</a></div>
       <div class="state-card" data-state="Akwa Ibom"><div class="state-name">Akwa Ibom State</div><div class="state-body">Akwa Ibom State Internal Revenue Service (AKIRS). Covers Uyo and all Akwa Ibom residents.</div><a class="state-link" href="https://akirs.gov.ng" target="_blank">Visit AKIRS →</a></div>
-      <div class="s
+      <div class="state-card" data-state="Kwara"><div class="state-name">Kwara State</div><div class="state-body">Kwara State Internal Revenue Service (KWIRS). Covers Ilorin and all Kwara State residents.</div><a class="state-link" href="https://kwirs.gov.ng" target="_blank">Visit KWIRS →</a></div>
+    </div>
+    <div class="info-box" style="margin-top:8px">Not in the list? Go to the <strong>Nigeria Revenue Service (NRS)</strong> federal portal for national tax matters.<br><a class="step-link" href="https://www.nrs.gov.ng" target="_blank" style="margin-top:8px">Visit NRS Portal →</a></div>
+  </div>
+
+  <!-- FILING CHECKLIST -->
+  <div class="calc-section" id="checklist-section">
+    <div class="field"><label>Filing type</label>
+      <select id="checklistType" onchange="loadChecklist(this.value)">
+        <option value="individual">Individual / Salary worker</option>
+        <option value="selfemployed">Self-employed / Freelancer</option>
+        <option value="business">Business owner (CIT)</option>
+        <option value="vat">VAT registered business</option>
+      </select>
+    </div>
+    <div class="checklist-progress">
+      <div class="progress-label"><span>Filing progress</span><span id="checkCount">0 / 0 completed</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    </div>
+    <div class="checklist-wrap" id="checklistItems"></div>
+    <button class="calc-btn" onclick="resetChecklist()" style="background:transparent;color:var(--muted);border:1.5px solid var(--border);margin-top:8px">Reset checklist</button>
+  </div>
+
+  <!-- TAX SAVINGS TIPS -->
+  <div class="calc-section" id="savings-section">
+    <div class="info-box"><strong>Important:</strong> All tips below are 100% legal under the Nigeria Tax Act 2025. Tax avoidance (legal) is your right. Tax evasion (illegal) is a crime.</div>
+    <div class="tip-card">
+      <div class="tip-header"><div class="tip-icon fi-green">🏠</div><div><div class="tip-title">Claim your rent relief deduction</div><div class="tip-saving">Save up to NGN 120,000/year</div></div></div>
+      <div class="tip-desc">Under NTA 2025, you can deduct 20% of your annual rent paid from your taxable income — up to a maximum of NGN 500,000. This is a brand new deduction that many Nigerians are not claiming.</div>
+      <div class="tip-example">Example: You pay NGN 600,000/year rent. Your rent relief = NGN 120,000. This reduces your taxable income by NGN 120,000, saving you approximately NGN 13,200 in tax.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-header"><div class="tip-icon fi-amber">💼</div><div><div class="tip-title">Maximise your business expense deductions</div><div class="tip-saving">Save 30% on every legitimate expense</div></div></div>
+      <div class="tip-desc">For self-employed individuals and business owners, all genuine business expenses reduce your taxable profit. This includes internet bills, phone costs, equipment, transport to client meetings, professional subscriptions and office supplies.</div>
+      <div class="tip-example">Example: You earn NGN 5M and have NGN 500,000 in legitimate business expenses. Your taxable income drops to NGN 4.5M — saving you approximately NGN 60,000 in tax.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-header"><div class="tip-icon fi-blue">🏢</div><div><div class="tip-title">Keep your company turnover under NGN 100M</div><div class="tip-saving">Save 30% CIT — legally</div></div></div>
+      <div class="tip-desc">Under NTA 2025, small companies with annual turnover of NGN 100 million or less pay ZERO Companies Income Tax. If your turnover is approaching NGN 100M, proper business structuring advice from an accountant could keep you in the exempt bracket.</div>
+      <div class="tip-example">Example: A company with NGN 95M turnover and NGN 20M profit pays NGN 0 CIT. The same company with NGN 105M turnover pays NGN 6M CIT (30% of profit). The NGN 10M revenue difference costs NGN 6M in tax.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-header"><div class="tip-icon fi-purple">📅</div><div><div class="tip-title">File on time — avoid penalties</div><div class="tip-saving">Save 10–40% in penalty charges</div></div></div>
+      <div class="tip-desc">Late filing penalties under NTA 2025 are severe. Employers who fail to remit PAYE face a 40% penalty on the unremitted amount. Individuals face interest charges of 15% per annum on unpaid tax. Filing on time is one of the easiest ways to save money.</div>
+      <div class="tip-example">Example: Unremitted PAYE of NGN 500,000. Penalty = NGN 200,000 (40%). Total cost: NGN 700,000 instead of NGN 500,000. Filing on time saves NGN 200,000.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-header"><div class="tip-icon fi-red">💡</div><div><div class="tip-title">Split income across tax years legally</div><div class="tip-saving">Stay in lower tax bands</div></div></div>
+      <div class="tip-desc">If you are a freelancer or self-employed, timing when you invoice and receive payment can help you stay in lower tax brackets. Spreading income evenly across tax years rather than receiving large lump sums in one year can reduce your average tax rate significantly.</div>
+      <div class="tip-example">Example: Receiving NGN 8M in one year puts you in the 24% bracket for the top slice. Spreading NGN 4M across two years means you stay in the 19–21% bracket — saving approximately NGN 80,000–120,000.</div>
+    </div>
+    <button class="calc-btn" style="margin-top:8px" onclick="showPage('chat',document.querySelectorAll('.nav-tab')[0]);setTimeout(()=>{document.getElementById('chatInput').value='What are the best legal ways to reduce my tax liability in Nigeria under NTA 2025?';sendMessage()},300)">Ask AI for personalised tax saving tips →</button>
+  </div>
+
+  <!-- PAYE BULK CALCULATOR -->
+  <div class="calc-section" id="payebulk-section">
+    <div class="info-box"><strong>For employers:</strong> Enter all your staff names and annual salaries below. WafsTax will calculate the PAYE deduction for each employee automatically under NTA 2025.</div>
+    <div id="staffList"></div>
+    <button class="add-staff-btn" onclick="addStaff()">+ Add another staff member</button>
+    <button class="calc-btn" onclick="calculateBulkPAYE()">Calculate PAYE for all staff</button>
+    <div id="bulkResult" style="display:none;margin-top:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div><div class="section-title">PAYE Schedule</div><div style="font-size:12px;color:var(--muted)">NTA 2025 — Monthly deductions</div></div>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="paye-table" id="payeTable">
+          <thead><tr><th>Staff name</th><th>Annual salary</th><th>Annual PAYE</th><th>Monthly PAYE</th><th>Monthly take-home</th></tr></thead>
+          <tbody id="payeBody"></tbody>
+        </table>
+      </div>
+      <button class="calc-btn" style="margin-top:12px" onclick="downloadPayeSchedule()">Download PAYE Schedule PDF</button>
+    </div>
+  </div>
+</div>
+
+<!-- DEADLINES PAGE -->
+<div class="page" id="deadlines">
+  <div class="hero" style="margin-bottom:20px"><h2>Nigerian Tax Deadlines 2026</h2><p>Never miss a deadline. Key dates under NTA 2025 for individuals and businesses.</p></div>
+  <div class="deadline-list">
+    <div class="deadline-item"><div class="deadline-month" style="background:#E24B4A"><div class="deadline-month-name">JAN</div><div class="deadline-month-day">31</div></div><div class="deadline-info"><div class="deadline-title">PAYE Monthly Remittance</div><div class="deadline-desc">Employers must remit December PAYE deductions to the State Internal Revenue Service. Penalty: 40% of unremitted amount.</div><span class="deadline-badge badge-ok">Monthly recurring</span></div></div>
+    <div class="deadline-item"><div class="deadline-month"><div class="deadline-month-name">MAR</div><div class="deadline-month-day">31</div></div><div class="deadline-info"><div class="deadline-title">Annual Returns (Companies)</div><div class="deadline-desc">Companies must file their annual CIT returns with the Nigeria Revenue Service for the preceding year.</div><span class="deadline-badge badge-soon">Important</span></div></div>
+    <div class="deadline-item"><div class="deadline-month"><div class="deadline-month-name">APR</div><div class="deadline-month-day">30</div></div><div class="deadline-info"><div class="deadline-title">Personal Income Tax Returns</div><div class="deadline-desc">Self-employed individuals, freelancers and business owners must file annual PIT returns.</div><span class="deadline-badge badge-soon">Self-employed only</span></div></div>
+    <div class="deadline-item"><div class="deadline-month"><div class="deadline-month-name">MAY</div><div class="deadline-month-day">21</div></div><div class="deadline-info"><div class="deadline-title">VAT Returns (Monthly)</div><div class="deadline-desc">Businesses registered for VAT must file monthly VAT returns and remit collected VAT by the 21st of the following month.</div><span class="deadline-badge badge-ok">Monthly recurring</span></div></div>
+    <div class="deadline-item"><div class="deadline-month"><div class="deadline-month-name">JUN</div><div class="deadline-month-day">30</div></div><div class="deadline-info"><div class="deadline-title">Mid-year Tax Review</div><div class="deadline-desc">Good time for individuals and businesses to review their tax position for the year and make any necessary adjustments.</div><span class="deadline-badge badge-ok">Advisory</span></div></div>
+    <div class="deadline-item"><div class="deadline-month"><div class="deadline-month-name">DEC</div><div class="deadline-month-day">31</div></div><div class="deadline-info"><div class="deadline-title">Tax Year End</div><div class="deadline-desc">End of the 2026 tax year. Ensure all records are complete. Employers must prepare annual tax deduction cards for all employees.</div><span class="deadline-badge badge-ok">Year end</span></div></div>
+  </div>
+  <div class="reminder-form">
+    <h3>Get deadline reminders by email</h3>
+    <p>Enter your email and we will send you reminders 7 days before each major tax deadline — completely free.</p>
+    <div class="field" style="margin-bottom:12px"><input type="email" id="reminderEmail" placeholder="your@email.com"/></div>
+    <button class="calc-btn" onclick="subscribeReminders()">Send me deadline reminders — Free</button>
+    <p id="reminderMsg" style="margin-top:10px;font-size:13px;color:var(--green);display:none;text-align:center;font-weight:600">Done! You will receive reminders before each deadline.</p>
+  </div>
+</div>
+
+<!-- PRICING PAGE -->
+<div class="page" id="pricing">
+  <div class="pricing-section">
+    <h2 class="pricing-title">Simple, fair pricing</h2>
+    <p class="pricing-sub">Start free. Upgrade when you need more.</p>
+    <div class="pricing-grid">
+      <div class="plan-card">
+        <div class="plan-name">Free</div>
+        <div class="plan-price">NGN 0</div>
+        <div class="plan-period">forever</div>
+        <ul class="plan-features">
+          <li>5 AI questions per month</li>
+          <li>PIT, CIT, VAT calculators</li>
+          <li>PDF download</li>
+          <li>Tax deadline calendar</li>
+          <li>Filing guides</li>
+          <li>State portal links</li>
+        </ul>
+        <button class="plan-btn outline" onclick="showPage('chat',document.querySelectorAll('.nav-tab')[0])">Use for free</button>
+      </div>
+      <div class="plan-card popular">
+        <div class="popular-badge">Most popular</div>
+        <div class="plan-name">Individual</div>
+        <div class="plan-price">NGN 2,000</div>
+        <div class="plan-period">per month</div>
+        <ul class="plan-features">
+          <li>Unlimited AI questions</li>
+          <li>Priority answers</li>
+          <li>Unlimited PDF reports</li>
+          <li>Tax savings tips</li>
+          <li>Filing checklist</li>
+          <li>Email support</li>
+        </ul>
+        <button class="plan-btn" onclick="subscribe('individual')">Subscribe now</button>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">SME</div>
+        <div class="plan-price">NGN 20,000</div>
+        <div class="plan-period">per month</div>
+        <ul class="plan-features">
+          <li>Everything in Individual</li>
+          <li>PAYE bulk calculator</li>
+          <li>Up to 10 staff accounts</li>
+          <li>CIT calculations</li>
+          <li>API access</li>
+          <li>Dedicated support</li>
+        </ul>
+        <button class="plan-btn" onclick="subscribe('sme')">Subscribe now</button>
+      </div>
+    </div>
+    <div class="plan-card" style="margin-bottom:16px;text-align:left">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div>
+          <div class="plan-name" style="font-size:15px">Accountant Pro</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:4px">For tax professionals, accountants and CITN members</div>
+          <ul class="plan-features" style="margin-top:10px"><li>Everything in SME</li><li>Unlimited client accounts</li><li>White-label reports</li><li>CITN compliance tools</li><li>Priority phone support</li></ul>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div class="plan-price" style="font-size:20px">NGN 50,000</div>
+          <div class="plan-period">per month</div>
+          <button class="plan-btn" style="margin-top:8px;width:auto;padding:10px 20px" onclick="subscribe('accountant')">Subscribe now</button>
+        </div>
+      </div>
+    </div>
+    <div class="faq-card"><h4>Is my payment secure?</h4><p>Yes. All payments are processed by Paystack — Nigeria's most trusted payment gateway. We never store your card details.</p></div>
+    <div class="faq-card"><h4>Can I cancel anytime?</h4><p>Yes. Cancel your subscription anytime from your Paystack subscription portal. No questions asked.</p></div>
+    <div class="faq-card"><h4>Do you offer refunds?</h4><p>Yes. If you are not satisfied within the first 7 days, contact us for a full refund.</p></div>
+  </div>
+</div>
+
+<!-- ABOUT PAGE -->
+<div class="page" id="about">
+  <div class="about-hero">
+    <h2>WafsTax</h2>
+    <p>Nigeria's smartest free tax assistant — built specifically for the Nigeria Tax Act 2025, helping every Nigerian understand, calculate and file their taxes correctly.</p>
+    <a class="about-url" href="https://wafstax.com">wafstax.com</a>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-val">NTA</div><div class="stat-lbl">2025 compliant</div></div>
+    <div class="stat-card"><div class="stat-val">5</div><div class="stat-lbl">Tool sections</div></div>
+    <div class="stat-card"><div class="stat-val">Free</div><div class="stat-lbl">to start</div></div>
+  </div>
+  <div class="feature-list">
+    <div class="feature"><div class="feature-icon fi-green">🧠</div><div><h3>Multi-brain AI</h3><p>Powered by OpenRouter and OpenAI with automatic fallback — always available 24/7.</p></div></div>
+    <div class="feature"><div class="feature-icon fi-amber">📋</div><div><h3>NTA 2025 accurate</h3><p>Built on the exact tax bands from the Nigeria Tax Act signed June 26, 2025, effective January 2026.</p></div></div>
+    <div class="feature"><div class="feature-icon fi-blue">🗺️</div><div><h3>State portal directory</h3><p>Direct links to all Nigerian state tax portals — Lagos, Abuja, Rivers, Kano and more.</p></div></div>
+    <div class="feature"><div class="feature-icon fi-purple">💡</div><div><h3>Legal tax savings tips</h3><p>Learn how to legally reduce your tax liability under NTA 2025 — rent relief, expense deductions and more.</p></div></div>
+  </div>
+  <div class="disclaimer"><strong>Disclaimer:</strong> WafsTax provides general tax information based on the Nigeria Tax Act 2025. Always consult a CITN-certified accountant for complex tax situations.</div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <div class="bottom-nav-inner">
+    <button class="bnav-tab active" onclick="showPage('chat',this,true)"><span class="bnav-icon">💬</span>Chat</button>
+    <button class="bnav-tab" onclick="showPage('calculator',this,true)"><span class="bnav-icon">🧮</span>Calc</button>
+    <button class="bnav-tab" onclick="showPage('filingtax',this,true)"><span class="bnav-icon">📋</span>File</button>
+    <button class="bnav-tab" onclick="showPage('tools',this,true)"><span class="bnav-icon">🛠️</span>Tools</button>
+    <button class="bnav-tab" onclick="showPage('deadlines',this,true)"><span class="bnav-icon">📅</span>Dates</button>
+    <button class="bnav-tab" onclick="showPage('pricing',this,true)"><span class="bnav-icon">💳</span>Plans</button>
+    <button class="bnav-tab" onclick="showPage('about',this,true)"><span class="bnav-icon">ℹ️</span>About</button>
+  </div>
+</div>
+
+<script>
+const API='https://naija-tax-agent-146296219891.europe-west1.run.app';
+const PAYSTACK_KEY='pk_test_a247055582f4529d22c01421b9d09b41e1963e8d';
+const PLANS={
+  individual:{code:'PLN_u93vgwgqkcby8px',name:'Individual',amount:200000},
+  sme:{code:'PLN_g3exda93tlbv9il',name:'SME',amount:2000000},
+  accountant:{code:'PLN_qayri2934l42zns',name:'Accountant Pro',amount:5000000}
+};
+const FREE_LIMIT=5;
+const CHECKLISTS={
+  individual:['Obtain your TIN from NRS — link to your NIN','Collect all payslips for the tax year','Confirm PAYE deductions appear on each payslip','Obtain Form H1 (annual tax deduction card) from employer','Check for any additional income to declare (rent, side jobs, crypto)','Review your rent payments for rent relief deduction claim','Submit any additional income declaration to your State IRS by April 30','Keep copies of all documents for 6 years'],
+  selfemployed:['Register for a TIN at the NRS portal','Open a dedicated business bank account','Keep records of ALL income received during the year','Keep receipts for ALL business expenses','Calculate total income and deductible expenses','Calculate tax owed using WafsTax calculator','Register with your State Internal Revenue Service','File annual PIT return at State IRS by April 30','Pay tax via Remita and keep payment receipt','Claim rent relief deduction if applicable'],
+  business:['Confirm annual turnover — above or below NGN 100M?','Register company TIN with NRS (separate from CAC)','Prepare audited financial statements','Calculate taxable profit after all allowable deductions','File annual CIT return by March 31 via NRS portal','Pay CIT via Remita if turnover exceeds NGN 100M','Obtain Tax Clearance Certificate (TCC)','Ensure all employees have TINs linked to NIN/BVN','File monthly PAYE remittances on time','Deduct and remit withholding taxes where applicable'],
+  vat:['Check if turnover exceeds NGN 25M (mandatory) or register voluntarily','Apply for VAT registration at NRS portal','Add VAT registration number to all invoices','Set up system to track output VAT (collected) and input VAT (paid)','File monthly VAT return by 21st of following month','Remit net VAT via Remita monthly','Keep all purchase and sales invoices for 6 years','Prepare for mandatory e-invoicing under NTA 2025','Claim input VAT on services and fixed assets (new under NTA 2025)','Zero-rate eligible supplies correctly (food, medicine, education, exports)']
+};
+
+function getUsage(){return parseInt(localStorage.getItem('wafstaxUsage')||'0')}
+function setUsage(n){localStorage.setItem('wafstaxUsage',n)}
+function isPaid(){return localStorage.getItem('wafstaxPaid')==='true'}
+
+function updateUsageBar(){
+  const used=getUsage(),paid=isPaid();
+  const bar=document.getElementById('usageBar');
+  const fill=document.getElementById('usageFill');
+  const count=document.getElementById('usageCount');
+  const badge=document.getElementById('planBadge');
+  if(paid){bar.style.display='none';badge.textContent='Pro';badge.style.background='rgba(255,255,255,.35)';return}
+  fill.style.width=(used/FREE_LIMIT*100)+'%';
+  count.textContent=used+' / '+FREE_LIMIT;
+  if(used>=FREE_LIMIT){fill.style.background='#E24B4A';count.style.color='#E24B4A'}
+}
+
+function showPage(id,btn,isMobile=false){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(isMobile){document.querySelectorAll('.bnav-tab').forEach(t=>t.classList.remove('active'))}
+  else{document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'))}
+  if(btn)btn.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function switchCalc(tab,btn){
+  document.querySelectorAll('#calculator .calc-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('#calculator .calc-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(tab+'-section').classList.add('active');
+  btn.classList.add('active');
+}
+
+function switchGuide(tab,btn){
+  document.querySelectorAll('#filingtax .calc-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('#filingtax .calc-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(tab+'-guide').classList.add('active');
+  btn.classList.add('active');
+}
+
+function switchTool(tab,btn){
+  document.querySelectorAll('#tools .calc-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('#tools .calc-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(tab+'-section').classList.add('active');
+  btn.classList.add('active');
+}
+
+function filterStates(val){
+  document.querySelectorAll('.state-card').forEach(c=>{
+    c.style.display=(!val||c.dataset.state===val)?'block':'none';
+  });
+}
+
+function loadChecklist(type){
+  const items=CHECKLISTS[type]||[];
+  const saved=JSON.parse(localStorage.getItem('wafstaxChecklist_'+type)||'[]');
+  document.getElementById('checklistItems').innerHTML=items.map((item,i)=>`
+    <div class="check-item ${saved[i]?'done':''}" onclick="toggleCheck(this,${i},'${type}')">
+      <div class="check-box">
+        <svg class="check-tick" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="check-text"><div class="check-title">${item}</div></div>
+    </div>`).join('');
+  updateProgress(type);
+}
+
+function toggleCheck(el,idx,type){
+  el.classList.toggle('done');
+  const saved=JSON.parse(localStorage.getItem('wafstaxChecklist_'+type)||'[]');
+  saved[idx]=el.classList.contains('done');
+  localStorage.setItem('wafstaxChecklist_'+type,JSON.stringify(saved));
+  updateProgress(type);
+}
+
+function updateProgress(type){
+  const items=document.querySelectorAll('.check-item');
+  const done=document.querySelectorAll('.check-item.done').length;
+  const total=items.length;
+  document.getElementById('checkCount').textContent=done+' / '+total+' completed';
+  document.getElementById('progressFill').style.width=(total?Math.round(done/total*100):0)+'%';
+}
+
+function resetChecklist(){
+  const type=document.getElementById('checklistType').value;
+  localStorage.removeItem('wafstaxChecklist_'+type);
+  loadChecklist(type);
+}
+
+let staffCount=0;
+function addStaff(){
+  const div=document.createElement('div');
+  div.className='staff-row';
+  div.id='staff-'+staffCount;
+  div.innerHTML=`<input type="text" placeholder="Staff name" class="staff-name"><input type="number" placeholder="Annual salary (NGN)" class="staff-salary" min="0"><button class="remove-btn" onclick="removeStaff('staff-${staffCount}')">Remove</button>`;
+  document.getElementById('staffList').appendChild(div);
+  staffCount++;
+}
+
+function removeStaff(id){
+  const el=document.getElementById(id);
+  if(el)el.remove();
+}
+
+function calcPIT(income){
+  if(income<=800000)return{tax:0,monthly:0,takehome:income/12};
+  const taxable=income-800000;
+  const bands=[[400000,.07],[400000,.11],[500000,.15],[500000,.19],[1600000,.21],[Infinity,.24]];
+  let tax=0,rem=taxable;
+  for(const[size,rate]of bands){
+    if(rem<=0)break;
+    const amt=Math.min(rem,size);
+    tax+=amt*rate;rem-=amt;
+  }
+  return{tax:Math.round(tax),monthly:Math.round(tax/12),takehome:Math.round((income-tax)/12)};
+}
+
+async function calculateBulkPAYE(){
+  const rows=document.querySelectorAll('.staff-row');
+  if(!rows.length){alert('Please add at least one staff member');return}
+  const results=[];
+  let totalAnnual=0,totalMonthly=0;
+  rows.forEach(row=>{
+    const name=row.querySelector('.staff-name').value.trim()||'Staff';
+    const salary=parseFloat(row.querySelector('.staff-salary').value)||0;
+    const r=calcPIT(salary);
+    results.push({name,salary,annualTax:r.tax,monthlyTax:r.monthly,takehome:r.takehome});
+    totalAnnual+=r.tax;totalMonthly+=r.monthly;
+  });
+  const body=document.getElementById('payeBody');
+  body.innerHTML=results.map(r=>`<tr><td>${r.name}</td><td>${fmt(r.salary)}</td><td>${fmt(r.annualTax)}</td><td>${fmt(r.monthlyTax)}</td><td>${fmt(r.takehome)}/mo</td></tr>`).join('')+
+    `<tr><td>TOTAL (${results.length} staff)</td><td></td><td>${fmt(totalAnnual)}</td><td>${fmt(totalMonthly)}</td><td></td></tr>`;
+  document.getElementById('bulkResult').style.display='block';
+  document.getElementById('bulkResult').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function downloadPayeSchedule(){
+  const rows=document.querySelectorAll('#payeBody tr');
+  let csv='Staff Name,Annual Salary,Annual PAYE,Monthly PAYE,Monthly Take-Home\n';
+  rows.forEach(r=>{const cells=r.querySelectorAll('td');if(cells.length)csv+=Array.from(cells).map(c=>c.textContent).join(',')+'\n'});
+  const blob=new Blob([csv],{type:'text/csv'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='WafsTax-PAYE-Schedule.csv';a.click();
+  URL.revokeObjectURL(url);
+}
+
+function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,120)+'px'}
+function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage()}}
+function now(){const d=new Date();return d.getHours()+':'+String(d.getMinutes()).padStart(2,'0')}
+
+function addMsg(text,type){
+  const msgs=document.getElementById('messages');
+  const d=document.createElement('div');
+  d.className='msg '+type;
+  const init=type==='ai'?'W':'U';
+  const name=type==='ai'?'WafsTax AI':'You';
+  d.innerHTML='<div class="msg-meta"><div class="msg-avatar">'+init+'</div><span class="msg-name">'+name+'</span><span class="msg-time">'+now()+'</span></div><div class="bubble">'+text.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')+'</div>';
+  msgs.appendChild(d);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+function askQ(q){
+  if(!isPaid()&&getUsage()>=FREE_LIMIT){document.getElementById('paywall').classList.add('show');return}
+  document.getElementById('chatInput').value=q;sendMessage();
+}
+
+async function sendMessage(){
+  if(!isPaid()&&getUsage()>=FREE_LIMIT){document.getElementById('paywall').classList.add('show');return}
+  const input=document.getElementById('chatInput');
+  const q=input.value.trim();
+  if(!q)return;
+  input.value='';input.style.height='auto';
+  document.getElementById('sendBtn').disabled=true;
+  addMsg(q,'user');
+  document.getElementById('typing').classList.add('show');
+  document.getElementById('messages').scrollTop=99999;
+  try{
+    const res=await fetch(API+'/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q,preferred_provider:'openrouter'})});
+    const data=await res.json();
+    document.getElementById('typing').classList.remove('show');
+    addMsg(data.answer||data.detail||'Sorry, could not get an answer right now.','ai');
+    if(!isPaid()){setUsage(getUsage()+1);updateUsageBar();if(getUsage()>=FREE_LIMIT){setTimeout(()=>document.getElementById('paywall').classList.add('show'),1500)}}
+  }catch(e){
+    document.getElementById('typing').classList.remove('show');
+    addMsg('Sorry, could not connect. Please check your connection and try again.','ai');
+  }
+  document.getElementById('sendBtn').disabled=false;
+}
+
+function fmt(n){return'NGN '+Math.round(n).toLocaleString('en-NG')}
+function updateSlider(v){document.getElementById('sliderDisplay').textContent='NGN '+Math.round(v).toLocaleString('en-NG');document.getElementById('annualIncome').value=v}
+function updateFromInput(v){const n=Math.min(parseFloat(v)||0,50000000);document.getElementById('incomeSlider').value=n;document.getElementById('sliderDisplay').textContent='NGN '+Math.round(n).toLocaleString('en-NG')}
+
+async function calculatePIT(){
+  const income=parseFloat(document.getElementById('annualIncome').value)||parseFloat(document.getElementById('incomeSlider').value)||0;
+  if(!income||income<=0){alert('Please enter your annual income');return}
+  const btn=document.getElementById('calcBtn');
+  btn.textContent='Calculating...';btn.disabled=true;
+  try{
+    const res=await fetch(API+'/calculate/pit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({annual_income:income})});
+    const d=await res.json();
+    const type=document.getElementById('incomeType').value;
+    document.getElementById('resultIncomeType').textContent=type;
+    document.getElementById('r-tax').textContent=fmt(d.tax_payable);
+    document.getElementById('r-monthly').textContent=fmt(d.monthly_tax);
+    document.getElementById('r-rate').textContent=d.effective_rate+'%';
+    document.getElementById('r-taxable').textContent=fmt(d.taxable_income);
+    document.getElementById('r-takehome').textContent=fmt(d.take_home_monthly)+' /mo';
+    const maxTax=Math.max(...d.breakdown.map(b=>b.tax));
+    document.getElementById('breakdown').innerHTML=d.breakdown.map(b=>'<div class="band-row"><div style="flex:1"><div style="display:flex;justify-content:space-between"><span class="band-label">'+b.band+'</span><span class="band-val">'+fmt(b.tax)+'</span></div><div class="band-bar"><div class="band-fill" style="width:'+Math.round(b.tax/maxTax*100)+'%"></div></div></div></div>').join('');
+    document.getElementById('pitResultBox').classList.add('show');
+    document.getElementById('downloadBtn').style.display='block';
+    document.getElementById('pitResultBox').scrollIntoView({behavior:'smooth',block:'nearest'});
+  }catch(e){alert('Could not calculate. Please try again.')}
+  btn.textContent='Calculate income tax';btn.disabled=false;
+}
+
+function calculateCIT(){
+  const turnover=parseFloat(document.getElementById('citTurnover').value)||0;
+  const profit=parseFloat(document.getElementById('citProfit').value)||0;
+  if(!turnover||turnover<=0){alert('Please enter annual turnover');return}
+  const isSmall=turnover<=100000000;
+  const tax=isSmall?0:profit*0.30;
+  document.getElementById('cit-turnover').textContent=fmt(turnover);
+  document.getElementById('cit-category').textContent=isSmall?'Small company (exempt)':'Standard company';
+  document.getElementById('cit-rate').textContent=isSmall?'0% — fully exempt':'30% on taxable profit';
+  document.getElementById('cit-profit').textContent=fmt(profit);
+  document.getElementById('cit-tax').textContent=isSmall?'NGN 0 — Exempt':fmt(tax);
+  document.getElementById('citResult').classList.add('show');
+  document.getElementById('citResult').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function calculateVAT(){
+  const amount=parseFloat(document.getElementById('vatAmount').value)||0;
+  if(!amount||amount<=0){alert('Please enter an amount');return}
+  const type=document.getElementById('vatType').value;
+  const isZero=document.getElementById('vatCategory').value==='zero';
+  let vatAmt=0,total=0,original=amount;
+  if(isZero){vatAmt=0;total=amount}
+  else if(type==='add'){vatAmt=amount*0.075;total=amount+vatAmt}
+  else{vatAmt=amount-(amount/1.075);total=amount;original=amount/1.075}
+  document.getElementById('vat-original').textContent=fmt(original);
+  document.getElementById('vat-rate').textContent=isZero?'0% (zero-rated)':'7.5%';
+  document.getElementById('vat-amount').textContent=fmt(vatAmt);
+  document.getElementById('vat-total').textContent=fmt(total);
+  document.getElementById('vatResult').classList.add('show');
+  document.getElementById('vatResult').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function toggleBreakdown(){
+  const el=document.getElementById('breakdown');
+  const btn=document.querySelector('.breakdown-toggle');
+  el.classList.toggle('show');
+  btn.textContent=el.classList.contains('show')?'Hide tax band breakdown':'Show full tax band breakdown';
+}
+
+async function downloadPDF(){
+  const income=parseFloat(document.getElementById('annualIncome').value)||parseFloat(document.getElementById('incomeSlider').value)||0;
+  const rent=parseFloat(document.getElementById('annualRent').value)||0;
+  const type=document.getElementById('incomeType').value;
+  const btn=document.getElementById('downloadBtn');
+  btn.textContent='Generating PDF...';btn.disabled=true;
+  try{
+    const res=await fetch(API+'/generate/tax-report',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({annual_income:income,income_type:type,user_name:'Taxpayer',annual_rent:rent})});
+    if(!res.ok)throw new Error('Failed');
+    const blob=await res.blob();
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;a.download='WafsTax-Report-2025.pdf';a.click();
+    URL.revokeObjectURL(url);
+    btn.textContent='Downloaded. Generate another';
+  }catch(e){
+    alert('Could not generate PDF. Please try again.');
+    btn.textContent='Download Tax Report PDF — Free';
+  }
+  btn.disabled=false;
+}
+
+function subscribeReminders(){
+  const email=document.getElementById('reminderEmail').value.trim();
+  if(!email||!email.includes('@')){alert('Please enter a valid email address');return}
+  localStorage.setItem('wafstaxReminderEmail',email);
+  document.getElementById('reminderMsg').style.display='block';
+}
+
+function subscribe(planKey){
+  const plan=PLANS[planKey];
+  const email=prompt('Enter your email address to subscribe:');
+  if(!email||!email.includes('@')){alert('Please enter a valid email address');return}
+  const handler=PaystackPop.setup({
+    key:PAYSTACK_KEY,email:email,amount:plan.amount,currency:'NGN',
+    plan:plan.code,ref:'wafs_'+Date.now(),metadata:{plan_name:plan.name},
+    callback:function(response){
+      localStorage.setItem('wafstaxPaid','true');
+      localStorage.setItem('wafstaxEmail',email);
+      localStorage.setItem('wafstaxPlan',plan.name);
+      document.getElementById('planBadge').textContent='Pro';
+      document.getElementById('planBadge').style.background='rgba(255,255,255,.35)';
+      document.getElementById('paywall').classList.remove('show');
+      document.getElementById('usageBar').style.display='none';
+      addMsg('Payment successful! Welcome to WafsTax '+plan.name+'. You now have unlimited access. How can I help you with your taxes today?','ai');
+      showPage('chat',document.querySelectorAll('.nav-tab')[0]);
+    },
+    onClose:function(){console.log('Payment window closed')}
+  });
+  handler.openIframe();
+}
+
+updateSlider(3600000);
+updateUsageBar();
+loadChecklist('individual');
+addStaff();addStaff();addStaff();
+</script>
+</body>
+</html>
