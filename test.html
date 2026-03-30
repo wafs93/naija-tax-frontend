@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WafsTax — Free Nigeria Tax Calculator 2025 | NTA 2025</title>
+<meta name="description" content="Calculate your Nigerian income tax instantly under the new Nigeria Tax Act 2025. Free PAYE calculator, VAT calculator, CIT calculator. Learn how to file tax in Nigeria. NTA 2025 compliant.">
+<meta name="keywords" content="Nigeria tax calculator 2025, NTA 2025, PAYE calculator Nigeria, how to file tax Nigeria, Nigerian income tax, VAT Nigeria, CIT Nigeria, tax reform Nigeria, WafsTax, tax savings Nigeria, LIRS, state tax portal Nigeria">
+<meta name="author" content="WafsTax">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://wafstax.com">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wafstax.com">
+<meta property="og:title" content="WafsTax — Free Nigeria Tax Calculator 2025">
+<meta property="og:description" content="Calculate your Nigerian tax instantly under NTA 2025. Free for everyone — salary, freelance, crypto, POS, YouTube income.">
+<meta property="og:locale" content="en_NG">
+<meta property="og:site_name" content="WafsTax">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="WafsTax — Free Nigeria Tax Calculator 2025">
+<meta name="twitter:description" content="Calculate your Nigerian tax under NTA 2025. Free PAYE, VAT and CIT calculator.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "WafsTax",
+  "url": "https://wafstax.com",
+  "description": "AI-powered Nigerian tax calculator built on the Nigeria Tax Act 2025.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "NGN"},
+  "provider": {"@type": "Organization", "name": "WafsTax"},
+  "isAccessibleForFree": true
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --green:#1D9E75;--green-d:#0F6E56;--green-dd:#085041;
+  --green-l:#E1F5EE;--green-ll:#F0FAF6;
+  --bg:#F7F8FA;--white:#fff;
+  --text:#1a1a2e;--muted:#6B7280;--hint:#9CA3AF;
+  --border:#E5E7EB;--border2:#D1D5DB;
+  --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+  --radius:12px;--radius-lg:16px;--radius-xl:24px;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+.header{background:var(--green);padding:0 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(29,158,117,.3)}
+.header-inner{max-width:720px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:36px;height:36px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;border:2px solid rgba(255,255,255,.4)}
+.logo-text h1{font-size:17px;font-weight:700;color:#fff;letter-spacing:-.3px}
+.logo-text p{font-size:11px;color:rgba(255,255,255,.75);margin-top:1px}
+.header-right{display:flex;align-items:center;gap:8px}
+.header-badge{background:rgba(255,255,255,.2);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,.3)}
+.upgrade-btn{background:#fff;color:var(--green-dd);font-size:12px;font-weight:700;padding:6px 12px;border-radius:20px;border:none;cursor:pointer;font-family:inherit}
+.login-btn{background:transparent;color:#fff;font-size:12px;font-weight:600;padding:6px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.4);cursor:pointer;font-family:inherit}
+.nav{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:60px;z-index:99;box-shadow:var(--shadow);overflow-x:auto}
+.nav-inner{max-width:720px;margin:0 auto;display:flex;min-width:700px}
+.nav-tab{flex:1;padding:12px 4px;font-size:11px;font-weight:500;text-align:center;border:none;background:transparent;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+.nav-tab.active{color:var(--green);border-bottom-color:var(--green)}
+.nav-tab:hover:not(.active){color:var(--text);background:#fafafa}
+.page{display:none;max-width:720px;margin:0 auto;padding:20px 16px 100px}
+.page.active{display:block}
+.hero{background:var(--green);border-radius:var(--radius-xl);padding:24px 20px;margin-bottom:20px;color:#fff;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;right:-20px;top:-20px;width:120px;height:120px;background:rgba(255,255,255,.08);border-radius:50%}
+.hero::before{content:'';position:absolute;right:40px;bottom:-30px;width:80px;height:80px;background:rgba(255,255,255,.05);border-radius:50%}
+.hero h2{font-size:20px;font-weight:700;margin-bottom:6px;position:relative}
+.hero p{font-size:13px;opacity:.9;line-height:1.6;position:relative;max-width:320px}
+.hero-stats{display:flex;gap:12px;margin-top:16px;position:relative;flex-wrap:wrap}
+.hero-stat{background:rgba(255,255,255,.15);border-radius:10px;padding:10px 14px;flex:1;text-align:center;min-width:70px}
+.hero-stat-val{font-size:14px;font-weight:700}
+.hero-stat-lbl{font-size:10px;opacity:.8;margin-top:2px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.chip{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:500;color:var(--text);cursor:pointer;transition:all .15s;white-space:nowrap}
+.chip:hover{background:var(--green-l);border-color:var(--green);color:var(--green-dd)}
+.chat-wrap{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
+.messages{padding:20px;display:flex;flex-direction:column;gap:16px;min-height:360px}
+.msg{display:flex;flex-direction:column;max-width:85%}
+.msg.ai{align-self:flex-start}
+.msg.user{align-self:flex-end;align-items:flex-end}
+.msg-meta{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.msg-avatar{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.msg.ai .msg-avatar{background:var(--green);color:#fff}
+.msg.user .msg-avatar{background:var(--text);color:#fff}
+.msg-name{font-size:11px;font-weight:600;color:var(--muted)}
+.msg-time{font-size:10px;color:var(--hint)}
+.bubble{padding:14px 16px;border-radius:4px 16px 16px 16px;font-size:14px;line-height:1.7;background:var(--bg);border:1px solid var(--border);color:var(--text)}
+.msg.user .bubble{background:var(--green);color:#fff;border-color:var(--green);border-radius:16px 4px 16px 16px}
+.bubble strong{font-weight:600}
+.typing-wrap{padding:0 20px 16px;display:none}
+.typing-wrap.show{display:flex;align-items:center;gap:8px}
+.typing-bubble{background:var(--bg);border:1px solid var(--border);border-radius:4px 16px 16px 16px;padding:12px 16px;display:flex;gap:4px;align-items:center}
+.dot{width:7px;height:7px;background:var(--hint);border-radius:50%;animation:bounce 1.2s infinite}
+.dot:nth-child(2){animation-delay:.2s}
+.dot:nth-child(3){animation-delay:.4s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+.typing-text{font-size:12px;color:var(--hint)}
+.chat-footer{padding:16px;border-top:1px solid var(--border);background:var(--white)}
+.usage-bar{display:flex;align-items:center;gap:8px;margin-bottom:10px;padding:8px 12px;background:var(--bg);border-radius:8px;border:1px solid var(--border)}
+.usage-label{font-size:11px;color:var(--muted);flex:1}
+.usage-count{font-size:11px;font-weight:600;color:var(--green)}
+.usage-track{flex:2;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.usage-fill{height:100%;background:var(--green);border-radius:2px;transition:width .3s}
+.input-row{display:flex;gap:10px;align-items:flex-end;background:var(--bg);border:1.5px solid var(--border2);border-radius:var(--radius-lg);padding:10px 10px 10px 16px;transition:border-color .2s}
+.input-row:focus-within{border-color:var(--green);background:var(--white)}
+.input-row textarea{flex:1;border:none;outline:none;font-size:14px;resize:none;background:transparent;font-family:inherit;color:var(--text);max-height:120px;line-height:1.5}
+.input-row textarea::placeholder{color:var(--hint)}
+.send-btn{width:38px;height:38px;background:var(--green);border:none;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
+.send-btn:hover{background:var(--green-d)}
+.send-btn:active{transform:scale(.95)}
+.send-btn:disabled{background:var(--border2);cursor:not-allowed}
+.paywall{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;text-align:center;margin-top:12px;display:none}
+.paywall.show{display:block}
+.paywall h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.paywall p{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6}
+.paywall-btn{background:var(--green);color:#fff;border:none;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;width:100%;margin-bottom:8px}
+.paywall-login-btn{background:transparent;color:var(--green);border:1.5px solid var(--green);border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;width:100%}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex}
+.modal{background:var(--white);border-radius:var(--radius-xl);padding:28px 24px;width:100%;max-width:400px;position:relative}
+.modal-close{position:absolute;top:16px;right:16px;background:transparent;border:none;font-size:20px;cursor:pointer;color:var(--muted);width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.modal-close:hover{background:var(--bg)}
+.modal-logo{text-align:center;margin-bottom:20px}
+.modal-logo-icon{width:48px;height:48px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#fff;margin:0 auto 10px}
+.modal-logo h2{font-size:18px;font-weight:700}
+.modal-logo p{font-size:13px;color:var(--muted);margin-top:4px}
+.modal-tabs{display:flex;background:var(--bg);border-radius:10px;padding:4px;margin-bottom:20px}
+.modal-tab{flex:1;padding:8px;text-align:center;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;border-radius:8px;color:var(--muted);font-family:inherit;transition:all .2s}
+.modal-tab.active{background:var(--white);color:var(--green);box-shadow:var(--shadow)}
+.modal-form{display:flex;flex-direction:column;gap:12px}
+.modal-field input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;outline:none;transition:border-color .2s}
+.modal-field input:focus{border-color:var(--green)}
+.modal-field input::placeholder{color:var(--hint)}
+.modal-submit{background:var(--green);color:#fff;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;width:100%;transition:background .2s}
+.modal-submit:hover{background:var(--green-d)}
+.modal-submit:disabled{background:var(--hint);cursor:not-allowed}
+.modal-msg{font-size:13px;text-align:center;padding:10px;border-radius:8px;display:none}
+.modal-msg.success{display:block;background:var(--green-l);color:var(--green-dd)}
+.modal-msg.error{display:block;background:#FCEBEB;color:#A32D2D}
+.modal-divider{text-align:center;font-size:12px;color:var(--hint);margin:4px 0}
+.user-menu{position:relative}
+.user-menu-btn{background:rgba(255,255,255,.2);color:#fff;font-size:12px;font-weight:600;padding:6px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.3);cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px}
+.user-dropdown{position:absolute;right:0;top:calc(100% + 8px);background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 4px 20px rgba(0,0,0,.12);min-width:180px;display:none;z-index:200}
+.user-dropdown.show{display:block}
+.user-dropdown-item{padding:12px 16px;font-size:13px;color:var(--text);cursor:pointer;border-bottom:1px solid var(--bg)}
+.user-dropdown-item:last-child{border-bottom:none;color:#E24B4A}
+.user-dropdown-item:hover{background:var(--bg)}
+.user-email{padding:12px 16px;font-size:11px;color:var(--muted);border-bottom:1px solid var(--border);font-weight:600}
+.calc-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:16px;box-shadow:var(--shadow)}
+.calc-card h2{font-size:16px;font-weight:700;margin-bottom:4px}
+.calc-card .subtitle{font-size:13px;color:var(--muted);margin-bottom:20px}
+.calc-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.calc-tab{padding:8px 14px;border-radius:20px;font-size:12px;font-weight:500;border:1.5px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-family:inherit;transition:all .15s}
+.calc-tab.active{background:var(--green);color:#fff;border-color:var(--green)}
+.calc-section{display:none;margin-top:20px}
+.calc-section.active{display:block}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.field select,.field input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;background:var(--white);color:var(--text);font-family:inherit;outline:none;transition:border-color .2s;-webkit-appearance:none}
+.field select:focus,.field input:focus{border-color:var(--green)}
+.field input::placeholder{color:var(--hint)}
+.field-hint{font-size:11px;color:var(--hint);margin-top:5px}
+.slider-val{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.slider-amount{font-size:22px;font-weight:700;color:var(--green)}
+.slider-label{font-size:12px;color:var(--muted)}
+input[type=range]{width:100%;height:6px;border-radius:3px;background:var(--border);outline:none;border:none;padding:0;cursor:pointer;accent-color:var(--green)}
+.calc-btn{width:100%;background:var(--green);color:#fff;border:none;border-radius:12px;padding:16px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.2px;font-family:inherit}
+.calc-btn:hover{background:var(--green-d)}
+.calc-btn:active{transform:scale(.98)}
+.calc-btn:disabled{background:var(--hint);cursor:not-allowed}
+.result-box{display:none;margin-top:20px;border-radius:var(--radius-lg);overflow:hidden;border:1px solid #9FE1CB}
+.result-box.show{display:block}
+.result-header{background:var(--green);padding:16px 20px;color:#fff}
+.result-header h3{font-size:15px;font-weight:700}
+.result-header p{font-size:12px;opacity:.85;margin-top:2px}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;background:var(--green-ll)}
+.result-item{padding:16px 20px;border-bottom:1px solid #C6F0E0;border-right:1px solid #C6F0E0}
+.result-item:nth-child(even){border-right:none}
+.result-item:nth-last-child(-n+2){border-bottom:none}
+.result-lbl{font-size:11px;color:var(--green-dd);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.result-val{font-size:18px;font-weight:700;color:var(--green-dd)}
+.result-sub{font-size:11px;color:var(--green-d);margin-top:2px}
+.result-footer{background:var(--green);padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+.result-footer-label{font-size:13px;color:rgba(255,255,255,.85)}
+.result-footer-val{font-size:20px;font-weight:800;color:#fff}
+.breakdown-toggle{width:100%;background:var(--green-l);border:none;padding:12px;font-size:13px;font-weight:600;color:var(--green-dd);cursor:pointer;border-top:1px solid #9FE1CB;font-family:inherit;transition:background .15s}
+.breakdown-toggle:hover{background:#C6F0E0}
+.breakdown-list{display:none;background:var(--white);padding:16px 20px;border-top:1px solid var(--border)}
+.breakdown-list.show{display:block}
+.band-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--bg);font-size:13px}
+.band-row:last-child{border-bottom:none}
+.band-label{color:var(--muted)}
+.band-val{font-weight:600;color:var(--text)}
+.band-bar{height:4px;background:var(--green-l);border-radius:2px;margin-top:4px;overflow:hidden}
+.band-fill{height:100%;background:var(--green);border-radius:2px;transition:width .5s ease}
+.download-btn{width:100%;background:var(--green-dd);color:#fff;border:none;padding:16px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;border-top:1px solid #9FE1CB;transition:background .2s;display:none;letter-spacing:.3px}
+.download-btn:hover{background:#04342C}
+.download-btn:disabled{background:var(--hint);cursor:not-allowed}
+.simple-result{background:var(--green-ll);border:1px solid #9FE1CB;border-radius:var(--radius-lg);padding:20px;margin-top:16px;display:none}
+.simple-result.show{display:block}
+.simple-result-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #C6F0E0;font-size:14px}
+.simple-result-row:last-child{border-bottom:none;font-weight:700;font-size:16px;color:var(--green-dd);padding-top:14px;margin-top:4px}
+.simple-result-label{color:var(--muted)}
+.simple-result-val{font-weight:600;color:var(--text)}
+.info-box{background:var(--green-l);border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px;color:var(--green-dd);line-height:1.6}
+.info-box strong{font-weight:700}
+.guide-steps{display:flex;flex-direction:column;gap:12px}
+.guide-step{display:flex;gap:14px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.step-num{width:32px;height:32px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px}
+.step-body{flex:1}
+.step-title{font-size:14px;font-weight:700;margin-bottom:6px;color:var(--text)}
+.step-desc{font-size:13px;color:var(--muted);line-height:1.6}
+.step-link{display:inline-block;margin-top:8px;font-size:12px;font-weight:600;color:var(--green);text-decoration:none;border:1px solid var(--green);padding:4px 12px;border-radius:16px}
+.step-link:hover{background:var(--green-l)}
+.step-link-btn{display:inline-block;margin-top:8px;font-size:12px;font-weight:600;color:var(--green);background:transparent;border:1px solid var(--green);padding:4px 12px;border-radius:16px;cursor:pointer;font-family:inherit}
+.step-link-btn:hover{background:var(--green-l)}
+.doc-list{padding-left:16px;margin-top:6px}
+.doc-list li{font-size:12px;color:var(--muted);padding:2px 0}
+.deadline-list{display:flex;flex-direction:column;gap:10px}
+.deadline-item{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;gap:14px;align-items:flex-start;box-shadow:var(--shadow)}
+.deadline-month{width:44px;height:44px;border-radius:10px;background:var(--green);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
+.deadline-month-name{font-size:10px;font-weight:600;opacity:.85}
+.deadline-month-day{font-size:16px;font-weight:800;line-height:1}
+.deadline-info{flex:1}
+.deadline-title{font-size:14px;font-weight:600;margin-bottom:3px}
+.deadline-desc{font-size:12px;color:var(--muted);line-height:1.5}
+.deadline-badge{display:inline-block;margin-top:6px;font-size:10px;font-weight:600;padding:2px 8px;border-radius:8px}
+.badge-urgent{background:#FCEBEB;color:#A32D2D}
+.badge-soon{background:#FAEEDA;color:#633806}
+.badge-ok{background:var(--green-l);color:var(--green-dd)}
+.reminder-form{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-top:16px;box-shadow:var(--shadow)}
+.reminder-form h3{font-size:15px;font-weight:700;margin-bottom:4px}
+.reminder-form p{font-size:13px;color:var(--muted);margin-bottom:16px}
+.pricing-section{margin-bottom:20px}
+.pricing-title{font-size:20px;font-weight:700;text-align:center;margin-bottom:6px}
+.pricing-sub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:20px}
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px}
+.plan-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px;text-align:center;position:relative;transition:all .2s}
+.plan-card:hover{border-color:var(--green);transform:translateY(-2px)}
+.plan-card.popular{border:2px solid var(--green);transform:translateY(-2px)}
+.popular-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;white-space:nowrap}
+.plan-name{font-size:13px;font-weight:700;margin-bottom:8px;color:var(--text)}
+.plan-price{font-size:22px;font-weight:800;color:var(--green);margin-bottom:2px}
+.plan-period{font-size:11px;color:var(--muted);margin-bottom:12px}
+.plan-features{list-style:none;margin-bottom:14px;text-align:left}
+.plan-features li{font-size:11px;color:var(--muted);padding:3px 0;display:flex;align-items:center;gap:5px}
+.plan-features li::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;flex-shrink:0}
+.plan-btn{width:100%;background:var(--green);color:#fff;border:none;border-radius:8px;padding:10px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s}
+.plan-btn:hover{background:var(--green-d)}
+.plan-btn.outline{background:transparent;color:var(--green);border:1.5px solid var(--green)}
+.plan-btn.outline:hover{background:var(--green-l)}
+.faq-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:10px}
+.faq-card h4{font-size:13px;font-weight:600;margin-bottom:6px}
+.faq-card p{font-size:12px;color:var(--muted);line-height:1.6}
+.about-hero{background:var(--green);border-radius:var(--radius-xl);padding:28px 24px;color:#fff;text-align:center;margin-bottom:20px;position:relative;overflow:hidden}
+.about-hero::after{content:'₦';position:absolute;right:16px;top:10px;font-size:80px;font-weight:900;opacity:.08}
+.about-hero h2{font-size:24px;font-weight:800;margin-bottom:8px}
+.about-hero p{font-size:14px;opacity:.9;line-height:1.7;max-width:400px;margin:0 auto}
+.about-url{display:inline-block;margin-top:16px;background:rgba(255,255,255,.2);color:#fff;padding:8px 20px;border-radius:20px;font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,.3);text-decoration:none}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px}
+.stat-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;box-shadow:var(--shadow)}
+.stat-val{font-size:22px;font-weight:800;color:var(--green)}
+.stat-lbl{font-size:11px;color:var(--muted);margin-top:4px;font-weight:500}
+.feature-list{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+.feature{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;gap:14px;align-items:flex-start;box-shadow:var(--shadow)}
+.feature-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.fi-green{background:var(--green-l)}
+.fi-amber{background:#FEF3C7}
+.fi-blue{background:#EFF6FF}
+.fi-purple{background:#F5F3FF}
+.fi-red{background:#FCEBEB}
+.feature h3{font-size:14px;font-weight:700;margin-bottom:4px}
+.feature p{font-size:13px;color:var(--muted);line-height:1.6}
+.disclaimer{background:#FFFBEB;border:1px solid #FCD34D;border-radius:var(--radius);padding:16px;font-size:12px;color:#92400E;line-height:1.7}
+.section-title{font-size:16px;font-weight:700;margin-bottom:4px}
+.section-sub{font-size:13px;color:var(--muted);margin-bottom:16px}
+.state-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.state-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow)}
+.state-name{font-size:13px;font-weight:700;margin-bottom:2px}
+.state-body{font-size:11px;color:var(--muted);margin-bottom:8px;line-height:1.5}
+.state-link{display:inline-block;font-size:11px;font-weight:600;color:var(--green);text-decoration:none;border:1px solid var(--green);padding:3px 10px;border-radius:12px}
+.state-link:hover{background:var(--green-l)}
+.checklist-wrap{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.check-item{display:flex;align-items:flex-start;gap:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:14px;cursor:pointer;transition:all .15s}
+.check-item.done{background:var(--green-l);border-color:#9FE1CB}
+.check-box{width:22px;height:22px;border-radius:6px;border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;margin-top:1px}
+.check-item.done .check-box{background:var(--green);border-color:var(--green)}
+.check-tick{width:12px;height:12px;display:none}
+.check-item.done .check-tick{display:block}
+.check-text{flex:1}
+.check-title{font-size:13px;font-weight:600;margin-bottom:2px}
+.check-item.done .check-title{color:var(--green-dd);text-decoration:line-through;opacity:.7}
+.checklist-progress{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:16px}
+.progress-label{display:flex;justify-content:space-between;font-size:13px;font-weight:500;margin-bottom:8px}
+.progress-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;background:var(--green);border-radius:4px;transition:width .4s}
+.tip-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:10px;box-shadow:var(--shadow)}
+.tip-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.tip-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.tip-title{font-size:14px;font-weight:700}
+.tip-saving{font-size:12px;color:var(--green);font-weight:600;margin-top:2px}
+.tip-desc{font-size:13px;color:var(--muted);line-height:1.6}
+.tip-example{background:var(--green-l);border-radius:8px;padding:10px 12px;margin-top:8px;font-size:12px;color:var(--green-dd);line-height:1.6}
+.paye-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:13px}
+.paye-table th{background:var(--green);color:#fff;padding:10px 12px;text-align:left;font-weight:600;font-size:12px}
+.paye-table td{padding:10px 12px;border-bottom:1px solid var(--border)}
+.paye-table tr:last-child td{border-bottom:none;font-weight:700;background:var(--green-l);color:var(--green-dd)}
+.paye-table tr:nth-child(even) td{background:#fafaf8}
+.staff-row{display:flex;gap:8px;align-items:flex-end;margin-bottom:10px}
+.staff-row input{flex:2;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;outline:none}
+.staff-row input:focus{border-color:var(--green)}
+.staff-row input:first-child{flex:3}
+.remove-btn{padding:10px 12px;background:#FCEBEB;color:#A32D2D;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit;white-space:nowrap}
+.add-staff-btn{background:transparent;border:1.5px dashed var(--border2);border-radius:8px;padding:10px;width:100%;color:var(--muted);font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;margin-bottom:16px;transition:all .15s}
+.add-staff-btn:hover{border-color:var(--green);color:var(--green);background:var(--green-l)}
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--border);z-index:200;padding:6px 0}
+.bottom-nav-inner{display:flex;max-width:720px;margin:0 auto}
+.bnav-tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;border:none;background:transparent;cursor:pointer;color:var(--hint);font-size:8px;font-weight:500;font-family:inherit}
+.bnav-tab.active{color:var(--green)}
+.bnav-icon{font-size:15px}
+@media(max-width:600px){
+  .bottom-nav{display:block}
+  .nav{display:none}
+  .page{padding:16px 12px 90px}
+  .hero h2{font-size:17px}
+  .pricing-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr 1fr}
+  .result-grid{grid-template-columns:1fr 1fr}
+  .state-grid{grid-template-columns:1fr}
+  .staff-row{flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeAuth()">✕</button>
+    <div class="modal-logo">
+      <div class="modal-logo-icon">₦</div>
+      <h2>WafsTax</h2>
+      <p id="modalSubtitle">Sign in to restore your Pro access</p>
+    </div>
+    <div class="modal-tabs">
+      <button class="modal-tab active" id="loginTab" onclick="switchAuthTab('login')">Sign in</button>
+      <button class="modal-tab" id="signupTab" onclick="switchAuthTab('signup')">Create account</button>
+    </div>
+    <div class="modal-form" id="loginForm">
+      <div class="modal-field"><input type="email" id="loginEmail" placeholder="Email address"/></div>
+      <div class="modal-field"><input type="password" id="loginPassword" placeholder="Password"/></div>
+      <button class="modal-submit" id="loginBtn" onclick="signIn()">Sign in</button>
+      <div class="modal-divider">or</div>
+      <button class="modal-submit" style="background:var(--bg);color:var(--text);border:1.5px solid var(--border)" onclick="forgotPassword()">Forgot password?</button>
+    </div>
+    <div class="modal-form" id="signupForm" style="display:none">
+      <div class="modal-field"><input type="email" id="signupEmail" placeholder="Email address"/></div>
+      <div class="modal-field"><input type="password" id="signupPassword" placeholder="Create password (min 6 chars)"/></div>
+      <button class="modal-submit" id="signupBtn" onclick="signUp()">Create account</button>
+    </div>
+    <div class="modal-msg" id="authMsg"></div>
+  </div>
+</div>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon">₦</div>
+      <div class="logo-text">
+        <h1>WafsTax</h1>
+        <p>Nigeria Tax Act 2025</p>
+      </div>
+    </div>
+    <div class="header-right" id="headerRight">
+      <span class="header-badge" id="planBadge">Free</span>
+      <button class="login-btn" onclick="openAuth()">Sign in</button>
+      <button class="upgrade-btn" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[5])">Upgrade</button>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="nav-inner">
+    <button class="nav-tab active" onclick="showPage('chat',this)">💬 Chat</button>
+    <button class="nav-tab" onclick="showPage('calculator',this)">🧮 Calc</button>
+    <button class="nav-tab" onclick="showPage('filingtax',this)">📋 File Tax</button>
+    <button class="nav-tab" onclick="showPage('tools',this)">🛠️ Tools</button>
+    <button class="nav-tab" onclick="showPage('deadlines',this)">📅 Deadlines</button>
+    <button class="nav-tab" onclick="showPage('pricing',this)">💳 Pricing</button>
+    <button class="nav-tab" onclick="showPage('about',this)">ℹ️ About</button>
+  </div>
+</div>
+
+<!-- CHAT PAGE -->
+<div class="page active" id="chat">
+  <div class="hero">
+    <h2>Your free Nigerian tax assistant</h2>
+    <p>Powered by AI — trained on NTA 2025. Ask anything about your taxes.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-val">NGN800k</div><div class="hero-stat-lbl">Tax-free threshold</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">7.5%</div><div class="hero-stat-lbl">VAT rate</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">0%</div><div class="hero-stat-lbl">SME tax</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">30%</div><div class="hero-stat-lbl">CIT large co.</div></div>
+    </div>
+  </div>
+  <div class="chips">
+    <button class="chip" onclick="askQ('I earn NGN3M per year as a salary worker. How much PAYE tax do I pay monthly?')">Salary PAYE</button>
+    <button class="chip" onclick="askQ('I make money from crypto and forex trading. Is it taxable under NTA 2025?')">Crypto tax</button>
+    <button class="chip" onclick="askQ('I run a POS business making NGN5M per year. Do I pay tax?')">POS business</button>
+    <button class="chip" onclick="askQ('I earn from YouTube and TikTok. How much tax do I owe?')">Content creator</button>
+    <button class="chip" onclick="askQ('What items are VAT exempt in Nigeria under NTA 2025?')">VAT exemptions</button>
+    <button class="chip" onclick="askQ('How do I legally reduce my tax liability in Nigeria under NTA 2025?')">Tax savings tips</button>
+    <button class="chip" onclick="askQ('My company has NGN80M turnover. Do we pay Companies Income Tax?')">Business CIT</button>
+  </div>
+  <div class="chat-wrap">
+    <div class="messages" id="messages">
+      <div class="msg ai">
+        <div class="msg-meta">
+          <div class="msg-avatar">W</div>
+          <span class="msg-name">WafsTax AI</span>
+          <span class="msg-time">Now</span>
+        </div>
+        <div class="bubble">
+          <strong>Hello! Welcome to WafsTax.</strong><br><br>
+          I am your free Nigerian tax assistant, fully updated for the <strong>Nigeria Tax Act 2025</strong> (effective January 2026).<br><br>
+          Ask me about salary, freelance income, crypto, POS business, YouTube earnings, VAT, company tax, tax savings or how to file your return.<br><br>
+          <strong>Free users get 5 questions. Create a free account to save your progress across devices.</strong>
+        </div>
+      </div>
+    </div>
+    <div class="typing-wrap" id="typing">
+      <div class="msg-avatar" style="width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">W</div>
+      <div class="typing-bubble"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      <span class="typing-text">Thinking...</span>
+    </div>
+    <div class="chat-footer">
+      <div class="usage-bar" id="usageBar">
+        <span class="usage-label">Free questions used</span>
+        <div class="usage-track"><div class="usage-fill" id="usageFill" style="width:0%"></div></div>
+        <span class="usage-count" id="usageCount">0 / 5</span>
+      </div>
+      <div class="input-row">
+        <textarea id="chatInput" placeholder="Type your tax question here..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+        <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M9 3l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="paywall" id="paywall">
+    <h3>You have used all 5 free questions</h3>
+    <p>Upgrade to the Individual plan for NGN 2,000/month and get unlimited AI tax questions, priority answers, and unlimited PDF tax reports.</p>
+    <button class="paywall-btn" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[5])">See pricing plans</button>
+    <button class="paywall-login-btn" onclick="openAuth()">Already a subscriber? Sign in</button>
+  </div>
+</div>
+
+<!-- CALCULATOR PAGE -->
+<div class="page" id="calculator">
+  <div class="calc-card">
+    <h2>Nigeria Tax Calculators</h2>
+    <p class="subtitle">NTA 2025 — Accurate results for PIT, CIT and VAT</p>
+    <div class="calc-tabs">
+      <button class="calc-tab active" onclick="switchCalc('pit',this)">Personal Income Tax</button>
+      <button class="calc-tab" onclick="switchCalc('cit',this)">Company Tax (CIT)</button>
+      <button class="calc-tab" onclick="switchCalc('vat',this)">VAT Calculator</button>
+    </div>
+    <div class="calc-section active" id="pit-section">
+      <div class="field"><label>Income type</label><select id="incomeType"><option>Salary / Employment (PAYE)</option><option>Freelancer / Self-employed</option><option>Content creator (YouTube, TikTok, Instagram)</option><option>POS / Business owner</option><option>Crypto / Forex trader</option><option>Rental income</option><option>Multiple income sources</option></select></div>
+      <div class="field">
+        <label>Annual income</label>
+        <div class="slider-val"><span class="slider-amount" id="sliderDisplay">NGN 3,600,000</span><span class="slider-label">per year</span></div>
+        <input type="range" id="incomeSlider" min="0" max="50000000" step="100000" value="3600000" oninput="updateSlider(this.value)">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--hint);margin-top:4px"><span>NGN 0</span><span>NGN 25M</span><span>NGN 50M</span></div>
+        <div class="field-hint" style="margin-top:10px">Or type exact amount:</div>
+        <input type="number" id="annualIncome" placeholder="e.g. 3600000" min="0" oninput="updateFromInput(this.value)" style="margin-top:8px"/>
+      </div>
+      <div class="field"><label>Annual rent paid (optional)</label><input type="number" id="annualRent" placeholder="e.g. 600000" min="0"/><div class="field-hint">20% of rent deducted, max NGN 500,000</div></div>
+      <button class="calc-btn" id="calcBtn" onclick="calculatePIT()">Calculate income tax</button>
+      <div class="result-box" id="pitResultBox">
+        <div class="result-header"><h3>Your 2025/2026 Tax Summary</h3><p id="resultIncomeType">Employment</p></div>
+        <div class="result-grid">
+          <div class="result-item"><div class="result-lbl">Annual tax</div><div class="result-val" id="r-tax">—</div><div class="result-sub">per year</div></div>
+          <div class="result-item"><div class="result-lbl">Monthly tax</div><div class="result-val" id="r-monthly">—</div><div class="result-sub">deducted monthly</div></div>
+          <div class="result-item"><div class="result-lbl">Effective rate</div><div class="result-val" id="r-rate">—</div><div class="result-sub">of gross income</div></div>
+          <div class="result-item"><div class="result-lbl">Taxable income</div><div class="result-val" id="r-taxable">—</div><div class="result-sub">after deductions</div></div>
+        </div>
+        <div class="result-footer"><span class="result-footer-label">Monthly take-home</span><span class="result-footer-val" id="r-takehome">—</span></div>
+        <button class="breakdown-toggle" onclick="toggleBreakdown()">Show full tax band breakdown</button>
+        <div class="breakdown-list" id="breakdown"></div>
+        <button class="download-btn" id="downloadBtn" onclick="downloadPDF()">Download Tax Report PDF — Free</button>
+      </div>
+    </div>
+    <div class="calc-section" id="cit-section">
+      <div class="info-box"><strong>CIT under NTA 2025:</strong><br>Small companies (turnover ≤ NGN 100M): <strong>0% — fully exempt</strong><br>All other companies: <strong>30% on taxable profit</strong></div>
+      <div class="field"><label>Annual turnover (gross revenue)</label><input type="number" id="citTurnover" placeholder="e.g. 50000000" min="0"/></div>
+      <div class="field"><label>Taxable profit (after allowable deductions)</label><input type="number" id="citProfit" placeholder="e.g. 15000000" min="0"/></div>
+      <button class="calc-btn" onclick="calculateCIT()">Calculate company tax</button>
+      <div class="simple-result" id="citResult">
+        <div class="simple-result-row"><span class="simple-result-label">Annual turnover</span><span class="simple-result-val" id="cit-turnover">—</span></div>
+        <div class="simple-result-row"><span class="simple-result-label">Company category</span><span class="simple-result-val" id="cit-category">—</span></div>
+        <div class="simple-result-row"><span class="simple-result-label">Tax rate</span><span class="simple-result-val" id="cit-rate">—</span></div>
+        <div class="simple-result-row"><span class="simple-result-label">Taxable profit</span><span class="simple-result-val" id="cit-profit">—</span></div>
+        <div class="simple-result-row"><span class="simple-result-label">CIT payable</span><span class="simple-result-val" id="cit-tax">—</span></div>
+      </div>
+    </div>
+    <div class="calc-section" id="vat-section">
+      <div class="info-box"><strong>VAT under NTA 2025:</strong> Standard rate <strong>7.5%</strong>.<br>Zero-rated: food, medicine, education, electricity, exports.</div>
+      <div class="field"><label>Transaction amount (NGN)</label><input type="number" id="vatAmount" placeholder="e.g. 100000" min="0"/></div>
+      <div class="field"><label>VAT type</label><select id="vatType"><option value="add">Add VAT to amount (exclusive)</option><option value="extract">Extract VAT from amount (inclusive)</option></select></div>
+      <div class="field"><label>Item category</label><select id="vatCategory"><option value="standard">Standard rated (7.5%)</option><option value="zero">Zero-rated (food, medicine, education, exports)</option></select></div>
+      <button class="calc-btn" onclick="calculateVAT()">Calculate VAT</button>
+      <div class="simple-result" id="vatResult">
+        <div class="simple-result-row"><span class="simple-result-label">Original amount</span><span class="simple-result-val" id="vat-original">—</span></div>
+        <div class="simple-result-row"><span class="simple-result-label">VAT rate</span><span class="simple-result-val" id="vat-rate">—</span></div>
+        <div class="simple-result-row"><span class="simple-result-label">VAT amount</span><span class="simple-result-val" id="vat-amount">—</span></div>
+        <div class="simple-result-row"><span class="simple-result-label">Total amount</span><span class="simple-result-val" id="vat-total">—</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW TO FILE TAX PAGE -->
+<div class="page" id="filingtax">
+  <div class="hero" style="margin-bottom:20px"><h2>How to File Your Tax in Nigeria</h2><p>Step by step guide under NTA 2025 — clear, simple and accurate for every Nigerian.</p></div>
+  <div class="calc-tabs" style="margin-bottom:20px">
+    <button class="calc-tab active" onclick="switchGuide('paye',this)">Salary / PAYE</button>
+    <button class="calc-tab" onclick="switchGuide('selfemployed',this)">Self-Employed</button>
+    <button class="calc-tab" onclick="switchGuide('cit',this)">Business CIT</button>
+    <button class="calc-tab" onclick="switchGuide('vat',this)">VAT Returns</button>
+  </div>
+  <div class="calc-section active" id="paye-guide">
+    <div class="info-box"><strong>Good news for salary workers:</strong> If your employer deducts PAYE monthly, you do not need to file a tax return yourself. Your employer handles it. But you still need a TIN linked to your NIN and BVN.</div>
+    <div class="guide-steps">
+      <div class="guide-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Get your Tax Identification Number (TIN)</div><div class="step-desc">Every Nigerian taxpayer must have a TIN under NTA 2025. Your TIN is now linked to your NIN automatically.</div><a class="step-link" href="https://www.nrs.gov.ng" target="_blank">Visit NRS Portal →</a></div></div>
+      <div class="guide-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Confirm your employer is deducting PAYE</div><div class="step-desc">Ask your HR or payroll team for your monthly payslip. It must show PAYE deducted. Remittance must go to your State IRS by the 10th of the following month.</div></div></div>
+      <div class="guide-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Collect your annual tax deduction card (Form H1)</div><div class="step-desc">At the end of each year your employer must give you a tax deduction card. Keep this — you need it for loans, visas and disputes.</div></div></div>
+      <div class="guide-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">File separately if you have other income</div><div class="step-desc">Rental income, freelance work, crypto, dividends — declare separately by filing a personal tax return before April 30 each year.</div></div></div>
+      <div class="guide-step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Documents you need</div><div class="step-desc"><ul class="doc-list"><li>Valid NIN</li><li>BVN</li><li>TIN</li><li>Most recent payslips</li><li>Employer tax remittance receipts</li></ul></div></div></div>
+    </div>
+    <button class="calc-btn" style="margin-top:16px" onclick="showPage('chat',document.querySelectorAll('.nav-tab')[0]);setTimeout(()=>{document.getElementById('chatInput').value='I am a salary worker. How do I confirm my PAYE is being filed correctly under NTA 2025?';sendMessage()},300)">Ask AI a PAYE question →</button>
+  </div>
+  <div class="calc-section" id="selfemployed-guide">
+    <div class="info-box"><strong>Important:</strong> Freelancers, content creators, crypto traders, POS operators — you must file your own tax return every year before April 30. Under NTA 2025, all digital income is fully taxable.</div>
+    <div class="guide-steps">
+      <div class="guide-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Register for a TIN at the NRS</div><div class="step-desc">Register as self-employed. You need your NIN, BVN and a valid email.</div><a class="step-link" href="https://www.nrs.gov.ng" target="_blank">Register TIN →</a></div></div>
+      <div class="guide-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Keep records of all your income</div><div class="step-desc">Track every source — client payments, YouTube AdSense, crypto withdrawals, affiliate commissions, POS transactions.</div></div></div>
+      <div class="guide-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Calculate your tax using WafsTax</div><div class="step-desc">Tax-free threshold is NGN 800,000 under NTA 2025.</div><button class="step-link-btn" onclick="showPage('calculator',document.querySelectorAll('.nav-tab')[1])">Open Tax Calculator →</button></div></div>
+      <div class="guide-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">File your annual return at your State IRS</div><div class="step-desc">Deadline is April 30 every year.</div><button class="step-link-btn" onclick="showPage('tools',document.querySelectorAll('.nav-tab')[3]);setTimeout(()=>switchTool('states',document.querySelectorAll('#tools .calc-tab')[0]),200)">Find your State IRS →</button></div></div>
+      <div class="guide-step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Pay your tax via Remita</div><div class="step-desc">Nigeria's official government payment platform.</div><a class="step-link" href="https://remita.net" target="_blank">Pay via Remita →</a></div></div>
+    </div>
+    <button class="calc-btn" style="margin-top:16px" onclick="showPage('chat',document.querySelectorAll('.nav-tab')[0]);setTimeout(()=>{document.getElementById('chatInput').value='I am a freelancer in Nigeria. How do I file my personal income tax return under NTA 2025?';sendMessage()},300)">Ask AI about self-employed filing →</button>
+  </div>
+  <div class="calc-section" id="cit-guide">
+    <div class="info-box"><strong>Key NTA 2025 rule:</strong> Turnover ≤ NGN 100M — fully exempt from CIT. Above — pay 30% on taxable profit.</div>
+    <div class="guide-steps">
+      <div class="guide-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Determine if your company must pay CIT</div><div class="step-desc">NGN 100M or below — exempt but still file nil return. Above — pay 30%.</div><button class="step-link-btn" onclick="showPage('calculator',document.querySelectorAll('.nav-tab')[1])">Check with CIT Calculator →</button></div></div>
+      <div class="guide-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Register your company with the NRS</div><div class="step-desc">Separate from CAC. Register at NRS portal using CAC certificate and directors' details.</div><a class="step-link" href="https://www.nrs.gov.ng" target="_blank">Register Company TIN →</a></div></div>
+      <div class="guide-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">File your CIT return by March 31</div><div class="step-desc">File online via the NRS e-filing portal or visit your nearest NRS office.</div></div></div>
+      <div class="guide-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Pay via Remita and get your TCC</div><div class="step-desc">Tax Clearance Certificate required for government contracts, licenses and tenders.</div><a class="step-link" href="https://remita.net" target="_blank">Pay via Remita →</a></div></div>
+    </div>
+    <button class="calc-btn" style="margin-top:16px" onclick="showPage('chat',document.querySelectorAll('.nav-tab')[0]);setTimeout(()=>{document.getElementById('chatInput').value='How do I file my company CIT return in Nigeria under NTA 2025?';sendMessage()},300)">Ask AI about CIT filing →</button>
+  </div>
+  <div class="calc-section" id="vat-guide">
+    <div class="info-box"><strong>VAT under NTA 2025:</strong> Turnover above NGN 25M — compulsory registration. Rate: 7.5%. File monthly by the 21st.</div>
+    <div class="guide-steps">
+      <div class="guide-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Check if you must register for VAT</div><div class="step-desc">Above NGN 25M — compulsory. Below — voluntary registration lets you claim input VAT.</div></div></div>
+      <div class="guide-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Register for VAT at the NRS</div><div class="step-desc">Receive a VAT registration number — display on all invoices.</div><a class="step-link" href="https://www.nrs.gov.ng" target="_blank">Register for VAT →</a></div></div>
+      <div class="guide-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">File monthly VAT returns by the 21st</div><div class="step-desc">Output VAT minus input VAT = amount to remit. Late filing attracts penalties.</div><button class="step-link-btn" onclick="showPage('calculator',document.querySelectorAll('.nav-tab')[1])">Use VAT Calculator →</button></div></div>
+    </div>
+    <button class="calc-btn" style="margin-top:16px" onclick="showPage('chat',document.querySelectorAll('.nav-tab')[0]);setTimeout(()=>{document.getElementById('chatInput').value='How do I register for VAT in Nigeria and file monthly VAT returns under NTA 2025?';sendMessage()},300)">Ask AI about VAT filing →</button>
+  </div>
+</div>
+
+<!-- TOOLS PAGE -->
+<div class="page" id="tools">
+  <div class="hero" style="margin-bottom:20px"><h2>Nigerian Tax Tools</h2><p>State portals, PAYE bulk calculator, filing checklist and tax savings tips — all in one place.</p></div>
+  <div class="calc-tabs" style="margin-bottom:20px">
+    <button class="calc-tab active" onclick="switchTool('states',this)">State Portals</button>
+    <button class="calc-tab" onclick="switchTool('checklist',this)">Filing Checklist</button>
+    <button class="calc-tab" onclick="switchTool('savings',this)">Tax Savings</button>
+    <button class="calc-tab" onclick="switchTool('payebulk',this)">PAYE Bulk Calc</button>
+  </div>
+  <div class="calc-section active" id="states-section">
+    <p class="section-sub" style="margin-bottom:16px">Select your state to go directly to your State Internal Revenue Service portal.</p>
+    <div class="field"><label>Find your state</label>
+      <select id="stateSelect" onchange="filterStates(this.value)">
+        <option value="">All states</option>
+        <option>Lagos</option><option>Abuja (FCT)</option><option>Rivers</option><option>Kano</option><option>Ogun</option><option>Anambra</option><option>Delta</option><option>Oyo</option><option>Kaduna</option><option>Enugu</option><option>Imo</option><option>Edo</option><option>Cross River</option><option>Akwa Ibom</option><option>Kwara</option>
+      </select>
+    </div>
+    <div class="state-grid" id="stateGrid">
+      <div class="state-card" data-state="Lagos"><div class="state-name">Lagos State</div><div class="state-body">Lagos Internal Revenue Service (LIRS). Nigeria's largest tax authority.</div><a class="state-link" href="https://lirs.gov.ng" target="_blank">Visit LIRS →</a></div>
+      <div class="state-card" data-state="Abuja (FCT)"><div class="state-name">Abuja (FCT)</div><div class="state-body">Federal Capital Territory Internal Revenue Service (FCTA IRS).</div><a class="state-link" href="https://irs.fct.gov.ng" target="_blank">Visit FCT IRS →</a></div>
+      <div class="state-card" data-state="Rivers"><div class="state-name">Rivers State</div><div class="state-body">Rivers State Internal Revenue Service (RIRS). Handles Port Harcourt taxes.</div><a class="state-link" href="https://rirs.gov.ng" target="_blank">Visit RIRS →</a></div>
+      <div class="state-card" data-state="Kano"><div class="state-name">Kano State</div><div class="state-body">Kano State Internal Revenue Service (KIRS).</div><a class="state-link" href="https://kirs.gov.ng" target="_blank">Visit KIRS →</a></div>
+      <div class="state-card" data-state="Ogun"><div class="state-name">Ogun State</div><div class="state-body">Ogun State Internal Revenue Service (OGIIRS).</div><a class="state-link" href="https://ogiirs.gov.ng" target="_blank">Visit OGIIRS →</a></div>
+      <div class="state-card" data-state="Anambra"><div class="state-name">Anambra State</div><div class="state-body">Anambra State Internal Revenue Service (AIRS).</div><a class="state-link" href="https://airs.gov.ng" target="_blank">Visit AIRS →</a></div>
+      <div class="state-card" data-state="Delta"><div class="state-name">Delta State</div><div class="state-body">Delta State Board of Internal Revenue (DSBIR).</div><a class="state-link" href="https://dsbir.gov.ng" target="_blank">Visit DSBIR →</a></div>
+      <div class="state-card" data-state="Oyo"><div class="state-name">Oyo State</div><div class="state-body">Oyo State Internal Revenue Service (OYIRS). Covers Ibadan.</div><a class="state-link" href="https://oyirs.gov.ng" target="_blank">Visit OYIRS →</a></div>
+      <div class="state-card" data-state="Kaduna"><div class="state-name">Kaduna State</div><div class="state-body">Kaduna State Internal Revenue Service (KADIRS).</div><a class="state-link" href="https://kadirs.gov.ng" target="_blank">Visit KADIRS →</a></div>
+      <div class="state-card" data-state="Enugu"><div class="state-name">Enugu State</div><div class="state-body">Enugu State Board of Internal Revenue (ESBIR).</div><a class="state-link" href="https://esbir.gov.ng" target="_blank">Visit ESBIR →</a></div>
+      <div class="state-card" data-state="Imo"><div class="state-name">Imo State</div><div class="state-body">Imo State Internal Revenue Service (IMIRS). Covers Owerri.</div><a class="state-link" href="https://imirs.gov.ng" target="_blank">Visit IMIRS →</a></div>
+      <div class="state-card" data-state="Edo"><div class="state-name">Edo State</div><div class="state-body">Edo State Internal Revenue Service (ESIRS). Covers Benin City.</div><a class="state-link" href="https://esirs.gov.ng" target="_blank">Visit ESIRS →</a></div>
+      <div class="state-card" data-state="Cross River"><div class="state-name">Cross River State</div><div class="state-body">Cross River State Board of Internal Revenue (CRSBIR).</div><a class="state-link" href="https://crsbir.gov.ng" target="_blank">Visit CRSBIR →</a></div>
+      <div class="state-card" data-state="Akwa Ibom"><div class="state-name">Akwa Ibom State</div><div class="state-body">Akwa Ibom State Internal Revenue Service (AKIRS). Covers Uyo.</div><a class="state-link" href="https://akirs.gov.ng" target="_blank">Visit AKIRS →</a></div>
+      <div class="state-card" data-state="Kwara"><div class="state-name">Kwara State</div><div class="state-body">Kwara State Internal Revenue Service (KWIRS). Covers Ilorin.</div><a class="state-link" href="https://kwirs.gov.ng" target="_blank">Visit KWIRS →</a></div>
+    </div>
+    <div class="info-box" style="margin-top:8px">Not listed? Visit the <strong>Nigeria Revenue Service (NRS)</strong> federal portal.<br><a class="step-link" href="https://www.nrs.gov.ng" target="_blank" style="margin-top:8px">Visit NRS Portal →</a></div>
+  </div>
+  <div class="calc-section" id="checklist-section">
+    <div class="field"><label>Filing type</label>
+      <select id="checklistType" onchange="loadChecklist(this.value)">
+        <option value="individual">Individual / Salary worker</option>
+        <option value="selfemployed">Self-employed / Freelancer</option>
+        <option value="business">Business owner (CIT)</option>
+        <option value="vat">VAT registered business</option>
+      </select>
+    </div>
+    <div class="checklist-progress">
+      <div class="progress-label"><span>Filing progress</span><span id="checkCount">0 / 0 completed</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    </div>
+    <div class="checklist-wrap" id="checklistItems"></div>
+    <button class="calc-btn" onclick="resetChecklist()" style="background:transparent;color:var(--muted);border:1.5px solid var(--border);margin-top:8px">Reset checklist</button>
+  </div>
+  <div class="calc-section" id="savings-section">
+    <div class="info-box"><strong>Important:</strong> All tips below are 100% legal under NTA 2025. Tax avoidance (legal) is your right. Tax evasion (illegal) is a crime.</div>
+    <div class="tip-card"><div class="tip-header"><div class="tip-icon fi-green">🏠</div><div><div class="tip-title">Claim your rent relief deduction</div><div class="tip-saving">Save up to NGN 120,000/year</div></div></div><div class="tip-desc">Deduct 20% of annual rent paid from your taxable income — up to NGN 500,000 maximum. Many Nigerians are not claiming this.</div><div class="tip-example">Example: NGN 600,000 rent → NGN 120,000 deduction → saves approximately NGN 13,200 in tax.</div></div>
+    <div class="tip-card"><div class="tip-header"><div class="tip-icon fi-amber">💼</div><div><div class="tip-title">Maximise business expense deductions</div><div class="tip-saving">Save 30% on every legitimate expense</div></div></div><div class="tip-desc">All genuine business expenses reduce taxable profit — internet, phone, equipment, transport, subscriptions, office supplies.</div><div class="tip-example">Example: NGN 5M income, NGN 500k expenses → taxable income NGN 4.5M → saves approximately NGN 60,000 in tax.</div></div>
+    <div class="tip-card"><div class="tip-header"><div class="tip-icon fi-blue">🏢</div><div><div class="tip-title">Keep company turnover under NGN 100M</div><div class="tip-saving">Save 30% CIT legally</div></div></div><div class="tip-desc">Companies with turnover ≤ NGN 100M pay zero CIT under NTA 2025. Proper structuring advice from an accountant could keep you exempt.</div><div class="tip-example">Example: NGN 95M turnover, NGN 20M profit → NGN 0 CIT. NGN 105M turnover → NGN 6M CIT. A NGN 10M revenue difference costs NGN 6M in tax.</div></div>
+    <div class="tip-card"><div class="tip-header"><div class="tip-icon fi-purple">📅</div><div><div class="tip-title">File on time — avoid penalties</div><div class="tip-saving">Save 10–40% in penalty charges</div></div></div><div class="tip-desc">Late PAYE remittance: 40% penalty. Unpaid tax: 15% interest per annum. Filing on time is one of the easiest ways to save money.</div><div class="tip-example">Example: NGN 500k unremitted PAYE → NGN 200k penalty. Total cost NGN 700k. Filing on time saves NGN 200k.</div></div>
+    <div class="tip-card"><div class="tip-header"><div class="tip-icon fi-red">💡</div><div><div class="tip-title">Split income across tax years legally</div><div class="tip-saving">Stay in lower tax bands</div></div></div><div class="tip-desc">Timing when you invoice and receive payment keeps you in lower tax brackets. Spreading income across years reduces your average tax rate.</div><div class="tip-example">Example: NGN 8M in one year hits 24% bracket. NGN 4M spread over two years stays in 19–21% bracket — saves NGN 80k–120k.</div></div>
+    <button class="calc-btn" style="margin-top:8px" onclick="showPage('chat',document.querySelectorAll('.nav-tab')[0]);setTimeout(()=>{document.getElementById('chatInput').value='What are the best legal ways to reduce my tax liability in Nigeria under NTA 2025?';sendMessage()},300)">Ask AI for personalised tax saving tips →</button>
+  </div>
+  <div class="calc-section" id="payebulk-section">
+    <div class="info-box"><strong>For employers:</strong> Enter all staff names and annual salaries. WafsTax calculates PAYE for each employee under NTA 2025.</div>
+    <div id="staffList"></div>
+    <button class="add-staff-btn" onclick="addStaff()">+ Add another staff member</button>
+    <button class="calc-btn" onclick="calculateBulkPAYE()">Calculate PAYE for all staff</button>
+    <div id="bulkResult" style="display:none;margin-top:16px">
+      <div style="margin-bottom:12px"><div class="section-title">PAYE Schedule</div><div style="font-size:12px;color:var(--muted)">NTA 2025 — Monthly deductions</div></div>
+      <div style="overflow-x:auto">
+        <table class="paye-table">
+          <thead><tr><th>Staff name</th><th>Annual salary</th><th>Annual PAYE</th><th>Monthly PAYE</th><th>Monthly take-home</th></tr></thead>
+          <tbody id="payeBody"></tbody>
+        </table>
+      </div>
+      <button class="calc-btn" style="margin-top:12px" onclick="downloadPayeSchedule()">Download PAYE Schedule (CSV)</button>
+    </div>
+  </div>
+</div>
+
+<!-- DEADLINES PAGE -->
+<div class="page" id="deadlines">
+  <div class="hero" style="margin-bottom:20px"><h2>Nigerian Tax Deadlines 2026</h2><p>Never miss a deadline. Key dates under NTA 2025 for individuals and businesses.</p></div>
+  <div class="deadline-list">
+    <div class="deadline-item"><div class="deadline-month" style="background:#E24B4A"><div class="deadline-month-name">JAN</div><div class="deadline-month-day">31</div></div><div class="deadline-info"><div class="deadline-title">PAYE Monthly Remittance</div><div class="deadline-desc">Employers must remit December PAYE deductions to the State Internal Revenue Service. Penalty: 40% of unremitted amount.</div><span class="deadline-badge badge-ok">Monthly recurring</span></div></div>
+    <div class="deadline-item"><div class="deadline-month"><div class="deadline-month-name">MAR</div><div class="deadline-month-day">31</div></div><div class="deadline-info"><div class="deadline-title">Annual Returns (Companies)</div><div class="deadline-desc">Companies must file their annual CIT returns with the Nigeria Revenue Service.</div><span class="deadline-badge badge-soon">Important</span></div></div>
+    <div class="deadline-item"><div class="deadline-month"><div class="deadline-month-name">APR</div><div class="deadline-month-day">30</div></div><div class="deadline-info"><div class="deadline-title">Personal Income Tax Returns</div><div class="deadline-desc">Self-employed individuals, freelancers and business owners must file annual PIT returns.</div><span class="deadline-badge badge-soon">Self-employed only</span></div></div>
+    <div class="deadline-item"><div class="deadline-month"><div class="deadline-month-name">MAY</div><div class="deadline-month-day">21</div></div><div class="deadline-info"><div class="deadline-title">VAT Returns (Monthly)</div><div class="deadline-desc">Businesses registered for VAT must file monthly VAT returns and remit collected VAT by the 21st.</div><span class="deadline-badge badge-ok">Monthly recurring</span></div></div>
+    <div class="deadline-item"><div class="deadline-month"><div class="deadline-month-name">JUN</div><div class="deadline-month-day">30</div></div><div class="deadline-info"><div class="deadline-title">Mid-year Tax Review</div><div class="deadline-desc">Good time to review your tax position and make necessary adjustments.</div><span class="deadline-badge badge-ok">Advisory</span></div></div>
+    <div class="deadline-item"><div class="deadline-month"><div class="deadline-month-name">DEC</div><div class="deadline-month-day">31</div></div><div class="deadline-info"><div class="deadline-title">Tax Year End</div><div class="deadline-desc">End of the 2026 tax year. Ensure all records are complete.</div><span class="deadline-badge badge-ok">Year end</span></div></div>
+  </div>
+  <div class="reminder-form">
+    <h3>Get deadline reminders by email</h3>
+    <p>Enter your email and we will send you reminders 7 days before each major tax deadline — completely free.</p>
+    <div class="field" style="margin-bottom:12px"><input type="email" id="reminderEmail" placeholder="your@email.com"/></div>
+    <button class="calc-btn" onclick="subscribeReminders()">Send me deadline reminders — Free</button>
+    <p id="reminderMsg" style="margin-top:10px;font-size:13px;color:var(--green);display:none;text-align:center;font-weight:600">Done! You will receive reminders before each deadline.</p>
+  </div>
+</div>
+
+<!-- PRICING PAGE -->
+<div class="page" id="pricing">
+  <div class="pricing-section">
+    <h2 class="pricing-title">Simple, fair pricing</h2>
+    <p class="pricing-sub">Start free. Upgrade when you need more.</p>
+    <div class="pricing-grid">
+      <div class="plan-card">
+        <div class="plan-name">Free</div>
+        <div class="plan-price">NGN 0</div>
+        <div class="plan-period">forever</div>
+        <ul class="plan-features"><li>5 AI questions per month</li><li>PIT, CIT, VAT calculators</li><li>PDF download</li><li>Tax deadline calendar</li><li>Filing guides</li><li>State portal links</li></ul>
+        <button class="plan-btn outline" onclick="showPage('chat',document.querySelectorAll('.nav-tab')[0])">Use for free</button>
+      </div>
+      <div class="plan-card popular">
+        <div class="popular-badge">Most popular</div>
+        <div class="plan-name">Individual</div>
+        <div class="plan-price">NGN 2,000</div>
+        <div class="plan-period">per month</div>
+        <ul class="plan-features"><li>Unlimited AI questions</li><li>Priority answers</li><li>Unlimited PDF reports</li><li>Tax savings tips</li><li>Filing checklist</li><li>Email support</li></ul>
+        <button class="plan-btn" onclick="subscribe('individual')">Subscribe now</button>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">SME</div>
+        <div class="plan-price">NGN 20,000</div>
+        <div class="plan-period">per month</div>
+        <ul class="plan-features"><li>Everything in Individual</li><li>PAYE bulk calculator</li><li>Up to 10 staff accounts</li><li>CIT calculations</li><li>API access</li><li>Dedicated support</li></ul>
+        <button class="plan-btn" onclick="subscribe('sme')">Subscribe now</button>
+      </div>
+    </div>
+    <div class="plan-card" style="margin-bottom:16px;text-align:left">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div>
+          <div class="plan-name" style="font-size:15px">Accountant Pro</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:4px">For tax professionals, accountants and CITN members</div>
+          <ul class="plan-features" style="margin-top:10px"><li>Everything in SME</li><li>Unlimited client accounts</li><li>White-label reports</li><li>CITN compliance tools</li><li>Priority phone support</li></ul>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div class="plan-price" style="font-size:20px">NGN 50,000</div>
+          <div class="plan-period">per month</div>
+          <button class="plan-btn" style="margin-top:8px;width:auto;padding:10px 20px" onclick="subscribe('accountant')">Subscribe now</button>
+        </div>
+      </div>
+    </div>
+    <div class="faq-card"><h4>Is my payment secure?</h4><p>Yes. All payments are processed by Paystack — Nigeria's most trusted payment gateway. We never store your card details.</p></div>
+    <div class="faq-card"><h4>Can I cancel anytime?</h4><p>Yes. Cancel your subscription anytime from your Paystack subscription portal. No questions asked.</p></div>
+    <div class="faq-card"><h4>Do you offer refunds?</h4><p>Yes. If you are not satisfied within the first 7 days, contact us for a full refund.</p></div>
+  </div>
+</div>
+
+<!-- ABOUT PAGE -->
+<div class="page" id="about">
+  <div class="about-hero">
+    <h2>WafsTax</h2>
+    <p>Nigeria's smartest free tax assistant — built specifically for the Nigeria Tax Act 2025, helping every Nigerian understand, calculate and file their taxes correctly.</p>
+    <a class="about-url" href="https://wafstax.com">wafstax.com</a>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-val">NTA</div><div class="stat-lbl">2025 compliant</div></div>
+    <div class="stat-card"><div class="stat-val">5</div><div class="stat-lbl">Tool sections</div></div>
+    <div class="stat-card"><div class="stat-val">Free</div><div class="stat-lbl">to start</div></div>
+  </div>
+  <div class="feature-list">
+    <div class="feature"><div class="feature-icon fi-green">🧠</div><div><h3>Multi-brain AI</h3><p>Powered by OpenRouter and OpenAI with automatic fallback — always available 24/7.</p></div></div>
+    <div class="feature"><div class="feature-icon fi-amber">📋</div><div><h3>NTA 2025 accurate</h3><p>Built on the exact tax bands from the Nigeria Tax Act signed June 26, 2025.</p></div></div>
+    <div class="feature"><div class="feature-icon fi-blue">🗺️</div><div><h3>State portal directory</h3><p>Direct links to all Nigerian state tax portals — Lagos, Abuja, Rivers, Kano and more.</p></div></div>
+    <div class="feature"><div class="feature-icon fi-purple">🔐</div><div><h3>Secure user accounts</h3><p>Create a free account to save your Pro access across all devices — powered by Supabase.</p></div></div>
+  </div>
+  <div class="disclaimer"><strong>Disclaimer:</strong> WafsTax provides general tax information based on the Nigeria Tax Act 2025. Always consult a CITN-certified accountant for complex tax situations.</div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <div class="bottom-nav-inner">
+    <button class="bnav-tab active" onclick="showPage('chat',this,true)"><span class="bnav-icon">💬</span>Chat</button>
+    <button class="bnav-tab" onclick="showPage('calculator',this,true)"><span class="bnav-icon">🧮</span>Calc</button>
+    <button class="bnav-tab" onclick="showPage('filingtax',this,true)"><span class="bnav-icon">📋</span>File</button>
+    <button class="bnav-tab" onclick="showPage('tools',this,true)"><span class="bnav-icon">🛠️</span>Tools</button>
+    <button class="bnav-tab" onclick="showPage('deadlines',this,true)"><span class="bnav-icon">📅</span>Dates</button>
+    <button class="bnav-tab" onclick="showPage('pricing',this,true)"><span class="bnav-icon">💳</span>Plans</button>
+    <button class="bnav-tab" onclick="showPage('about',this,true)"><span class="bnav-icon">ℹ️</span>About</button>
+  </div>
+</div>
+
+<script>
+const API='https://naija-tax-agent-146296219891.europe-west1.run.app';
+const PAYSTACK_KEY='pk_test_a247055582f4529d22c01421b9d09b41e1963e8d';
+const SUPABASE_URL='https://gjrztdiknkeeqbrqjyjk.supabase.co';
+const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdqcnp0ZGlrbmtlZXFicnFqeWprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ4NzgyMTgsImV4cCI6MjA5MDQ1NDIxOH0._wto5tpH2DscepI3cw0h1wQr9mMN_j0usnxoGqIU9z0';
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+const PLANS={
+  individual:{code:'PLN_u93vgwgqkcby8px',name:'Individual',amount:200000},
+  sme:{code:'PLN_g3exda93tlbv9il',name:'SME',amount:2000000},
+  accountant:{code:'PLN_qayri2934l42zns',name:'Accountant Pro',amount:5000000}
+};
+const FREE_LIMIT=5;
+const CHECKLISTS={
+  individual:['Obtain your TIN from NRS — link to your NIN','Collect all payslips for the tax year','Confirm PAYE deductions appear on each payslip','Obtain Form H1 (annual tax deduction card) from employer','Check for any additional income to declare (rent, side jobs, crypto)','Review your rent payments for rent relief deduction claim','Submit any additional income declaration to your State IRS by April 30','Keep copies of all documents for 6 years'],
+  selfemployed:['Register for a TIN at the NRS portal','Open a dedicated business bank account','Keep records of ALL income received during the year','Keep receipts for ALL business expenses','Calculate total income and deductible expenses','Calculate tax owed using WafsTax calculator','Register with your State Internal Revenue Service','File annual PIT return at State IRS by April 30','Pay tax via Remita and keep payment receipt','Claim rent relief deduction if applicable'],
+  business:['Confirm annual turnover — above or below NGN 100M?','Register company TIN with NRS (separate from CAC)','Prepare audited financial statements','Calculate taxable profit after all allowable deductions','File annual CIT return by March 31 via NRS portal','Pay CIT via Remita if turnover exceeds NGN 100M','Obtain Tax Clearance Certificate (TCC)','Ensure all employees have TINs linked to NIN/BVN','File monthly PAYE remittances on time','Deduct and remit withholding taxes where applicable'],
+  vat:['Check if turnover exceeds NGN 25M (mandatory) or register voluntarily','Apply for VAT registration at NRS portal','Add VAT registration number to all invoices','Set up system to track output VAT (collected) and input VAT (paid)','File monthly VAT return by 21st of following month','Remit net VAT via Remita monthly','Keep all purchase and sales invoices for 6 years','Prepare for mandatory e-invoicing under NTA 2025','Claim input VAT on services and fixed assets (new under NTA 2025)','Zero-rate eligible supplies correctly (food, medicine, education, exports)']
+};
+
+let currentUser=null;
+
+async function initAuth(){
+  const{data:{session}}=await sb.auth.getSession();
+  if(session){
+    currentUser=session.user;
+    await loadUserProfile(session.user);
+  }
+  sb.auth.onAuthStateChange(async(event,session)=>{
+    if(session){
+      currentUser=session.user;
+      await loadUserProfile(session.user);
+    }else{
+      currentUser=null;
+      updateHeaderGuest();
+    }
+  });
+}
+
+async function loadUserProfile(user){
+  const{data}=await sb.from('subscribers').select('*').eq('email',user.email).single();
+  const isPro=data&&data.plan!=='free';
+  updateHeaderUser(user.email,isPro,data?.plan||'free');
+  if(isPro){
+    document.getElementById('usageBar').style.display='none';
+    document.getElementById('planBadge').textContent='Pro';
+    document.getElementById('planBadge').style.background='rgba(255,255,255,.35)';
+    document.getElementById('paywall').classList.remove('show');
+  }
+}
+
+function updateHeaderUser(email,isPro,plan){
+  const hr=document.getElementById('headerRight');
+  hr.innerHTML=`
+    <span class="header-badge" id="planBadge" style="${isPro?'background:rgba(255,255,255,.35)':''}">${isPro?'Pro':'Free'}</span>
+    <div class="user-menu">
+      <button class="user-menu-btn" onclick="toggleUserMenu()">👤 ${email.split('@')[0]} ▾</button>
+      <div class="user-dropdown" id="userDropdown">
+        <div class="user-email">${email}</div>
+        <div class="user-email" style="color:var(--green)">Plan: ${plan}</div>
+        ${!isPro?`<div class="user-dropdown-item" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[5]);toggleUserMenu()">⬆️ Upgrade to Pro</div>`:''}
+        <div class="user-dropdown-item" onclick="signOut()">Sign out</div>
+      </div>
+    </div>`;
+}
+
+function updateHeaderGuest(){
+  document.getElementById('headerRight').innerHTML=`
+    <span class="header-badge" id="planBadge">Free</span>
+    <button class="login-btn" onclick="openAuth()">Sign in</button>
+    <button class="upgrade-btn" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[5])">Upgrade</button>`;
+}
+
+function toggleUserMenu(){
+  document.getElementById('userDropdown').classList.toggle('show');
+}
+
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.user-menu'))document.getElementById('userDropdown')?.classList.remove('show');
+});
+
+function openAuth(tab='login'){
+  switchAuthTab(tab);
+  document.getElementById('authModal').classList.add('show');
+}
+function closeAuth(){document.getElementById('authModal').classList.remove('show')}
+
+function switchAuthTab(tab){
+  document.getElementById('loginForm').style.display=tab==='login'?'flex':'none';
+  document.getElementById('signupForm').style.display=tab==='signup'?'flex':'none';
+  document.getElementById('loginTab').classList.toggle('active',tab==='login');
+  document.getElementById('signupTab').classList.toggle('active',tab==='signup');
+  document.getElementById('authMsg').className='modal-msg';
+  document.getElementById('authMsg').textContent='';
+}
+
+function showAuthMsg(msg,type){
+  const el=document.getElementById('authMsg');
+  el.textContent=msg;
+  el.className='modal-msg '+type;
+}
+
+async function signIn(){
+  const email=document.getElementById('loginEmail').value.trim();
+  const password=document.getElementById('loginPassword').value;
+  if(!email||!password){showAuthMsg('Please enter your email and password','error');return}
+  const btn=document.getElementById('loginBtn');
+  btn.textContent='Signing in...';btn.disabled=true;
+  const{error}=await sb.auth.signInWithPassword({email,password});
+  if(error){showAuthMsg(error.message,'error')}
+  else{closeAuth();addMsg('Welcome back! You are now signed in. Your Pro access has been restored.','ai')}
+  btn.textContent='Sign in';btn.disabled=false;
+}
+
+async function signUp(){
+  const email=document.getElementById('signupEmail').value.trim();
+  const password=document.getElementById('signupPassword').value;
+  if(!email||!password){showAuthMsg('Please enter your email and password','error');return}
+  if(password.length<6){showAuthMsg('Password must be at least 6 characters','error');return}
+  const btn=document.getElementById('signupBtn');
+  btn.textContent='Creating account...';btn.disabled=true;
+  const{error}=await sb.auth.signUp({email,password});
+  if(error){showAuthMsg(error.message,'error')}
+  else{showAuthMsg('Account created! Please check your email to confirm your account.','success')}
+  btn.textContent='Create account';btn.disabled=false;
+}
+
+async function signOut(){
+  await sb.auth.signOut();
+  currentUser=null;
+  updateHeaderGuest();
+  localStorage.removeItem('wafstaxPaid');
+  document.getElementById('usageBar').style.display='flex';
+  addMsg('You have been signed out. Sign in again to restore your Pro access.','ai');
+}
+
+async function forgotPassword(){
+  const email=document.getElementById('loginEmail').value.trim();
+  if(!email){showAuthMsg('Enter your email address first','error');return}
+  const{error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:'https://wafstax.com'});
+  if(error){showAuthMsg(error.message,'error')}
+  else{showAuthMsg('Password reset email sent! Check your inbox.','success')}
+}
+
+function getUsage(){return parseInt(localStorage.getItem('wafstaxUsage')||'0')}
+function setUsage(n){localStorage.setItem('wafstaxUsage',n)}
+
+function isPaid(){
+  if(currentUser){
+    return true;
+  }
+  return localStorage.getItem('wafstaxPaid')==='true';
+}
+
+function updateUsageBar(){
+  if(isPaid()){
+    document.getElementById('usageBar').style.display='none';
+    return;
+  }
+  const used=getUsage();
+  document.getElementById('usageFill').style.width=(used/FREE_LIMIT*100)+'%';
+  document.getElementById('usageCount').textContent=used+' / '+FREE_LIMIT;
+  if(used>=FREE_LIMIT){
+    document.getElementById('usageFill').style.background='#E24B4A';
+    document.getElementById('usageCount').style.color='#E24B4A';
+  }
+}
+
+function showPage(id,btn,isMobile=false){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(isMobile){document.querySelectorAll('.bnav-tab').forEach(t=>t.classList.remove('active'))}
+  else{document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'))}
+  if(btn)btn.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function switchCalc(tab,btn){
+  document.querySelectorAll('#calculator .calc-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('#calculator .calc-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(tab+'-section').classList.add('active');
+  btn.classList.add('active');
+}
+
+function switchGuide(tab,btn){
+  document.querySelectorAll('#filingtax .calc-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('#filingtax .calc-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(tab+'-guide').classList.add('active');
+  btn.classList.add('active');
+}
+
+function switchTool(tab,btn){
+  document.querySelectorAll('#tools .calc-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('#tools .calc-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(tab+'-section').classList.add('active');
+  btn.classList.add('active');
+}
+
+function filterStates(val){
+  document.querySelectorAll('.state-card').forEach(c=>{
+    c.style.display=(!val||c.dataset.state===val)?'block':'none';
+  });
+}
+
+function loadChecklist(type){
+  const items=CHECKLISTS[type]||[];
+  const saved=JSON.parse(localStorage.getItem('wafstaxChecklist_'+type)||'[]');
+  document.getElementById('checklistItems').innerHTML=items.map((item,i)=>`
+    <div class="check-item ${saved[i]?'done':''}" onclick="toggleCheck(this,${i},'${type}')">
+      <div class="check-box"><svg class="check-tick" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="check-text"><div class="check-title">${item}</div></div>
+    </div>`).join('');
+  updateProgress(type);
+}
+
+function toggleCheck(el,idx,type){
+  el.classList.toggle('done');
+  const saved=JSON.parse(localStorage.getItem('wafstaxChecklist_'+type)||'[]');
+  saved[idx]=el.classList.contains('done');
+  localStorage.setItem('wafstaxChecklist_'+type,JSON.stringify(saved));
+  updateProgress(type);
+}
+
+function updateProgress(type){
+  const done=document.querySelectorAll('.check-item.done').length;
+  const total=document.querySelectorAll('.check-item').length;
+  document.getElementById('checkCount').textContent=done+' / '+total+' completed';
+  document.getElementById('progressFill').style.width=(total?Math.round(done/total*100):0)+'%';
+}
+
+function resetChecklist(){
+  const type=document.getElementById('checklistType').value;
+  localStorage.removeItem('wafstaxChecklist_'+type);
+  loadChecklist(type);
+}
+
+let staffCount=0;
+function addStaff(){
+  const div=document.createElement('div');
+  div.className='staff-row';div.id='staff-'+staffCount;
+  div.innerHTML=`<input type="text" placeholder="Staff name" class="staff-name"><input type="number" placeholder="Annual salary (NGN)" class="staff-salary" min="0"><button class="remove-btn" onclick="removeStaff('staff-${staffCount}')">Remove</button>`;
+  document.getElementById('staffList').appendChild(div);staffCount++;
+}
+
+function removeStaff(id){const el=document.getElementById(id);if(el)el.remove()}
+
+function calcPIT(income){
+  if(income<=800000)return{tax:0,monthly:0,takehome:income/12};
+  const taxable=income-800000;
+  const bands=[[400000,.07],[400000,.11],[500000,.15],[500000,.19],[1600000,.21],[Infinity,.24]];
+  let tax=0,rem=taxable;
+  for(const[size,rate]of bands){if(rem<=0)break;const amt=Math.min(rem,size);tax+=amt*rate;rem-=amt}
+  return{tax:Math.round(tax),monthly:Math.round(tax/12),takehome:Math.round((income-tax)/12)};
+}
+
+function calculateBulkPAYE(){
+  const rows=document.querySelectorAll('.staff-row');
+  if(!rows.length){alert('Please add at least one staff member');return}
+  const results=[];let totalAnnual=0,totalMonthly=0;
+  rows.forEach(row=>{
+    const name=row.querySelector('.staff-name').value.trim()||'Staff';
+    const salary=parseFloat(row.querySelector('.staff-salary').value)||0;
+    const r=calcPIT(salary);
+    results.push({name,salary,annualTax:r.tax,monthlyTax:r.monthly,takehome:r.takehome});
+    totalAnnual+=r.tax;totalMonthly+=r.monthly;
+  });
+  document.getElementById('payeBody').innerHTML=results.map(r=>`<tr><td>${r.name}</td><td>${fmt(r.salary)}</td><td>${fmt(r.annualTax)}</td><td>${fmt(r.monthlyTax)}</td><td>${fmt(r.takehome)}/mo</td></tr>`).join('')+
+    `<tr><td>TOTAL (${results.length} staff)</td><td></td><td>${fmt(totalAnnual)}</td><td>${fmt(totalMonthly)}</td><td></td></tr>`;
+  document.getElementById('bulkResult').style.display='block';
+  document.getElementById('bulkResult').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function downloadPayeSchedule(){
+  const rows=document.querySelectorAll('#payeBody tr');
+  let csv='Staff Name,Annual Salary,Annual PAYE,Monthly PAYE,Monthly Take-Home\n';
+  rows.forEach(r=>{const cells=r.querySelectorAll('td');if(cells.length)csv+=Array.from(cells).map(c=>c.textContent).join(',')+'\n'});
+  const blob=new Blob([csv],{type:'text/csv'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download='WafsTax-PAYE-Schedule.csv';a.click();
+  URL.revokeObjectURL(url);
+}
+
+function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,120)+'px'}
+function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage()}}
+function now(){const d=new Date();return d.getHours()+':'+String(d.getMinutes()).padStart(2,'0')}
+
+function addMsg(text,type){
+  const msgs=document.getElementById('messages');
+  const d=document.createElement('div');d.className='msg '+type;
+  const init=type==='ai'?'W':'U';
+  const name=type==='ai'?'WafsTax AI':'You';
+  d.innerHTML='<div class="msg-meta"><div class="msg-avatar">'+init+'</div><span class="msg-name">'+name+'</span><span class="msg-time">'+now()+'</span></div><div class="bubble">'+text.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')+'</div>';
+  msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;
+}
+
+function askQ(q){
+  if(!isPaid()&&getUsage()>=FREE_LIMIT){document.getElementById('paywall').classList.add('show');return}
+  document.getElementById('chatInput').value=q;sendMessage();
+}
+
+async function sendMessage(){
+  if(!isPaid()&&getUsage()>=FREE_LIMIT){document.getElementById('paywall').classList.add('show');return}
+  const input=document.getElementById('chatInput');
+  const q=input.value.trim();
+  if(!q)return;
+  input.value='';input.style.height='auto';
+  document.getElementById('sendBtn').disabled=true;
+  addMsg(q,'user');
+  document.getElementById('typing').classList.add('show');
+  document.getElementById('messages').scrollTop=99999;
+  try{
+    const res=await fetch(API+'/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q,preferred_provider:'openrouter'})});
+    const data=await res.json();
+    document.getElementById('typing').classList.remove('show');
+    addMsg(data.answer||data.detail||'Sorry, could not get an answer right now.','ai');
+    if(!isPaid()){setUsage(getUsage()+1);updateUsageBar();if(getUsage()>=FREE_LIMIT){setTimeout(()=>document.getElementById('paywall').classList.add('show'),1500)}}
+  }catch(e){
+    document.getElementById('typing').classList.remove('show');
+    addMsg('Sorry, could not connect. Please check your connection and try again.','ai');
+  }
+  document.getElementById('sendBtn').disabled=false;
+}
+
+function fmt(n){return'NGN '+Math.round(n).toLocaleString('en-NG')}
+function updateSlider(v){document.getElementById('sliderDisplay').textContent='NGN '+Math.round(v).toLocaleString('en-NG');document.getElementById('annualIncome').value=v}
+function updateFromInput(v){const n=Math.min(parseFloat(v)||0,50000000);document.getElementById('incomeSlider').value=n;document.getElementById('sliderDisplay').textContent='NGN '+Math.round(n).toLocaleString('en-NG')}
+
+async function calculatePIT(){
+  const income=parseFloat(document.getElementById('annualIncome').value)||parseFloat(document.getElementById('incomeSlider').value)||0;
+  if(!income||income<=0){alert('Please enter your annual income');return}
+  const btn=document.getElementById('calcBtn');btn.textContent='Calculating...';btn.disabled=true;
+  try{
+    const res=await fetch(API+'/calculate/pit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({annual_income:income})});
+    const d=await res.json();
+    const type=document.getElementById('incomeType').value;
+    document.getElementById('resultIncomeType').textContent=type;
+    document.getElementById('r-tax').textContent=fmt(d.tax_payable);
+    document.getElementById('r-monthly').textContent=fmt(d.monthly_tax);
+    document.getElementById('r-rate').textContent=d.effective_rate+'%';
+    document.getElementById('r-taxable').textContent=fmt(d.taxable_income);
+    document.getElementById('r-takehome').textContent=fmt(d.take_home_monthly)+' /mo';
+    const maxTax=Math.max(...d.breakdown.map(b=>b.tax));
+    document.getElementById('breakdown').innerHTML=d.breakdown.map(b=>'<div class="band-row"><div style="flex:1"><div style="display:flex;justify-content:space-between"><span class="band-label">'+b.band+'</span><span class="band-val">'+fmt(b.tax)+'</span></div><div class="band-bar"><div class="band-fill" style="width:'+Math.round(b.tax/maxTax*100)+'%"></div></div></div></div>').join('');
+    document.getElementById('pitResultBox').classList.add('show');
+    document.getElementById('downloadBtn').style.display='block';
+    document.getElementById('pitResultBox').scrollIntoView({behavior:'smooth',block:'nearest'});
+  }catch(e){alert('Could not calculate. Please try again.')}
+  btn.textContent='Calculate income tax';btn.disabled=false;
+}
+
+function calculateCIT(){
+  const turnover=parseFloat(document.getElementById('citTurnover').value)||0;
+  const profit=parseFloat(document.getElementById('citProfit').value)||0;
+  if(!turnover||turnover<=0){alert('Please enter annual turnover');return}
+  const isSmall=turnover<=100000000;
+  const tax=isSmall?0:profit*0.30;
+  document.getElementById('cit-turnover').textContent=fmt(turnover);
+  document.getElementById('cit-category').textContent=isSmall?'Small company (exempt)':'Standard company';
+  document.getElementById('cit-rate').textContent=isSmall?'0% — fully exempt':'30% on taxable profit';
+  document.getElementById('cit-profit').textContent=fmt(profit);
+  document.getElementById('cit-tax').textContent=isSmall?'NGN 0 — Exempt':fmt(tax);
+  document.getElementById('citResult').classList.add('show');
+  document.getElementById('citResult').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function calculateVAT(){
+  const amount=parseFloat(document.getElementById('vatAmount').value)||0;
+  if(!amount||amount<=0){alert('Please enter an amount');return}
+  const type=document.getElementById('vatType').value;
+  const isZero=document.getElementById('vatCategory').value==='zero';
+  let vatAmt=0,total=0,original=amount;
+  if(isZero){vatAmt=0;total=amount}
+  else if(type==='add'){vatAmt=amount*0.075;total=amount+vatAmt}
+  else{vatAmt=amount-(amount/1.075);total=amount;original=amount/1.075}
+  document.getElementById('vat-original').textContent=fmt(original);
+  document.getElementById('vat-rate').textContent=isZero?'0% (zero-rated)':'7.5%';
+  document.getElementById('vat-amount').textContent=fmt(vatAmt);
+  document.getElementById('vat-total').textContent=fmt(total);
+  document.getElementById('vatResult').classList.add('show');
+  document.getElementById('vatResult').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function toggleBreakdown(){
+  const el=document.getElementById('breakdown');
+  const btn=document.querySelector('.breakdown-toggle');
+  el.classList.toggle('show');
+  btn.textContent=el.classList.contains('show')?'Hide tax band breakdown':'Show full tax band breakdown';
+}
+
+async function downloadPDF(){
+  const income=parseFloat(document.getElementById('annualIncome').value)||parseFloat(document.getElementById('incomeSlider').value)||0;
+  const rent=parseFloat(document.getElementById('annualRent').value)||0;
+  const type=document.getElementById('incomeType').value;
+  const btn=document.getElementById('downloadBtn');
+  btn.textContent='Generating PDF...';btn.disabled=true;
+  try{
+    const res=await fetch(API+'/generate/tax-report',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({annual_income:income,income_type:type,user_name:'Taxpayer',annual_rent:rent})});
+    if(!res.ok)throw new Error('Failed');
+    const blob=await res.blob();
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');a.href=url;a.download='WafsTax-Report-2025.pdf';a.click();
+    URL.revokeObjectURL(url);
+    btn.textContent='Downloaded. Generate another';
+  }catch(e){
+    alert('Could not generate PDF. Please try again.');
+    btn.textContent='Download Tax Report PDF — Free';
+  }
+  btn.disabled=false;
+}
+
+function subscribeReminders(){
+  const email=document.getElementById('reminderEmail').value.trim();
+  if(!email||!email.includes('@')){alert('Please enter a valid email address');return}
+  localStorage.setItem('wafstaxReminderEmail',email);
+  document.getElementById('reminderMsg').style.display='block';
+}
+
+async function subscribe(planKey){
+  const plan=PLANS[planKey];
+  const email=currentUser?currentUser.email:prompt('Enter your email address to subscribe:');
+  if(!email||!email.includes('@')){alert('Please enter a valid email address');return}
+  const handler=PaystackPop.setup({
+    key:PAYSTACK_KEY,email,amount:plan.amount,currency:'NGN',
+    plan:plan.code,ref:'wafs_'+Date.now(),metadata:{plan_name:plan.name},
+    callback:async function(response){
+      await sb.from('subscribers').upsert({email,plan:planKey,paystack_ref:response.reference},{onConflict:'email'});
+      localStorage.setItem('wafstaxPaid','true');
+      document.getElementById('usageBar').style.display='none';
+      document.getElementById('paywall').classList.remove('show');
+      addMsg('Payment successful! Welcome to WafsTax '+plan.name+'. You now have unlimited access. How can I help you with your taxes today?','ai');
+      showPage('chat',document.querySelectorAll('.nav-tab')[0]);
+      if(!currentUser){
+        setTimeout(()=>{
+          document.getElementById('modalSubtitle').textContent='Create an account to keep your Pro access forever';
+          openAuth('signup');
+        },2000);
+      }
+      if(currentUser)await loadUserProfile(currentUser);
+    },
+    onClose:function(){console.log('Payment window closed')}
+  });
+  handler.openIframe();
+}
+
+updateSlider(3600000);
+updateUsageBar();
+loadChecklist('individual');
+addStaff();addStaff();addStaff();
+initAuth();
+</script>
+</body>
+</html>
