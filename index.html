@@ -739,6 +739,31 @@ input[type=range]{
   .header-actions .btn-white{display:none}
 }
 
+/* ── TRIAL BANNER ── */
+.trial-banner{
+  background:linear-gradient(135deg,#065F42,#0D9B6B);
+  color:#fff;text-align:center;padding:10px 20px;
+  font-size:13px;font-weight:500;position:relative;
+  display:none;
+}
+.trial-banner.show{display:block}
+.trial-banner strong{font-weight:700}
+.trial-banner .trial-upgrade{
+  background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);
+  color:#fff;font-size:12px;font-weight:600;padding:3px 12px;
+  border-radius:20px;cursor:pointer;font-family:inherit;
+  margin-left:10px;transition:background .15s;
+}
+.trial-banner .trial-upgrade:hover{background:rgba(255,255,255,.3)}
+.trial-expired{
+  background:#FEF2F2;border:1px solid #FECACA;
+  border-radius:var(--r-lg);padding:20px;text-align:center;
+  margin-bottom:16px;display:none;
+}
+.trial-expired.show{display:block}
+.trial-expired h3{font-size:16px;font-weight:700;color:#991B1B;margin-bottom:6px}
+.trial-expired p{font-size:13px;color:#B91C1C;margin-bottom:14px;line-height:1.6}
+
 /* ── SECTION TITLES ── */
 .sec-title{font-size:16px;font-weight:700;letter-spacing:-.2px;margin-bottom:4px}
 .sec-sub{font-size:13px;color:var(--muted);margin-bottom:16px}
@@ -753,7 +778,7 @@ input[type=range]{
     <div class="modal-brand">
       <div class="modal-logo">₦</div>
       <h2>WafsTax</h2>
-      <p id="modalSub">Sign in to restore your Pro access</p>
+      <p id="modalSub">Start your 30-day free trial — no card needed</p>
     </div>
     <div class="auth-tabs">
       <button class="auth-tab active" id="tabLogin" onclick="switchAuth('login')">Sign in</button>
@@ -782,7 +807,7 @@ input[type=range]{
       <div class="auth-divider">or create with email</div>
       <input class="auth-input" type="email" id="signupEmail" placeholder="Email address"/>
       <input class="auth-input" type="password" id="signupPassword" placeholder="Create password (min 6 chars)"/>
-      <button class="btn-submit" id="btnSignup" onclick="signUp()">Create account</button>
+      <button class="btn-submit" id="btnSignup" onclick="signUp()">Start 30-day free trial</button>
     </div>
 
     <div class="auth-msg" id="authMsg"></div>
@@ -807,6 +832,12 @@ input[type=range]{
   </div>
 </header>
 
+<!-- TRIAL BANNER -->
+<div class="trial-banner" id="trialBanner">
+  🎉 <strong id="trialDaysLeft">30 days</strong> left in your free trial — enjoy full Pro access!
+  <button class="trial-upgrade" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[5])">Upgrade now</button>
+</div>
+
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
@@ -825,7 +856,7 @@ input[type=range]{
   <div class="hero">
     <div class="hero-eyebrow">NTA 2025 — Updated January 2026</div>
     <h2>Your free Nigerian tax assistant</h2>
-    <p class="hero-sub">Powered by AI — ask anything about PAYE, VAT, CIT, crypto tax, or how to file.</p>
+    <p class="hero-sub">Powered by AI — ask anything about PAYE, VAT, CIT, crypto tax, or how to file. <strong>Create a free account for 30 days full access.</strong></p>
     <div class="hero-stats">
       <div class="hero-stat"><div class="hero-stat-val">₦800k</div><div class="hero-stat-lbl">Tax-free threshold</div></div>
       <div class="hero-stat"><div class="hero-stat-val">7.5%</div><div class="hero-stat-lbl">VAT rate</div></div>
@@ -856,7 +887,7 @@ input[type=range]{
           <strong>Hello! Welcome to WafsTax.</strong><br><br>
           I am your free Nigerian tax assistant, fully updated for the <strong>Nigeria Tax Act 2025</strong> (effective January 2026).<br><br>
           Ask me about salary, freelance income, crypto, POS, YouTube, VAT, company tax or how to file. I give clear, accurate answers.<br><br>
-          <strong>Free users get 5 questions. Sign in or upgrade for unlimited access.</strong>
+          <strong>Create a free account for a 30-day full access trial — no card needed.</strong>
         </div>
       </div>
     </div>
@@ -882,10 +913,10 @@ input[type=range]{
   <div class="paywall" id="paywall">
     <div class="paywall-icon">🔒</div>
     <h3>You've used all 5 free questions</h3>
-    <p>Upgrade to Individual for NGN 2,000/month and get unlimited AI questions, priority answers and PDF tax reports.</p>
+    <p>Create a free account to get a <strong>30-day full access trial</strong> — no card needed. Or upgrade directly for NGN 2,000/month.</p>
     <div class="paywall-actions">
       <button class="btn-brand" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[5])">See pricing plans</button>
-      <button class="btn-outline" onclick="openAuth()">Already a subscriber? Sign in</button>
+      <button class="btn-outline" onclick="openAuth('signup')">Start 30-day free trial — no card needed</button>
     </div>
   </div>
 </main>
@@ -1163,8 +1194,8 @@ input[type=range]{
 <!-- ═══ PRICING ═══ -->
 <main class="page" id="pricing">
   <div class="pricing-header">
-    <h2>Simple, fair pricing</h2>
-    <p>Start free. Upgrade when you need more.</p>
+    <h2>Start free. No credit card needed.</h2>
+    <p>Create a free account and get <strong>30 days full Pro access</strong> — then choose a plan that fits you.</p>
   </div>
   <div class="pricing-grid">
     <div class="plan">
@@ -1179,7 +1210,7 @@ input[type=range]{
         <li>Filing guides</li>
         <li>State portal links</li>
       </ul>
-      <button class="plan-cta outline" onclick="showPage('chat',document.querySelectorAll('.nav-tab')[0])">Use for free</button>
+      <button class="plan-cta outline" onclick="openAuth('signup')">Start free trial</button>
     </div>
     <div class="plan featured">
       <div class="plan-badge">Most popular</div>
@@ -1304,20 +1335,60 @@ async function initAuth(){
 
 async function loadUserProfile(user){
   const{data}=await sb.from('subscribers').select('*').eq('email',user.email).single();
-  const isPro=data&&data.plan&&data.plan!=='free';
-  renderUserHeader(user.email,isPro,data?.plan||'free');
+  let isPro=false;
+  let planLabel='free';
+  let trialDaysLeft=0;
+
+  if(data){
+    if(data.plan==='trial'&&data.trial_end){
+      const now=new Date();
+      const end=new Date(data.trial_end);
+      trialDaysLeft=Math.ceil((end-now)/(1000*60*60*24));
+      if(trialDaysLeft>0){isPro=true;planLabel='trial'}
+      else{
+        await sb.from('subscribers').update({plan:'free'}).eq('email',user.email);
+        planLabel='free';
+      }
+    } else if(data.plan&&data.plan!=='free'){
+      isPro=true;planLabel=data.plan;
+    }
+  } else {
+    const trialStart=new Date();
+    const trialEnd=new Date(trialStart);
+    trialEnd.setDate(trialEnd.getDate()+30);
+    await sb.from('subscribers').upsert({
+      email:user.email,plan:'trial',
+      trial_start:trialStart.toISOString(),
+      trial_end:trialEnd.toISOString()
+    },{onConflict:'email'});
+    isPro=true;planLabel='trial';trialDaysLeft=30;
+  }
+
+  renderUserHeader(user.email,isPro,planLabel,trialDaysLeft);
   if(isPro){
     document.getElementById('usageStrip').style.display='none';
-    document.getElementById('planPill').textContent='Pro';
     document.getElementById('paywall').classList.remove('show');
   }
 }
 
-function renderUserHeader(email,isPro,plan){
+function renderUserHeader(email,isPro,plan,trialDaysLeft=0){
   const el=document.getElementById('headerActions');
   const initial=email.charAt(0).toUpperCase();
+  const isTrial=plan==='trial';
+  const pillText=isTrial?`Trial: ${trialDaysLeft}d`:isPro?'Pro ✓':'Free';
+  const pillStyle=isTrial?'background:rgba(255,200,0,.3);border-color:rgba(255,220,0,.5)':isPro?'background:rgba(255,255,255,.3)':'';
+
+  // Show trial banner
+  const banner=document.getElementById('trialBanner');
+  if(isTrial&&trialDaysLeft>0){
+    document.getElementById('trialDaysLeft').textContent=trialDaysLeft+' day'+(trialDaysLeft===1?'':'s');
+    banner.classList.add('show');
+  } else {
+    banner.classList.remove('show');
+  }
+
   el.innerHTML=`
-    <span class="plan-pill" id="planPill" style="${isPro?'background:rgba(255,255,255,.3)':''}">${isPro?'Pro ✓':'Free'}</span>
+    <span class="plan-pill" id="planPill" style="${pillStyle}">${pillText}</span>
     <div class="user-menu">
       <button class="user-btn" onclick="toggleDropdown()">
         <div class="user-avatar">${initial}</div>
@@ -1327,9 +1398,10 @@ function renderUserHeader(email,isPro,plan){
       <div class="dropdown" id="userDropdown">
         <div class="dropdown-header">
           <div class="dropdown-email">${email}</div>
-          <div class="dropdown-plan">${plan.charAt(0).toUpperCase()+plan.slice(1)} plan</div>
+          <div class="dropdown-plan">${isTrial?`Free trial — ${trialDaysLeft} days remaining`:plan.charAt(0).toUpperCase()+plan.slice(1)+' plan'}</div>
         </div>
-        ${!isPro?`<div class="dropdown-item" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[5]);toggleDropdown()">⬆ Upgrade to Pro</div>`:''}
+        ${isTrial?`<div class="dropdown-item" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[5]);toggleDropdown()">⬆ Upgrade before trial ends</div>`:''}
+        ${(!isPro&&!isTrial)?`<div class="dropdown-item" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[5]);toggleDropdown()">⬆ Upgrade to Pro</div>`:''}
         <div class="dropdown-item" onclick="signOut()">↩ Sign out</div>
       </div>
     </div>`;
@@ -1382,11 +1454,21 @@ async function signUp(){
   const password=document.getElementById('signupPassword').value;
   if(!email||!password){showAuthMsg('Please enter your email and password','err');return}
   if(password.length<6){showAuthMsg('Password must be at least 6 characters','err');return}
-  const btn=document.getElementById('btnSignup');btn.textContent='Creating account…';btn.disabled=true;
-  const{error}=await sb.auth.signUp({email,password});
+  const btn=document.getElementById('btnSignup');btn.textContent='Starting trial…';btn.disabled=true;
+  const{data,error}=await sb.auth.signUp({email,password});
   if(error){showAuthMsg(error.message,'err')}
-  else{showAuthMsg('Account created! Check your email to confirm.','ok')}
-  btn.textContent='Create account';btn.disabled=false;
+  else{
+    const trialStart=new Date();
+    const trialEnd=new Date(trialStart);
+    trialEnd.setDate(trialEnd.getDate()+30);
+    await sb.from('subscribers').upsert({
+      email,plan:'trial',
+      trial_start:trialStart.toISOString(),
+      trial_end:trialEnd.toISOString()
+    },{onConflict:'email'});
+    showAuthMsg('🎉 Your 30-day free trial has started! Check your email to confirm your account.','ok');
+  }
+  btn.textContent='Start 30-day free trial';btn.disabled=false;
 }
 
 async function signOut(){
@@ -1405,7 +1487,7 @@ async function forgotPwd(){
 
 function getUsage(){return parseInt(localStorage.getItem('wafstaxUsage')||'0')}
 function setUsage(n){localStorage.setItem('wafstaxUsage',n)}
-function isPaid(){return!!currentUser||localStorage.getItem('wafstaxPaid')==='true'}
+function isPaid(){return!!currentUser||localStorage.getItem('wafstaxPaid')==='true'||localStorage.getItem('wafstaxTrial')==='true'}
 
 function updateUsageBar(){
   if(isPaid()){document.getElementById('usageStrip').style.display='none';return}
