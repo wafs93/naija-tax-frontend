@@ -1718,8 +1718,9 @@ function subscribeReminders(){
 
 async function subscribe(planKey){
   const plan=PLANS[planKey];
+  if(!plan){alert('Plan not found. Please refresh the page and try again.');return}
   const email=currentUser?currentUser.email:prompt('Enter your email address to subscribe:');
-  if(!email||!email.includes('@')){alert('Please enter a valid email');return}
+  if(!email||!email.includes('@')){alert('Please enter a valid email address');return}
   PaystackPop.setup({
     key:PAYSTACK_KEY,email,amount:plan.amount,currency:'NGN',
     plan:plan.code,ref:'wafs_'+Date.now(),metadata:{plan_name:plan.name},
@@ -1728,7 +1729,7 @@ async function subscribe(planKey){
       localStorage.setItem('wafstaxPaid','true');
       document.getElementById('usageStrip').style.display='none';
       document.getElementById('paywall').classList.remove('show');
-      addMsg('Payment successful! Welcome to WafsTax '+plan.name+'. You now have unlimited access. How can I help?','ai');
+      addMsg('🎉 Payment successful! Welcome to WafsTax '+plan.name+'. You now have unlimited access. How can I help?','ai');
       showPage('chat',document.querySelectorAll('.nav-tab')[0]);
       if(!currentUser)setTimeout(()=>{document.getElementById('modalSub').textContent='Create an account to keep your Pro access across all devices';openAuth('signup')},2000);
       if(currentUser)await loadUserProfile(currentUser);
