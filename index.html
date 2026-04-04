@@ -916,7 +916,7 @@ input[type=range]{
     <p>Upgrade to <strong>WafsTax Pro for NGN 1,500/month</strong> and get unlimited AI questions, PDF reports, PAYE bulk calculator and full filing checklist. Or sign up for a free 7-day trial — no card needed.</p>
     <div class="paywall-actions">
       <button class="btn-brand" onclick="subscribe('individual')">Upgrade to Pro — NGN 1,500/month</button>
-      <button class="btn-outline" onclick="openAuth('signup')">Start 7-day free trial — no card needed</button>
+      <button class="btn-outline" onclick="handleTrialClick()">Start 7-day free trial — no card needed</button>
     </div>
   </div>
 </main>
@@ -1214,7 +1214,7 @@ input[type=range]{
         <li>State portal directory</li>
         <li>NTA 2025 tax tips</li>
       </ul>
-      <button class="plan-cta outline" onclick="openAuth('signup')">Start free 7-day trial</button>
+      <button class="plan-cta outline" onclick="handleTrialClick()">Start free 7-day trial</button>
     </div>
 
     <!-- PRO -->
@@ -1233,7 +1233,7 @@ input[type=range]{
         <li>Pro access across all devices</li>
         <li>Email support — support@wafstax.com</li>
       </ul>
-      <button class="plan-cta" onclick="subscribe('individual')">Start 7-day free trial</button>
+      <button class="plan-cta" onclick="handleTrialClick()">Start 7-day free trial</button>
     </div>
   </div>
 
@@ -1243,7 +1243,7 @@ input[type=range]{
       <div style="font-size:15px;font-weight:700;color:var(--brand-dd);margin-bottom:4px">🎉 Try Pro free for 7 days</div>
       <div style="font-size:13px;color:var(--brand-d)">No credit card needed. Full Pro access from day one. Cancel anytime.</div>
     </div>
-    <button class="plan-cta" style="width:auto;padding:12px 24px" onclick="openAuth('signup')">Start free trial →</button>
+    <button class="plan-cta" style="width:auto;padding:12px 24px" onclick="handleTrialClick()">Start free trial →</button>
   </div>
 
   <!-- FEATURE COMPARISON -->
@@ -1315,7 +1315,7 @@ input[type=range]{
 
 <script>
 const API='https://naija-tax-agent-146296219891.europe-west1.run.app';
-const PAYSTACK_KEY='pk_live_4cce16118c2fc4c528d6ac5d1d722bc78b367d60';
+const PAYSTACK_KEY='pk_test_a247055582f4529d22c01421b9d09b41e1963e8d';
 const SUPABASE_URL='https://gjrztdiknkeeqbrqjyjk.supabase.co';
 const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdqcnp0ZGlrbmtlZXFicnFqeWprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ4NzgyMTgsImV4cCI6MjA5MDQ1NDIxOH0._wto5tpH2DscepI3cw0h1wQr9mMN_j0usnxoGqIU9z0';
 const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
@@ -1751,6 +1751,16 @@ function subscribeReminders(){
   document.getElementById('reminderMsg').style.display='block';
 }
 
+function handleTrialClick(){
+  if(currentUser){
+    // Already logged in — just start trial or go to chat
+    addMsg('Your 7-day free trial is already active! You have full Pro access. Ask me any tax question.','ai');
+    showPage('chat',document.querySelectorAll('.nav-tab')[0]);
+  } else {
+    openAuth('signup');
+  }
+}
+
 async function subscribe(planKey){
   const plan=PLANS[planKey];
   if(!plan){alert('Plan not found. Please refresh the page and try again.');return}
@@ -1764,9 +1774,8 @@ async function subscribe(planKey){
       localStorage.setItem('wafstaxPaid','true');
       document.getElementById('usageStrip').style.display='none';
       document.getElementById('paywall').classList.remove('show');
-      addMsg('🎉 Payment successful! Welcome to WafsTax '+plan.name+'. You now have unlimited access. How can I help?','ai');
+      addMsg('🎉 Payment successful! Welcome to WafsTax Pro. You now have unlimited access. How can I help?','ai');
       showPage('chat',document.querySelectorAll('.nav-tab')[0]);
-      if(!currentUser)setTimeout(()=>{document.getElementById('modalSub').textContent='Create an account to keep your Pro access across all devices';openAuth('signup')},2000);
       if(currentUser)await loadUserProfile(currentUser);
     },
     onClose:()=>{}
