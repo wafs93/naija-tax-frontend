@@ -827,7 +827,7 @@ input[type=range]{
     <div class="header-actions" id="headerActions">
       <span class="plan-pill" id="planPill">Free</span>
       <button class="btn-ghost" onclick="openAuth()">Sign in</button>
-      <button class="btn-white" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[5])">Upgrade</button>
+      <button class="btn-white" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[5])">Go Pro ₦1,500</button>
     </div>
   </div>
 </header>
@@ -911,11 +911,11 @@ input[type=range]{
   </div>
 
   <div class="paywall" id="paywall">
-    <div class="paywall-icon">🔒</div>
-    <h3>You've used all 5 free questions</h3>
-    <p>Create a free account to get a <strong>7-day full access trial</strong> — no card needed. Or upgrade directly for NGN 2,000/month.</p>
+    <div class="paywall-icon">🎉</div>
+    <h3>You've used your 10 free questions today</h3>
+    <p>Upgrade to <strong>WafsTax Pro for NGN 1,500/month</strong> and get unlimited AI questions, PDF reports, PAYE bulk calculator and full filing checklist. Or sign up for a free 7-day trial — no card needed.</p>
     <div class="paywall-actions">
-      <button class="btn-brand" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[5])">See pricing plans</button>
+      <button class="btn-brand" onclick="subscribe('individual')">Upgrade to Pro — NGN 1,500/month</button>
       <button class="btn-outline" onclick="openAuth('signup')">Start 7-day free trial — no card needed</button>
     </div>
   </div>
@@ -970,7 +970,7 @@ input[type=range]{
         <div class="result-foot"><span class="result-foot-lbl">Monthly take-home</span><span class="result-foot-val" id="r-takehome">—</span></div>
         <button class="breakdown-btn" onclick="toggleBreakdown()">Show tax band breakdown ↓</button>
         <div class="breakdown-panel" id="breakdown"></div>
-        <button class="download-btn" id="downloadBtn" onclick="downloadPDF()">⬇ Download Tax Report PDF — Free</button>
+        <button class="download-btn" id="downloadBtn" onclick="downloadPDF()">⬇ Download Tax Report PDF — Pro feature</button>
       </div>
     </div>
 
@@ -1194,59 +1194,89 @@ input[type=range]{
 <!-- ═══ PRICING ═══ -->
 <main class="page" id="pricing">
   <div class="pricing-header">
-    <h2>Start free. No credit card needed.</h2>
-    <p>Create a free account and get <strong>7 days full Pro access</strong> — then choose a plan that fits you.</p>
+    <h2>Simple pricing. No surprises.</h2>
+    <p>Start free — upgrade to Pro when you need more. Cancel anytime.</p>
   </div>
-  <div class="pricing-grid">
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+    <!-- FREE -->
     <div class="plan">
       <div class="plan-name">Free</div>
       <div class="plan-price">₦0</div>
       <div class="plan-period">forever</div>
       <ul class="plan-features">
         <li>10 AI questions per day</li>
-        <li>PIT, CIT, VAT calculators</li>
-        <li>PDF tax report</li>
-        <li>Tax deadline calendar</li>
-        <li>Filing guides</li>
-        <li>State portal links</li>
+        <li>Personal income tax calculator</li>
+        <li>Company tax (CIT) calculator</li>
+        <li>VAT calculator</li>
+        <li>Tax deadlines calendar</li>
+        <li>How to file guides</li>
+        <li>State portal directory</li>
+        <li>NTA 2025 tax tips</li>
       </ul>
       <button class="plan-cta outline" onclick="openAuth('signup')">Start free 7-day trial</button>
     </div>
+
+    <!-- PRO -->
     <div class="plan featured">
       <div class="plan-badge">Most popular</div>
-      <div class="plan-name">Individual</div>
+      <div class="plan-name">Pro</div>
       <div class="plan-price">₦1,500</div>
       <div class="plan-period">per month</div>
       <ul class="plan-features">
+        <li>Everything in Free</li>
         <li>Unlimited AI questions</li>
-        <li>Priority answers</li>
-        <li>Unlimited PDF reports</li>
-        <li>Tax savings tips</li>
-        <li>Filing checklist</li>
+        <li>Unlimited PDF tax reports</li>
+        <li>PAYE bulk calculator</li>
+        <li>Staff payroll CSV download</li>
+        <li>Filing checklist + tracker</li>
+        <li>Pro access across all devices</li>
         <li>Email support — support@wafstax.com</li>
       </ul>
-      <button class="plan-cta" onclick="subscribe('individual')">Subscribe now</button>
-    </div>
-    <div class="plan">
-      <div class="plan-name">Business</div>
-      <div class="plan-price">₦10,000</div>
-      <div class="plan-period">per month</div>
-      <ul class="plan-features">
-        <li>Everything in Individual</li>
-        <li>PAYE bulk calculator</li>
-        <li>Staff payroll schedule CSV</li>
-        <li>CIT calculations</li>
-        <li>Priority email support</li>
-        <li>NTA 2025 compliance tools</li>
-      </ul>
-      <button class="plan-cta" onclick="subscribe('business')">Subscribe now</button>
+      <button class="plan-cta" onclick="subscribe('individual')">Start 7-day free trial</button>
     </div>
   </div>
 
-  <div class="faq"><h4>Is my payment secure?</h4><p>Yes. All payments are processed by Paystack — Nigeria's most trusted payment gateway. We never store your card details.</p></div>
-  <div class="faq"><h4>Can I cancel anytime?</h4><p>Yes. Cancel from your Paystack subscription portal at any time. No questions asked.</p></div>
+  <!-- TRIAL CALLOUT -->
+  <div style="background:var(--brand-l);border:1px solid var(--g200);border-radius:var(--r-xl);padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+    <div>
+      <div style="font-size:15px;font-weight:700;color:var(--brand-dd);margin-bottom:4px">🎉 Try Pro free for 7 days</div>
+      <div style="font-size:13px;color:var(--brand-d)">No credit card needed. Full Pro access from day one. Cancel anytime.</div>
+    </div>
+    <button class="plan-cta" style="width:auto;padding:12px 24px" onclick="openAuth('signup')">Start free trial →</button>
+  </div>
+
+  <!-- FEATURE COMPARISON -->
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;margin-bottom:20px">
+    <div style="background:var(--brand);padding:14px 20px;color:#fff;font-size:14px;font-weight:700">What's included in each plan</div>
+    <table style="width:100%;border-collapse:collapse;font-size:13px">
+      <thead>
+        <tr style="background:var(--surface2)">
+          <th style="padding:12px 16px;text-align:left;color:var(--muted);font-weight:600">Feature</th>
+          <th style="padding:12px 16px;text-align:center;color:var(--muted);font-weight:600">Free</th>
+          <th style="padding:12px 16px;text-align:center;color:var(--brand);font-weight:700">Pro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-top:1px solid var(--border)"><td style="padding:12px 16px;color:var(--ink)">AI tax questions</td><td style="padding:12px 16px;text-align:center;color:var(--muted)">10/day</td><td style="padding:12px 16px;text-align:center;color:var(--brand);font-weight:600">Unlimited</td></tr>
+        <tr style="border-top:1px solid var(--border);background:var(--surface2)"><td style="padding:12px 16px;color:var(--ink)">PIT, CIT, VAT calculators</td><td style="padding:12px 16px;text-align:center">✅</td><td style="padding:12px 16px;text-align:center">✅</td></tr>
+        <tr style="border-top:1px solid var(--border)"><td style="padding:12px 16px;color:var(--ink)">PDF tax reports</td><td style="padding:12px 16px;text-align:center;color:var(--muted)">—</td><td style="padding:12px 16px;text-align:center">✅</td></tr>
+        <tr style="border-top:1px solid var(--border);background:var(--surface2)"><td style="padding:12px 16px;color:var(--ink)">PAYE bulk calculator</td><td style="padding:12px 16px;text-align:center;color:var(--muted)">—</td><td style="padding:12px 16px;text-align:center">✅</td></tr>
+        <tr style="border-top:1px solid var(--border)"><td style="padding:12px 16px;color:var(--ink)">Filing checklist</td><td style="padding:12px 16px;text-align:center;color:var(--muted)">—</td><td style="padding:12px 16px;text-align:center">✅</td></tr>
+        <tr style="border-top:1px solid var(--border);background:var(--surface2)"><td style="padding:12px 16px;color:var(--ink)">Tax deadlines calendar</td><td style="padding:12px 16px;text-align:center">✅</td><td style="padding:12px 16px;text-align:center">✅</td></tr>
+        <tr style="border-top:1px solid var(--border)"><td style="padding:12px 16px;color:var(--ink)">State portal directory</td><td style="padding:12px 16px;text-align:center">✅</td><td style="padding:12px 16px;text-align:center">✅</td></tr>
+        <tr style="border-top:1px solid var(--border);background:var(--surface2)"><td style="padding:12px 16px;color:var(--ink)">How to file guides</td><td style="padding:12px 16px;text-align:center">✅</td><td style="padding:12px 16px;text-align:center">✅</td></tr>
+        <tr style="border-top:1px solid var(--border)"><td style="padding:12px 16px;color:var(--ink)">Access across all devices</td><td style="padding:12px 16px;text-align:center;color:var(--muted)">—</td><td style="padding:12px 16px;text-align:center">✅</td></tr>
+        <tr style="border-top:1px solid var(--border);background:var(--surface2)"><td style="padding:12px 16px;color:var(--ink)">Email support</td><td style="padding:12px 16px;text-align:center;color:var(--muted)">—</td><td style="padding:12px 16px;text-align:center">✅</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="faq"><h4>Is my payment secure?</h4><p>Yes. All payments processed by Paystack — Nigeria's most trusted payment gateway. We never store your card details.</p></div>
+  <div class="faq"><h4>Can I cancel anytime?</h4><p>Yes. Cancel from your Paystack portal at any time. No questions asked.</p></div>
+  <div class="faq"><h4>What happens after the 7-day trial?</h4><p>Your account moves to the Free plan automatically — 10 AI questions per day. Upgrade to Pro anytime for NGN 1,500/month.</p></div>
   <div class="faq"><h4>Do you offer refunds?</h4><p>Yes — if you're not satisfied within the first 7 days, contact us at <a href="mailto:support@wafstax.com" style="color:var(--brand)">support@wafstax.com</a> for a full refund.</p></div>
-  <div class="faq"><h4>What happens after my 7-day trial?</h4><p>After 7 days your account moves to the Free plan automatically — 10 AI questions per day. Upgrade anytime to Individual or Business for full access.</p></div>
+  <div class="faq"><h4>Will there be more plans later?</h4><p>Yes — we plan to add a Business plan for employers and teams. For now Pro covers everything most individuals and small businesses need.</p></div>
 </main>
 
 <!-- ═══ ABOUT ═══ -->
@@ -1692,6 +1722,11 @@ function toggleBreakdown(){
 }
 
 async function downloadPDF(){
+  if(!isPaid()){
+    openAuth('signup');
+    addMsg('PDF reports are a Pro feature. Start your free 7-day trial to download unlimited PDF tax reports!','ai');
+    return;
+  }
   const income=parseFloat(document.getElementById('annualIncome').value)||parseFloat(document.getElementById('incomeSlider').value)||0;
   const rent=parseFloat(document.getElementById('annualRent').value)||0;
   const type=document.getElementById('incomeType').value;
@@ -1705,7 +1740,7 @@ async function downloadPDF(){
     const a=document.createElement('a');a.href=url;a.download='WafsTax-Report-2025.pdf';a.click();
     URL.revokeObjectURL(url);
     btn.textContent='⬇ Downloaded — Generate another';
-  }catch(e){alert('Could not generate PDF. Please try again.');btn.textContent='⬇ Download Tax Report PDF — Free'}
+  }catch(e){alert('Could not generate PDF. Please try again.');btn.textContent='⬇ Download Tax Report PDF — Pro'}
   btn.disabled=false;
 }
 
