@@ -1316,10 +1316,10 @@ const SUPABASE_URL='https://gjrztdiknkeeqbrqjyjk.supabase.co';
 const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdqcnp0ZGlrbmtlZXFicnFqeWprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ4NzgyMTgsImV4cCI6MjA5MDQ1NDIxOH0._wto5tpH2DscepI3cw0h1wQr9mMN_j0usnxoGqIU9z0';
 const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 const PLANS={
-  individual:{code:'PLN_04usc56g81vakq6',name:'Individual',amount:150000},
+  individual:{code:'PLN_c3pnx389q29hycg',name:'Pro',amount:150000},
   business:{code:'PLN_y1oz4upok2jvw6h',name:'Business',amount:1000000}
 };
-const FREE_LIMIT=10;
+const FREE_LIMIT=5;
 const CHECKLISTS={
   individual:['Obtain your TIN from NRS — link to your NIN','Collect all payslips for the tax year','Confirm PAYE deductions appear on each payslip','Obtain Form H1 (annual tax deduction card) from employer','Check for additional income to declare (rent, side jobs, crypto)','Review rent payments for rent relief deduction claim','Submit any additional income declaration to State IRS by April 30','Keep copies of all documents for 6 years'],
   selfemployed:['Register for a TIN at the NRS portal','Open a dedicated business bank account','Keep records of ALL income received during the year','Keep receipts for ALL business expenses','Calculate total income and deductible expenses','Calculate tax owed using WafsTax calculator','Register with your State Internal Revenue Service','File annual PIT return at State IRS by April 30','Pay tax via Remita and keep receipt','Claim rent relief deduction if applicable'],
