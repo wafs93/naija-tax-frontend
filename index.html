@@ -1721,15 +1721,20 @@ function handlePlanClick(){
 }
 
 async function subscribe(planKey){
+  console.log('subscribe called with:',planKey);
+  console.log('PLANS:',PLANS);
+  console.log('currentUser:',currentUser);
+  console.log('PaystackPop type:',typeof PaystackPop);
+  console.log('PAYSTACK_KEY:',PAYSTACK_KEY?PAYSTACK_KEY.substring(0,10)+'...':'missing');
+
   const plan=PLANS[planKey];
-  if(!plan){alert('Plan not found. Please refresh and try again.');return}
+  if(!plan){alert('Plan not found: '+planKey);return}
 
   if(typeof PaystackPop==='undefined'){
-    alert('Payment system is loading. Please wait a moment and try again.');
+    alert('Paystack not loaded. Please refresh the page.');
     return;
   }
 
-  // Paystack requires a valid email — if not logged in, ask user to sign in first
   if(!currentUser){
     openAuth('login');
     showAuthMsg('Please sign in first to subscribe to Pro.','ok');
@@ -1737,6 +1742,7 @@ async function subscribe(planKey){
   }
 
   const email=currentUser.email;
+  console.log('Opening Paystack for:',email,'plan:',plan.code,'amount:',plan.amount);
 
   const handler=PaystackPop.setup({
     key:PAYSTACK_KEY,
@@ -1746,6 +1752,7 @@ async function subscribe(planKey){
     plan:plan.code,
     ref:'wafs_'+Date.now(),
     callback:async function(response){
+      console.log('Payment response:',response);
       await sb.from('subscribers').upsert({
         email:email,
         plan:'individual',
