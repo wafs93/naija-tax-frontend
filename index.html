@@ -1205,16 +1205,14 @@ input[type=range]{
       <div class="plan-price">₦0</div>
       <div class="plan-period">forever</div>
       <ul class="plan-features">
-        <li>10 AI questions per day</li>
-        <li>Personal income tax calculator</li>
-        <li>Company tax (CIT) calculator</li>
-        <li>VAT calculator</li>
+        <li>5 AI questions per day</li>
+        <li>PIT, CIT, VAT calculators</li>
         <li>Tax deadlines calendar</li>
         <li>How to file guides</li>
         <li>State portal directory</li>
         <li>NTA 2025 tax tips</li>
       </ul>
-      <button class="plan-cta outline" onclick="handlePlanClick()">Get Pro — NGN 1,500/month</button>
+      <button class="plan-cta outline" onclick="openAuth('signup')">Create free account</button>
     </div>
 
     <!-- PRO -->
@@ -1224,26 +1222,24 @@ input[type=range]{
       <div class="plan-price">₦1,500</div>
       <div class="plan-period">per month</div>
       <ul class="plan-features">
-        <li>Everything in Free</li>
         <li>Unlimited AI questions</li>
         <li>Unlimited PDF tax reports</li>
-        <li>PAYE bulk calculator</li>
-        <li>Staff payroll CSV download</li>
+        <li>PAYE bulk calculator + CSV</li>
         <li>Filing checklist + tracker</li>
         <li>Pro access across all devices</li>
-        <li>Email support — support@wafstax.com</li>
+        <li>Email support</li>
       </ul>
-      <button class="plan-cta" onclick="handlePlanClick()">Create account</button>
+      <button class="plan-cta" onclick="subscribe('individual')">Pay NGN 1,500/month</button>
     </div>
   </div>
 
-  <!-- TRIAL CALLOUT -->
-  <div style="background:var(--brand-l);border:1px solid var(--g200);border-radius:var(--r-xl);padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+  <!-- PRO CALLOUT -->
+  <div style="background:var(--brand);border-radius:var(--r-xl);padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
     <div>
-      <div style="font-size:15px;font-weight:700;color:var(--brand-dd);margin-bottom:4px">🚀 Upgrade to WafsTax Pro</div>
-      <div style="font-size:13px;color:var(--brand-d)">No credit card needed. Full Pro access from day one. Cancel anytime.</div>
+      <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:4px">🚀 Upgrade to WafsTax Pro</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.85)">Unlimited AI questions, PDF reports, PAYE bulk calculator and more — NGN 1,500/month.</div>
     </div>
-    <button class="plan-cta" style="width:auto;padding:12px 24px" onclick="handlePlanClick()">Get Pro — NGN 1,500/month →</button>
+    <button style="background:#fff;color:var(--brand-dd);border:none;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit" onclick="subscribe('individual')">Pay now — NGN 1,500 →</button>
   </div>
 
   <!-- FEATURE COMPARISON -->
@@ -1727,32 +1723,42 @@ function handlePlanClick(){
 async function subscribe(planKey){
   const plan=PLANS[planKey];
   if(!plan){alert('Plan not found. Please refresh the page and try again.');return}
+  if(typeof PaystackPop==='undefined'){
+    alert('Payment system is loading. Please wait a moment and try again.');
+    return;
+  }
   const email=currentUser?currentUser.email:'';
-  PaystackPop.setup({
-    key:PAYSTACK_KEY,
-    email:email,
-    amount:plan.amount,
-    currency:'NGN',
-    plan:plan.code,
-    ref:'wafs_'+Date.now(),
-    metadata:{plan_name:plan.name},
-    callback:async function(response){
-      const userEmail=currentUser?currentUser.email:response.customer?.email||'';
-      if(userEmail){
-        await sb.from('subscribers').upsert({
-          email:userEmail,plan:planKey,
-          paystack_ref:response.reference
-        },{onConflict:'email'});
-      }
-      localStorage.setItem('wafstaxPaid','true');
-      document.getElementById('usageStrip').style.display='none';
-      document.getElementById('paywall').classList.remove('show');
-      addMsg('🎉 Payment successful! Welcome to WafsTax Pro. You now have unlimited access. How can I help?','ai');
-      showPage('chat',document.querySelectorAll('.nav-tab')[0]);
-      if(currentUser)await loadUserProfile(currentUser);
-    },
-    onClose:()=>{}
-  }).openIframe();
+  try{
+    const handler=PaystackPop.setup({
+      key:PAYSTACK_KEY,
+      email:email,
+      amount:plan.amount,
+      currency:'NGN',
+      plan:plan.code,
+      ref:'wafs_'+Date.now(),
+      metadata:{plan_name:plan.name},
+      callback:async function(response){
+        const userEmail=currentUser?currentUser.email:response.customer?.email||'';
+        if(userEmail){
+          await sb.from('subscribers').upsert({
+            email:userEmail,plan:planKey,
+            paystack_ref:response.reference
+          },{onConflict:'email'});
+        }
+        localStorage.setItem('wafstaxPaid','true');
+        document.getElementById('usageStrip').style.display='none';
+        document.getElementById('paywall').classList.remove('show');
+        addMsg('🎉 Payment successful! Welcome to WafsTax Pro. You now have unlimited access. How can I help?','ai');
+        showPage('chat',document.querySelectorAll('.nav-tab')[0]);
+        if(currentUser)await loadUserProfile(currentUser);
+      },
+      onClose:function(){console.log('Payment window closed')}
+    });
+    handler.openIframe();
+  }catch(err){
+    console.error('Paystack error:',err);
+    alert('Could not open payment. Please try again or contact support@wafstax.com');
+  }
 }
 
 updateSlider(3600000);
