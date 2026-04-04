@@ -740,29 +740,29 @@ input[type=range]{
 }
 
 /* ── TRIAL BANNER ── */
-.plan-banner{
+.trial-banner{
   background:linear-gradient(135deg,#065F42,#0D9B6B);
   color:#fff;text-align:center;padding:10px 20px;
   font-size:13px;font-weight:500;position:relative;
   display:none;
 }
-.plan-banner.show{display:block}
-.plan-banner strong{font-weight:700}
-.plan-banner .plan-upgrade{
+.trial-banner.show{display:block}
+.trial-banner strong{font-weight:700}
+.trial-banner .trial-upgrade{
   background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);
   color:#fff;font-size:12px;font-weight:600;padding:3px 12px;
   border-radius:20px;cursor:pointer;font-family:inherit;
   margin-left:10px;transition:background .15s;
 }
-.plan-banner .plan-upgrade:hover{background:rgba(255,255,255,.3)}
-.plan-expired{
+.trial-banner .trial-upgrade:hover{background:rgba(255,255,255,.3)}
+.trial-expired{
   background:#FEF2F2;border:1px solid #FECACA;
   border-radius:var(--r-lg);padding:20px;text-align:center;
   margin-bottom:16px;display:none;
 }
-.plan-expired.show{display:block}
-.plan-expired h3{font-size:16px;font-weight:700;color:#991B1B;margin-bottom:6px}
-.plan-expired p{font-size:13px;color:#B91C1C;margin-bottom:14px;line-height:1.6}
+.trial-expired.show{display:block}
+.trial-expired h3{font-size:16px;font-weight:700;color:#991B1B;margin-bottom:6px}
+.trial-expired p{font-size:13px;color:#B91C1C;margin-bottom:14px;line-height:1.6}
 
 /* ── SECTION TITLES ── */
 .sec-title{font-size:16px;font-weight:700;letter-spacing:-.2px;margin-bottom:4px}
@@ -778,7 +778,7 @@ input[type=range]{
     <div class="modal-brand">
       <div class="modal-logo">₦</div>
       <h2>WafsTax</h2>
-      <p id="modalSub">Start your Pro subscription — no card needed</p>
+      <p id="modalSub">Sign in to your WafsTax account</p>
     </div>
     <div class="auth-tabs">
       <button class="auth-tab active" id="tabLogin" onclick="switchAuth('login')">Sign in</button>
@@ -807,7 +807,7 @@ input[type=range]{
       <div class="auth-divider">or create with email</div>
       <input class="auth-input" type="email" id="signupEmail" placeholder="Email address"/>
       <input class="auth-input" type="password" id="signupPassword" placeholder="Create password (min 6 chars)"/>
-      <button class="btn-submit" id="btnSignup" onclick="signUp()">Upgrade to Pro — NGN 1,500/month</button>
+      <button class="btn-submit" id="btnSignup" onclick="signUp()">Create account</button>
     </div>
 
     <div class="auth-msg" id="authMsg"></div>
@@ -833,9 +833,9 @@ input[type=range]{
 </header>
 
 <!-- TRIAL BANNER -->
-<div class="plan-banner" id="planBanner">
-  🎉 <strong id="planDaysLeft">7 days</strong> left in your Pro plan — enjoy full Pro access!
-  <button class="plan-upgrade" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[5])">Upgrade now</button>
+<div class="trial-banner" id="trialBanner">
+  🚀 WafsTax Pro — Unlimited access active
+  <button class="trial-upgrade" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[5])">Upgrade now</button>
 </div>
 
 <!-- NAV -->
@@ -856,7 +856,7 @@ input[type=range]{
   <div class="hero">
     <div class="hero-eyebrow">NTA 2025 — Updated January 2026</div>
     <h2>Your free Nigerian tax assistant</h2>
-    <p class="hero-sub">Powered by AI — ask anything about PAYE, VAT, CIT, crypto tax, or how to file. <strong>Create a free account for Pro access.</strong></p>
+    <p class="hero-sub">Powered by AI — ask anything about PAYE, VAT, CIT, crypto tax, or how to file. <strong>Ask unlimited tax questions with WafsTax Pro.</strong></p>
     <div class="hero-stats">
       <div class="hero-stat"><div class="hero-stat-val">₦800k</div><div class="hero-stat-lbl">Tax-free threshold</div></div>
       <div class="hero-stat"><div class="hero-stat-val">7.5%</div><div class="hero-stat-lbl">VAT rate</div></div>
@@ -887,7 +887,7 @@ input[type=range]{
           <strong>Hello! Welcome to WafsTax.</strong><br><br>
           I am your free Nigerian tax assistant, fully updated for the <strong>Nigeria Tax Act 2025</strong> (effective January 2026).<br><br>
           Ask me about salary, freelance income, crypto, POS, YouTube, VAT, company tax or how to file. I give clear, accurate answers.<br><br>
-          <strong>Create a free account for a Pro full access plan — no card needed.</strong>
+          <strong>Get instant answers to all your Nigerian tax questions under NTA 2025.</strong>
         </div>
       </div>
     </div>
@@ -912,11 +912,11 @@ input[type=range]{
 
   <div class="paywall" id="paywall">
     <div class="paywall-icon">🎉</div>
-    <h3>You've used your 5 free questions today</h3>
-    <p>Upgrade to <strong>WafsTax Pro for NGN 1,500/month</strong> and get unlimited AI questions, PDF reports, PAYE bulk calculator and full filing checklist. Or sign up for a Pro plan — no card needed.</p>
+    <h3>You've used your 10 free questions today</h3>
+    <p>Upgrade to <strong>WafsTax Pro for NGN 1,500/month</strong> and get unlimited AI questions, PDF reports, PAYE bulk calculator and full filing checklist. Sign in to your account to restore Pro access.</p>
     <div class="paywall-actions">
       <button class="btn-brand" onclick="subscribe('individual')">Upgrade to Pro — NGN 1,500/month</button>
-      <button class="btn-outline" onclick="handlePlanClick()">Upgrade to Pro — NGN 1,500/month — no card needed</button>
+      <button class="btn-outline" onclick="handlePlanClick()">Create account — no card needed</button>
     </div>
   </div>
 </main>
@@ -1205,7 +1205,7 @@ input[type=range]{
       <div class="plan-price">₦0</div>
       <div class="plan-period">forever</div>
       <ul class="plan-features">
-        <li>5 AI questions per day</li>
+        <li>10 AI questions per day</li>
         <li>Personal income tax calculator</li>
         <li>Company tax (CIT) calculator</li>
         <li>VAT calculator</li>
@@ -1214,7 +1214,7 @@ input[type=range]{
         <li>State portal directory</li>
         <li>NTA 2025 tax tips</li>
       </ul>
-      <button class="plan-cta outline" onclick="handlePlanClick()">Start Pro plan</button>
+      <button class="plan-cta outline" onclick="handlePlanClick()">Get Pro — NGN 1,500/month</button>
     </div>
 
     <!-- PRO -->
@@ -1233,17 +1233,17 @@ input[type=range]{
         <li>Pro access across all devices</li>
         <li>Email support — support@wafstax.com</li>
       </ul>
-      <button class="plan-cta" onclick="handlePlanClick()">Upgrade to Pro — NGN 1,500/month</button>
+      <button class="plan-cta" onclick="handlePlanClick()">Create account</button>
     </div>
   </div>
 
   <!-- TRIAL CALLOUT -->
   <div style="background:var(--brand-l);border:1px solid var(--g200);border-radius:var(--r-xl);padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
     <div>
-      <div style="font-size:15px;font-weight:700;color:var(--brand-dd);margin-bottom:4px">🎉 Try Pro free for 7 days</div>
+      <div style="font-size:15px;font-weight:700;color:var(--brand-dd);margin-bottom:4px">🚀 Upgrade to WafsTax Pro</div>
       <div style="font-size:13px;color:var(--brand-d)">No credit card needed. Full Pro access from day one. Cancel anytime.</div>
     </div>
-    <button class="plan-cta" style="width:auto;padding:12px 24px" onclick="handlePlanClick()">Start Pro plan →</button>
+    <button class="plan-cta" style="width:auto;padding:12px 24px" onclick="handlePlanClick()">Get Pro — NGN 1,500/month →</button>
   </div>
 
   <!-- FEATURE COMPARISON -->
@@ -1258,7 +1258,7 @@ input[type=range]{
         </tr>
       </thead>
       <tbody>
-        <tr style="border-top:1px solid var(--border)"><td style="padding:12px 16px;color:var(--ink)">AI tax questions</td><td style="padding:12px 16px;text-align:center;color:var(--muted)">5/day</td><td style="padding:12px 16px;text-align:center;color:var(--brand);font-weight:600">Unlimited</td></tr>
+        <tr style="border-top:1px solid var(--border)"><td style="padding:12px 16px;color:var(--ink)">AI tax questions</td><td style="padding:12px 16px;text-align:center;color:var(--muted)">10/day</td><td style="padding:12px 16px;text-align:center;color:var(--brand);font-weight:600">Unlimited</td></tr>
         <tr style="border-top:1px solid var(--border);background:var(--surface2)"><td style="padding:12px 16px;color:var(--ink)">PIT, CIT, VAT calculators</td><td style="padding:12px 16px;text-align:center">✅</td><td style="padding:12px 16px;text-align:center">✅</td></tr>
         <tr style="border-top:1px solid var(--border)"><td style="padding:12px 16px;color:var(--ink)">PDF tax reports</td><td style="padding:12px 16px;text-align:center;color:var(--muted)">—</td><td style="padding:12px 16px;text-align:center">✅</td></tr>
         <tr style="border-top:1px solid var(--border);background:var(--surface2)"><td style="padding:12px 16px;color:var(--ink)">PAYE bulk calculator</td><td style="padding:12px 16px;text-align:center;color:var(--muted)">—</td><td style="padding:12px 16px;text-align:center">✅</td></tr>
@@ -1274,7 +1274,7 @@ input[type=range]{
 
   <div class="faq"><h4>Is my payment secure?</h4><p>Yes. All payments processed by Paystack — Nigeria's most trusted payment gateway. We never store your card details.</p></div>
   <div class="faq"><h4>Can I cancel anytime?</h4><p>Yes. Cancel from your Paystack portal at any time. No questions asked.</p></div>
-  <div class="faq"><h4>What happens after the Pro plan?</h4><p>Your account moves to the Free plan automatically — 5 AI questions per day. Upgrade to Pro anytime for NGN 1,500/month.</p></div>
+  <div class="faq"><h4>Can I upgrade or downgrade anytime?</h4><p>Yes — upgrade to Pro anytime for NGN 1,500/month. Cancel anytime from your Paystack portal.</p></div>
   <div class="faq"><h4>Do you offer refunds?</h4><p>Yes — if you're not satisfied within the first 7 days, contact us at <a href="mailto:support@wafstax.com" style="color:var(--brand)">support@wafstax.com</a> for a full refund.</p></div>
   <div class="faq"><h4>Will there be more plans later?</h4><p>Yes — we plan to add a Business plan for employers and teams. For now Pro covers everything most individuals and small businesses need.</p></div>
 </main>
@@ -1323,7 +1323,7 @@ const PLANS={
   individual:{code:'PLN_04usc56g81vakq6',name:'Individual',amount:150000},
   business:{code:'PLN_y1oz4upok2jvw6h',name:'Business',amount:1000000}
 };
-const FREE_LIMIT=5;
+const FREE_LIMIT=10;
 const CHECKLISTS={
   individual:['Obtain your TIN from NRS — link to your NIN','Collect all payslips for the tax year','Confirm PAYE deductions appear on each payslip','Obtain Form H1 (annual tax deduction card) from employer','Check for additional income to declare (rent, side jobs, crypto)','Review rent payments for rent relief deduction claim','Submit any additional income declaration to State IRS by April 30','Keep copies of all documents for 6 years'],
   selfemployed:['Register for a TIN at the NRS portal','Open a dedicated business bank account','Keep records of ALL income received during the year','Keep receipts for ALL business expenses','Calculate total income and deductible expenses','Calculate tax owed using WafsTax calculator','Register with your State Internal Revenue Service','File annual PIT return at State IRS by April 30','Pay tax via Remita and keep receipt','Claim rent relief deduction if applicable'],
@@ -1347,7 +1347,7 @@ async function loadUserProfile(user){
   let isPro=false;
   let planLabel='free';
 
-  if(data&&data.plan&&data.plan!=='free'&&data.plan!=='plan'){
+  if(data&&data.plan&&data.plan!=='free'&&data.plan!=='trial'){
     isPro=true;
     planLabel=data.plan;
   }
@@ -1364,7 +1364,7 @@ function renderUserHeader(email,isPro,plan){
   const initial=email.charAt(0).toUpperCase();
   const pillText=isPro?'Pro ✓':'Free';
   const pillStyle=isPro?'background:rgba(255,255,255,.3)':'';
-  document.getElementById('planBanner').classList.remove('show');
+  document.getElementById('trialBanner').classList.remove('show');
   el.innerHTML=`
     <span class="plan-pill" id="planPill" style="${pillStyle}">${pillText}</span>
     <div class="user-menu">
@@ -1429,23 +1429,19 @@ async function signIn(){
 async function signUp(){
   const email=document.getElementById('signupEmail').value.trim();
   const password=document.getElementById('signupPassword').value;
+  const confirm=document.getElementById('signupConfirm').value;
   if(!email||!password){showAuthMsg('Please enter your email and password','err');return}
   if(password.length<6){showAuthMsg('Password must be at least 6 characters','err');return}
-  const btn=document.getElementById('btnSignup');btn.textContent='Starting plan…';btn.disabled=true;
-  const{data,error}=await sb.auth.signUp({email,password});
-  if(error){showAuthMsg(error.message,'err')}
-  else{
-    const planStart=new Date();
-    const planEnd=new Date(planStart);
-    planEnd.setDate(planEnd.getDate()+30);
-    await sb.from('subscribers').upsert({
-      email,plan:'plan',
-      plan_start:planStart.toISOString(),
-      plan_end:planEnd.toISOString()
-    },{onConflict:'email'});
-    showAuthMsg('🎉 Your Pro subscription has started! Check your email to confirm your account.','ok');
+  if(password!==confirm){showAuthMsg('Passwords do not match','err');return}
+  const btn=document.getElementById('btnSignup');btn.textContent='Creating account…';btn.disabled=true;
+  const{error}=await sb.auth.signUp({email,password});
+  if(error){
+    if(error.message.includes('rate limit')){showAuthMsg('Too many attempts. Please wait a few minutes and try again.','err')}
+    else{showAuthMsg(error.message,'err')}
+  }else{
+    showAuthMsg('✅ Account created! You can now sign in.','ok');
   }
-  btn.textContent='Upgrade to Pro — NGN 1,500/month';btn.disabled=false;
+  btn.textContent='Create account';btn.disabled=false;
 }
 
 async function signOut(){
