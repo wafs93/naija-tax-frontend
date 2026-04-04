@@ -1727,13 +1727,23 @@ function handlePlanClick(){
 async function subscribe(planKey){
   const plan=PLANS[planKey];
   if(!plan){alert('Plan not found. Please refresh the page and try again.');return}
-  const email=currentUser?currentUser.email:prompt('Enter your email address to subscribe:');
-  if(!email||!email.includes('@')){alert('Please enter a valid email address');return}
+  const email=currentUser?currentUser.email:'';
   PaystackPop.setup({
-    key:PAYSTACK_KEY,email,amount:plan.amount,currency:'NGN',
-    plan:plan.code,ref:'wafs_'+Date.now(),metadata:{plan_name:plan.name},
+    key:PAYSTACK_KEY,
+    email:email,
+    amount:plan.amount,
+    currency:'NGN',
+    plan:plan.code,
+    ref:'wafs_'+Date.now(),
+    metadata:{plan_name:plan.name},
     callback:async function(response){
-      await sb.from('subscribers').upsert({email,plan:planKey,paystack_ref:response.reference},{onConflict:'email'});
+      const userEmail=currentUser?currentUser.email:response.customer?.email||'';
+      if(userEmail){
+        await sb.from('subscribers').upsert({
+          email:userEmail,plan:planKey,
+          paystack_ref:response.reference
+        },{onConflict:'email'});
+      }
       localStorage.setItem('wafstaxPaid','true');
       document.getElementById('usageStrip').style.display='none';
       document.getElementById('paywall').classList.remove('show');
