@@ -807,7 +807,7 @@ input[type=range]{
       <div class="auth-divider">or create with email</div>
       <input class="auth-input" type="email" id="signupEmail" placeholder="Email address"/>
       <input class="auth-input" type="password" id="signupPassword" placeholder="Create password (min 6 chars)"/>
-      <button class="btn-submit" id="btnSignup" onclick="signUp()">Start 7-day free trial</button>
+      <button class="btn-submit" id="btnSignup" onclick="signUp()">Subscribe — NGN 1,500/month</button>
     </div>
 
     <div class="auth-msg" id="authMsg"></div>
@@ -899,7 +899,7 @@ input[type=range]{
       <div class="usage-strip" id="usageStrip">
         <span class="usage-label">Free questions today</span>
         <div class="usage-track"><div class="usage-fill" id="usageFill" style="width:0%"></div></div>
-        <span class="usage-count" id="usageCount">0/10</span>
+        <span class="usage-count" id="usageCount">0/5</span>
       </div>
       <div class="input-wrap">
         <textarea id="chatInput" placeholder="Ask your tax question here..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
@@ -916,7 +916,7 @@ input[type=range]{
     <p>Upgrade to <strong>WafsTax Pro for NGN 1,500/month</strong> and get unlimited AI questions, PDF reports, PAYE bulk calculator and full filing checklist. Or sign up for a free 7-day trial — no card needed.</p>
     <div class="paywall-actions">
       <button class="btn-brand" onclick="subscribe('individual')">Upgrade to Pro — NGN 1,500/month</button>
-      <button class="btn-outline" onclick="handleTrialClick()">Start 7-day free trial — no card needed</button>
+      <button class="btn-outline" onclick="handleTrialClick()">Subscribe — NGN 1,500/month — no card needed</button>
     </div>
   </div>
 </main>
@@ -1205,7 +1205,7 @@ input[type=range]{
       <div class="plan-price">₦0</div>
       <div class="plan-period">forever</div>
       <ul class="plan-features">
-        <li>10 AI questions per day</li>
+        <li>5 AI questions per day</li>
         <li>Personal income tax calculator</li>
         <li>Company tax (CIT) calculator</li>
         <li>VAT calculator</li>
@@ -1214,7 +1214,7 @@ input[type=range]{
         <li>State portal directory</li>
         <li>NTA 2025 tax tips</li>
       </ul>
-      <button class="plan-cta outline" onclick="handleTrialClick()">Start free 7-day trial</button>
+      <button class="plan-cta outline" onclick="handleTrialClick()">Subscribe — NGN 1,500/month</button>
     </div>
 
     <!-- PRO -->
@@ -1233,17 +1233,17 @@ input[type=range]{
         <li>Pro access across all devices</li>
         <li>Email support — support@wafstax.com</li>
       </ul>
-      <button class="plan-cta" onclick="handleTrialClick()">Start 7-day free trial</button>
+      <button class="plan-cta" onclick="handleTrialClick()">Subscribe — NGN 1,500/month</button>
     </div>
   </div>
 
   <!-- TRIAL CALLOUT -->
   <div style="background:var(--brand-l);border:1px solid var(--g200);border-radius:var(--r-xl);padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
     <div>
-      <div style="font-size:15px;font-weight:700;color:var(--brand-dd);margin-bottom:4px">🎉 Try Pro free for 7 days</div>
-      <div style="font-size:13px;color:var(--brand-d)">No credit card needed. Full Pro access from day one. Cancel anytime.</div>
+      <div style="font-size:15px;font-weight:700;color:var(--brand-dd);margin-bottom:4px">🚀 Upgrade to WafsTax Pro</div>
+      <div style="font-size:13px;color:var(--brand-d)">Unlimited AI questions, PDF reports, PAYE bulk calculator and more.</div>
     </div>
-    <button class="plan-cta" style="width:auto;padding:12px 24px" onclick="handleTrialClick()">Start free trial →</button>
+    <button class="plan-cta" style="width:auto;padding:12px 24px" onclick="handleTrialClick()">Subscribe now →</button>
   </div>
 
   <!-- FEATURE COMPARISON -->
@@ -1274,7 +1274,7 @@ input[type=range]{
 
   <div class="faq"><h4>Is my payment secure?</h4><p>Yes. All payments processed by Paystack — Nigeria's most trusted payment gateway. We never store your card details.</p></div>
   <div class="faq"><h4>Can I cancel anytime?</h4><p>Yes. Cancel from your Paystack portal at any time. No questions asked.</p></div>
-  <div class="faq"><h4>What happens after the 7-day trial?</h4><p>Your account moves to the Free plan automatically — 10 AI questions per day. Upgrade to Pro anytime for NGN 1,500/month.</p></div>
+  <div class="faq"><h4>What happens after the 7-day trial?</h4><p>Your account moves to the Free plan automatically — 5 AI questions per day. Upgrade to Pro anytime for NGN 1,500/month.</p></div>
   <div class="faq"><h4>Do you offer refunds?</h4><p>Yes — if you're not satisfied within the first 7 days, contact us at <a href="mailto:support@wafstax.com" style="color:var(--brand)">support@wafstax.com</a> for a full refund.</p></div>
   <div class="faq"><h4>Will there be more plans later?</h4><p>Yes — we plan to add a Business plan for employers and teams. For now Pro covers everything most individuals and small businesses need.</p></div>
 </main>
@@ -1323,7 +1323,7 @@ const PLANS={
   individual:{code:'PLN_c3pnx389q29hycg',name:'Individual',amount:150000},
   business:{code:'PLN_y1oz4upok2jvw6h',name:'Business',amount:1000000}
 };
-const FREE_LIMIT=10;
+const FREE_LIMIT=5;
 const CHECKLISTS={
   individual:['Obtain your TIN from NRS — link to your NIN','Collect all payslips for the tax year','Confirm PAYE deductions appear on each payslip','Obtain Form H1 (annual tax deduction card) from employer','Check for additional income to declare (rent, side jobs, crypto)','Review rent payments for rent relief deduction claim','Submit any additional income declaration to State IRS by April 30','Keep copies of all documents for 6 years'],
   selfemployed:['Register for a TIN at the NRS portal','Open a dedicated business bank account','Keep records of ALL income received during the year','Keep receipts for ALL business expenses','Calculate total income and deductible expenses','Calculate tax owed using WafsTax calculator','Register with your State Internal Revenue Service','File annual PIT return at State IRS by April 30','Pay tax via Remita and keep receipt','Claim rent relief deduction if applicable'],
@@ -1477,7 +1477,7 @@ async function signUp(){
     },{onConflict:'email'});
     showAuthMsg('🎉 Your 7-day free trial has started! Check your email to confirm your account.','ok');
   }
-  btn.textContent='Start 7-day free trial';btn.disabled=false;
+  btn.textContent='Subscribe — NGN 1,500/month';btn.disabled=false;
 }
 
 async function signOut(){
