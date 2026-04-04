@@ -1316,7 +1316,7 @@ const SUPABASE_URL='https://gjrztdiknkeeqbrqjyjk.supabase.co';
 const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdqcnp0ZGlrbmtlZXFicnFqeWprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ4NzgyMTgsImV4cCI6MjA5MDQ1NDIxOH0._wto5tpH2DscepI3cw0h1wQr9mMN_j0usnxoGqIU9z0';
 const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 const PLANS={
-  individual:{code:'PLN_c3pnx389q29hycg',name:'Pro',amount:150000},
+  individual:{code:'PLN_c3pnx389q29hycg',name:'Individual',amount:150000},
   business:{code:'PLN_y1oz4upok2jvw6h',name:'Business',amount:1000000}
 };
 const FREE_LIMIT=5;
@@ -1722,43 +1722,45 @@ function handlePlanClick(){
 
 async function subscribe(planKey){
   const plan=PLANS[planKey];
-  if(!plan){alert('Plan not found. Please refresh the page and try again.');return}
+  if(!plan){alert('Plan not found. Please refresh and try again.');return}
+
   if(typeof PaystackPop==='undefined'){
     alert('Payment system is loading. Please wait a moment and try again.');
     return;
   }
-  const email=currentUser?currentUser.email:'';
-  try{
-    const handler=PaystackPop.setup({
-      key:PAYSTACK_KEY,
-      email:email,
-      amount:plan.amount,
-      currency:'NGN',
-      plan:plan.code,
-      ref:'wafs_'+Date.now(),
-      metadata:{plan_name:plan.name},
-      callback:async function(response){
-        const userEmail=currentUser?currentUser.email:response.customer?.email||'';
-        if(userEmail){
-          await sb.from('subscribers').upsert({
-            email:userEmail,plan:planKey,
-            paystack_ref:response.reference
-          },{onConflict:'email'});
-        }
-        localStorage.setItem('wafstaxPaid','true');
-        document.getElementById('usageStrip').style.display='none';
-        document.getElementById('paywall').classList.remove('show');
-        addMsg('🎉 Payment successful! Welcome to WafsTax Pro. You now have unlimited access. How can I help?','ai');
-        showPage('chat',document.querySelectorAll('.nav-tab')[0]);
-        if(currentUser)await loadUserProfile(currentUser);
-      },
-      onClose:function(){console.log('Payment window closed')}
-    });
-    handler.openIframe();
-  }catch(err){
-    console.error('Paystack error:',err);
-    alert('Could not open payment. Please try again or contact support@wafstax.com');
+
+  // Paystack requires a valid email — if not logged in, ask user to sign in first
+  if(!currentUser){
+    openAuth('login');
+    showAuthMsg('Please sign in first to subscribe to Pro.','ok');
+    return;
   }
+
+  const email=currentUser.email;
+
+  const handler=PaystackPop.setup({
+    key:PAYSTACK_KEY,
+    email:email,
+    amount:plan.amount,
+    currency:'NGN',
+    plan:plan.code,
+    ref:'wafs_'+Date.now(),
+    callback:async function(response){
+      await sb.from('subscribers').upsert({
+        email:email,
+        plan:'individual',
+        paystack_ref:response.reference
+      },{onConflict:'email'});
+      localStorage.setItem('wafstaxPaid','true');
+      document.getElementById('usageStrip').style.display='none';
+      document.getElementById('paywall').classList.remove('show');
+      addMsg('🎉 Payment successful! Welcome to WafsTax Pro. You now have unlimited access!','ai');
+      showPage('chat',document.querySelectorAll('.nav-tab')[0]);
+      await loadUserProfile(currentUser);
+    },
+    onClose:function(){console.log('Payment closed')}
+  });
+  handler.openIframe();
 }
 
 updateSlider(3600000);
