@@ -778,7 +778,7 @@ input[type=range]{
     <div class="modal-brand">
       <div class="modal-logo">₦</div>
       <h2>WafsTax</h2>
-      <p id="modalSub">Sign in to access your account</p>
+      <p id="modalSub">Start your 7-day free trial — no card needed</p>
     </div>
     <div class="auth-tabs">
       <button class="auth-tab active" id="tabLogin" onclick="switchAuth('login')">Sign in</button>
@@ -807,7 +807,7 @@ input[type=range]{
       <div class="auth-divider">or create with email</div>
       <input class="auth-input" type="email" id="signupEmail" placeholder="Email address"/>
       <input class="auth-input" type="password" id="signupPassword" placeholder="Create password (min 6 chars)"/>
-      <button class="btn-submit" id="btnSignup" onclick="signUp()">Subscribe — NGN 1,500/month</button>
+      <button class="btn-submit" id="btnSignup" onclick="signUp()">Start 7-day free trial</button>
     </div>
 
     <div class="auth-msg" id="authMsg"></div>
@@ -834,7 +834,7 @@ input[type=range]{
 
 <!-- TRIAL BANNER -->
 <div class="trial-banner" id="trialBanner">
-  🎉 <strong id="trialDaysLeft">7 days</strong> days remaining on your plan
+  🎉 <strong id="trialDaysLeft">7 days</strong> left in your free trial — enjoy full Pro access!
   <button class="trial-upgrade" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[5])">Upgrade now</button>
 </div>
 
@@ -887,7 +887,7 @@ input[type=range]{
           <strong>Hello! Welcome to WafsTax.</strong><br><br>
           I am your free Nigerian tax assistant, fully updated for the <strong>Nigeria Tax Act 2025</strong> (effective January 2026).<br><br>
           Ask me about salary, freelance income, crypto, POS, YouTube, VAT, company tax or how to file. I give clear, accurate answers.<br><br>
-          <strong>Create a free account to save your progress.</strong>
+          <strong>Create a free account for a 7-day full access trial — no card needed.</strong>
         </div>
       </div>
     </div>
@@ -899,7 +899,7 @@ input[type=range]{
       <div class="usage-strip" id="usageStrip">
         <span class="usage-label">Free questions today</span>
         <div class="usage-track"><div class="usage-fill" id="usageFill" style="width:0%"></div></div>
-        <span class="usage-count" id="usageCount">0/5</span>
+        <span class="usage-count" id="usageCount">0/10</span>
       </div>
       <div class="input-wrap">
         <textarea id="chatInput" placeholder="Ask your tax question here..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
@@ -913,10 +913,10 @@ input[type=range]{
   <div class="paywall" id="paywall">
     <div class="paywall-icon">🎉</div>
     <h3>You've used your 10 free questions today</h3>
-    <p>Upgrade to <strong>WafsTax Pro for NGN 1,500/month</strong> and get unlimited AI questions, PDF reports, PAYE bulk calculator and full filing checklist. Create a free account to sign in on any device.</p>
+    <p>Upgrade to <strong>WafsTax Pro for NGN 1,500/month</strong> and get unlimited AI questions, PDF reports, PAYE bulk calculator and full filing checklist. Or sign up for a free 7-day trial — no card needed.</p>
     <div class="paywall-actions">
       <button class="btn-brand" onclick="subscribe('individual')">Upgrade to Pro — NGN 1,500/month</button>
-      <button class="btn-outline" onclick="handleTrialClick()">Subscribe — NGN 1,500/month — no card needed</button>
+      <button class="btn-outline" onclick="handleTrialClick()">Start 7-day free trial — no card needed</button>
     </div>
   </div>
 </main>
@@ -1205,7 +1205,7 @@ input[type=range]{
       <div class="plan-price">₦0</div>
       <div class="plan-period">forever</div>
       <ul class="plan-features">
-        <li>5 AI questions per day</li>
+        <li>10 AI questions per day</li>
         <li>Personal income tax calculator</li>
         <li>Company tax (CIT) calculator</li>
         <li>VAT calculator</li>
@@ -1214,7 +1214,7 @@ input[type=range]{
         <li>State portal directory</li>
         <li>NTA 2025 tax tips</li>
       </ul>
-      <button class="plan-cta outline" onclick="handleTrialClick()">Subscribe — NGN 1,500/month</button>
+      <button class="plan-cta outline" onclick="handleTrialClick()">Start free 7-day trial</button>
     </div>
 
     <!-- PRO -->
@@ -1233,17 +1233,17 @@ input[type=range]{
         <li>Pro access across all devices</li>
         <li>Email support — support@wafstax.com</li>
       </ul>
-      <button class="plan-cta" onclick="handleTrialClick()">Subscribe — NGN 1,500/month</button>
+      <button class="plan-cta" onclick="handleTrialClick()">Start 7-day free trial</button>
     </div>
   </div>
 
   <!-- TRIAL CALLOUT -->
   <div style="background:var(--brand-l);border:1px solid var(--g200);border-radius:var(--r-xl);padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
     <div>
-      <div style="font-size:15px;font-weight:700;color:var(--brand-dd);margin-bottom:4px">🚀 Upgrade to WafsTax Pro</div>
-      <div style="font-size:13px;color:var(--brand-d)">Unlimited AI questions, PDF reports, PAYE bulk calculator and more.</div>
+      <div style="font-size:15px;font-weight:700;color:var(--brand-dd);margin-bottom:4px">🎉 Try Pro free for 7 days</div>
+      <div style="font-size:13px;color:var(--brand-d)">No credit card needed. Full Pro access from day one. Cancel anytime.</div>
     </div>
-    <button class="plan-cta" style="width:auto;padding:12px 24px" onclick="handleTrialClick()">Subscribe now →</button>
+    <button class="plan-cta" style="width:auto;padding:12px 24px" onclick="handleTrialClick()">Start free trial →</button>
   </div>
 
   <!-- FEATURE COMPARISON -->
@@ -1274,7 +1274,7 @@ input[type=range]{
 
   <div class="faq"><h4>Is my payment secure?</h4><p>Yes. All payments processed by Paystack — Nigeria's most trusted payment gateway. We never store your card details.</p></div>
   <div class="faq"><h4>Can I cancel anytime?</h4><p>Yes. Cancel from your Paystack portal at any time. No questions asked.</p></div>
-  <div class="faq"><h4>What happens after the 7-day trial?</h4><p>Your account moves to the Free plan automatically — 5 AI questions per day. Upgrade to Pro anytime for NGN 1,500/month.</p></div>
+  <div class="faq"><h4>What happens after the 7-day trial?</h4><p>Your account moves to the Free plan automatically — 10 AI questions per day. Upgrade to Pro anytime for NGN 1,500/month.</p></div>
   <div class="faq"><h4>Do you offer refunds?</h4><p>Yes — if you're not satisfied within the first 7 days, contact us at <a href="mailto:support@wafstax.com" style="color:var(--brand)">support@wafstax.com</a> for a full refund.</p></div>
   <div class="faq"><h4>Will there be more plans later?</h4><p>Yes — we plan to add a Business plan for employers and teams. For now Pro covers everything most individuals and small businesses need.</p></div>
 </main>
@@ -1320,10 +1320,10 @@ const SUPABASE_URL='https://gjrztdiknkeeqbrqjyjk.supabase.co';
 const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdqcnp0ZGlrbmtlZXFicnFqeWprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ4NzgyMTgsImV4cCI6MjA5MDQ1NDIxOH0._wto5tpH2DscepI3cw0h1wQr9mMN_j0usnxoGqIU9z0';
 const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 const PLANS={
-  individual:{code:'PLN_c3pnx389q29hycg',name:'Individual',amount:150000},
+  individual:{code:'PLN_04usc56g81vakq6',name:'Individual',amount:150000},
   business:{code:'PLN_y1oz4upok2jvw6h',name:'Business',amount:1000000}
 };
-const FREE_LIMIT=5;
+const FREE_LIMIT=10;
 const CHECKLISTS={
   individual:['Obtain your TIN from NRS — link to your NIN','Collect all payslips for the tax year','Confirm PAYE deductions appear on each payslip','Obtain Form H1 (annual tax deduction card) from employer','Check for additional income to declare (rent, side jobs, crypto)','Review rent payments for rent relief deduction claim','Submit any additional income declaration to State IRS by April 30','Keep copies of all documents for 6 years'],
   selfemployed:['Register for a TIN at the NRS portal','Open a dedicated business bank account','Keep records of ALL income received during the year','Keep receipts for ALL business expenses','Calculate total income and deductible expenses','Calculate tax owed using WafsTax calculator','Register with your State Internal Revenue Service','File annual PIT return at State IRS by April 30','Pay tax via Remita and keep receipt','Claim rent relief deduction if applicable'],
@@ -1346,56 +1346,25 @@ async function loadUserProfile(user){
   const{data}=await sb.from('subscribers').select('*').eq('email',user.email).single();
   let isPro=false;
   let planLabel='free';
-  let trialDaysLeft=0;
 
-  if(data){
-    if(data.plan==='trial'&&data.trial_end){
-      const now=new Date();
-      const end=new Date(data.trial_end);
-      trialDaysLeft=Math.ceil((end-now)/(1000*60*60*24));
-      if(trialDaysLeft>0){isPro=true;planLabel='trial'}
-      else{
-        await sb.from('subscribers').update({plan:'free'}).eq('email',user.email);
-        planLabel='free';
-      }
-    } else if(data.plan&&data.plan!=='free'){
-      isPro=true;planLabel=data.plan;
-    }
-  } else {
-    const trialStart=new Date();
-    const trialEnd=new Date(trialStart);
-    trialEnd.setDate(trialEnd.getDate()+7);
-    await sb.from('subscribers').upsert({
-      email:user.email,plan:'trial',
-      trial_start:trialStart.toISOString(),
-      trial_end:trialEnd.toISOString()
-    },{onConflict:'email'});
-    isPro=true;planLabel='trial';trialDaysLeft=7;
+  if(data&&data.plan&&data.plan!=='free'&&data.plan!=='trial'){
+    isPro=true;
+    planLabel=data.plan;
   }
 
-  renderUserHeader(user.email,isPro,planLabel,trialDaysLeft);
+  renderUserHeader(user.email,isPro,planLabel);
   if(isPro){
     document.getElementById('usageStrip').style.display='none';
     document.getElementById('paywall').classList.remove('show');
   }
 }
 
-function renderUserHeader(email,isPro,plan,trialDaysLeft=0){
+function renderUserHeader(email,isPro,plan){
   const el=document.getElementById('headerActions');
   const initial=email.charAt(0).toUpperCase();
-  const isTrial=plan==='trial';
-  const pillText=isTrial?`Trial: ${trialDaysLeft}d`:isPro?'Pro ✓':'Free';
-  const pillStyle=isTrial?'background:rgba(255,200,0,.3);border-color:rgba(255,220,0,.5)':isPro?'background:rgba(255,255,255,.3)':'';
-
-  // Show trial banner
-  const banner=document.getElementById('trialBanner');
-  if(isTrial&&trialDaysLeft>0){
-    document.getElementById('trialDaysLeft').textContent=trialDaysLeft+' day'+(trialDaysLeft===1?'':'s');
-    banner.classList.add('show');
-  } else {
-    banner.classList.remove('show');
-  }
-
+  const pillText=isPro?'Pro ✓':'Free';
+  const pillStyle=isPro?'background:rgba(255,255,255,.3)':'';
+  document.getElementById('trialBanner').classList.remove('show');
   el.innerHTML=`
     <span class="plan-pill" id="planPill" style="${pillStyle}">${pillText}</span>
     <div class="user-menu">
@@ -1407,10 +1376,9 @@ function renderUserHeader(email,isPro,plan,trialDaysLeft=0){
       <div class="dropdown" id="userDropdown">
         <div class="dropdown-header">
           <div class="dropdown-email">${email}</div>
-          <div class="dropdown-plan">${isTrial?`Free trial — ${trialDaysLeft} days remaining`:plan.charAt(0).toUpperCase()+plan.slice(1)+' plan'}</div>
+          <div class="dropdown-plan">${isPro?'Pro plan':'Free plan'}</div>
         </div>
-        ${isTrial?`<div class="dropdown-item" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[5]);toggleDropdown()">⬆ Upgrade before trial ends</div>`:''}
-        ${(!isPro&&!isTrial)?`<div class="dropdown-item" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[5]);toggleDropdown()">⬆ Upgrade to Pro</div>`:''}
+        ${!isPro?`<div class="dropdown-item" onclick="showPage('pricing',document.querySelectorAll('.nav-tab')[5]);toggleDropdown()">⬆ Upgrade to Pro — NGN 1,500/mo</div>`:''}
         <div class="dropdown-item" onclick="signOut()">↩ Sign out</div>
       </div>
     </div>`;
@@ -1477,7 +1445,7 @@ async function signUp(){
     },{onConflict:'email'});
     showAuthMsg('🎉 Your 7-day free trial has started! Check your email to confirm your account.','ok');
   }
-  btn.textContent='Subscribe — NGN 1,500/month';btn.disabled=false;
+  btn.textContent='Start 7-day free trial';btn.disabled=false;
 }
 
 async function signOut(){
@@ -1504,7 +1472,13 @@ function setUsage(n){
   const today=new Date().toDateString();
   localStorage.setItem('wafstaxUsageDaily',JSON.stringify({date:today,count:n}));
 }
-function isPaid(){return!!currentUser||localStorage.getItem('wafstaxPaid')==='true'||localStorage.getItem('wafstaxTrial')==='true'}
+function isPaid(){
+  if(currentUser){
+    // Check if user has pro plan in Supabase — handled by loadUserProfile
+    return localStorage.getItem('wafstaxPaid')==='true';
+  }
+  return false;
+}
 
 function updateUsageBar(){
   if(isPaid()){document.getElementById('usageStrip').style.display='none';return}
